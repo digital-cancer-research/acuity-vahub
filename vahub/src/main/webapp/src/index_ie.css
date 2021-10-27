@@ -1,0 +1,7 @@
+body {
+    background-color: white;
+}
+
+.datepicker-dropdown {
+    z-index: 1030 !important;
+}

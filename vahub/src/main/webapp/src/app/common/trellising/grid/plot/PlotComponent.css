@@ -1,0 +1,10 @@
+.no-data {
+        text-align: center;
+}
+
+.no-data > span {
+        color: grey;
+        font-size: medium;
+        padding: 6px;
+        position: relative;
+}

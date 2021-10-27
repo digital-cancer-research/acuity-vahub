@@ -1,0 +1,45 @@
+.studies-controls {
+    background-color: white;
+    overflow: auto;
+    margin: 10px 100px 0 50px;
+}
+
+.studies-controls .search-simple {
+    width: 30%;
+    float: left;
+}
+
+.studies-controls .subject-counter {
+    width: 30%;
+    float: right;
+    padding: 15px 15px;
+}
+
+.studies-controls .subject-counter span {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.studies-controls .subject-counter .counter-span {
+    text-align: right;
+    display: inline-block;
+    width: 50px;
+    margin-right: 5px;
+}
+
+.studies-controls .studies-controls__datasets {
+    float: right;
+    line-height: 70px;
+}
+
+.studies-controls .studies-controls__datasets .btn {
+    margin: 0 15px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+}

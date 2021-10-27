@@ -1,0 +1,11 @@
+<div class="filter-list__content" style="display: block;">
+    <ul>
+        <li *ngFor="let value of availableValues" class="setting-line"
+            [ngClass]="{'selected-option': previousSelectedValue === value}">
+            <label>
+                <input value="{{value}}" type="radio" name="{{name}}" [(ngModel)]="selectedValue" (change)="changeHandler()">
+                <a class="option-title" style="display: inline;">{{value | toSettingsTitle | sentenceCase | capitalize}}</a>
+            </label>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,14 @@
+<div class="range-filter-margin">
+    <div class="input-group input-daterange small-font"
+         data-provide="datepicker"
+         data-date-format="dd-M-yyyy"
+         data-date-autoclose="true">
+        <input type="text" class="form-control small-font date-from"
+               value="{{model.textBoxSelectedValues.from}}">
+        <span class="input-group-addon">to</span>
+        <input type="text" class="form-control small-font date-to"
+               value="{{model.textBoxSelectedValues.to}}">
+    </div>
+    Include empty values: <input type="checkbox" [(ngModel)]="model.selectedValues.includeEmptyValues"
+                                 (change)="onIncludeEmptyValuesChanged($event)"/>
+</div>

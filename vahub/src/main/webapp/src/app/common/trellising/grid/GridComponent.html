@@ -1,0 +1,27 @@
+<div class="row trellising-plot-window" *ngFor="let row of rowList">
+    <trellising-plot *ngFor="let col of columnList"
+                     class="col-sm-12"
+                     [className]="'col-sm-' + 12/columns"
+                     [height]="plotHeight"
+                     [plot]="plot(row,col)"
+                     [xRange]="xRange(row,col)"
+                     [yRange]="yRange(row,col)"
+                     [trellisDesign]="trellisDesign"
+                     [tabId]="tabId"
+                     [parentTabId]="trellisingObservables.parentSelectionPlot$ | async"
+                     [xAxisZoom]="trellisingObservables.getXAxisZoom(tabId)"
+                     [yAxisZoom]="trellisingObservables.getYAxisZoom(tabId)"
+                     [xAxisOption]="trellisingObservables.getXAxisOption(tabId)"
+                     [yAxisOption]="trellisingObservables.getYAxisOption(tabId)"
+                     [newXAxisOption]="trellisingObservables.getNewXAxisOption(tabId)"
+                     [newYAxisOption]="trellisingObservables.getNewYAxisOption(tabId)"
+                     [selection]="trellisingObservables.getSelectionByTabId(tabId)"
+                     [scaleType]="trellisingObservables.scaleType | async"
+                     [selectionDetail]="trellisingObservables.getSelectionDetailByTabId(tabId)"
+                     [multiSelectionDetail]="trellisingObservables.getMultiSelectionDetail(tabId)"
+                     [preserveTitle]="trellisingObservables.getPreserveTitle(tabId)"
+                     [plotSettings]="trellisingObservables.getPlotSettings(tabId)"
+                     [logarithmicScaleRequired]="trellisingObservables.isLogarithmicScaleRequired(tabId)"
+                     [settingLabelRequired]="trellisingObservables.isSettingLabelRequired(tabId)">
+    </trellising-plot>
+</div>

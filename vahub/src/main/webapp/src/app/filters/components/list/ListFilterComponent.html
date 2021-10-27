@@ -1,0 +1,14 @@
+<form class="search-simple">
+    <input type="text"
+           placeholder="Search {{model.availableValues.length}} items" [(ngModel)]="model.filterText"
+           [ngModelOptions]="{standalone: true}">
+    <button type="submit">Submit</button>
+</form>
+
+<ul *ngIf="openedFilterModel && openedFilterModel.key === model.key">
+    <li *ngFor="let item of (model.availableValues | filter:[model.filterText])"
+        [ngClass]="{'selected': model.selectedValues.indexOf(item) > -1}">
+        <a style="-webkit-user-select: none" (click)="toggleSelectedItem(item, $event)">
+            {{item | removeParentheses}}</a>
+    </li>
+</ul>

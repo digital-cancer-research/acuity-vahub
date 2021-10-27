@@ -1,0 +1,16 @@
+ ul { 
+    z-index: 3!important;
+    display: block;
+}
+
+.no-wrap {
+    display: inline;
+}
+
+.btn-group>.btn {
+    cursor: default;
+}
+
+.dropdown-menu>li>a {
+    cursor: default;
+}

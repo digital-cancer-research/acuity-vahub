@@ -1,0 +1,50 @@
+<div id="availableCohorts">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Available Cohorts</h4>
+            <form class="search-simple">
+                <input type="text" placeholder="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="selectable-list">
+                <ul class="select-list" [ngClass]="{'disabled-list': this.loading}">
+                    <li *ngFor="let item of (availableCohorts | cohortFilter:[searchText])"
+                        [ngClass]="{'selected': selectedCohortId === item.savedFilter.id}" >
+
+                        <a class="item" (click)="selectCohort(item.savedFilter.id)">{{item.savedFilter.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-sm button available-cohort-button" (click)="showAddModal()" [ngClass]="{disabled: newCohortName}">Add new cohort</a>
+            <a class="btn btn-sm button available-cohort-button" (click)="deleteCohort()" [ngClass]="{disabled: !selectedCohortId}">Delete cohort</a>
+            <a class="btn btn-sm button available-cohort-button" (click)="showRenameModal()" [ngClass]="{disabled: !selectedCohortId}">Rename cohort</a>
+        </div>
+    </div>
+</div>
+
+<app-modal-message 
+    [Title]="'Create new cohort'" 
+    [Msg]="''" 
+    [ButtonText]="'Submit'"
+    [ModalBeDismissed]="true"
+    [ModalIsVisible]="addModalIsVisible"
+    (modalHasBeenSubmitted)="addModalSubmitted($event)">
+        Cohort name: <input type="text" maxlength="1000" [(ngModel)]="newCohortName">
+</app-modal-message>
+
+<app-modal-message 
+    [Title]="'Rename cohort'" 
+    [Msg]="''" 
+    [ButtonText]="'Submit'"
+    [ModalBeDismissed]="true"
+    [ModalIsVisible]="renameModalIsVisible"
+    (modalHasBeenSubmitted)="renameModalSubmitted($event)">
+        Cohort name: <input type="text" maxlength="1000" [(ngModel)]="renamedCohortName">
+</app-modal-message>

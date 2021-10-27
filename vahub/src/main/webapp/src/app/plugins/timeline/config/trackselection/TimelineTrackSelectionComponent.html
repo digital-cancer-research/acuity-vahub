@@ -1,0 +1,22 @@
+<div class="filter-list__content timeline-track-selection-list" style="display: block;">
+    <ul>
+        <li *ngFor="let track of (timelineObservables.tracks | async | sort)"
+            [ngClass]="{'selected': trackService.allTracks[track.name].selected, 'disabled': timelineObservables.loading | async}"
+            (click)="addToSelected(track)">
+            <a class="track-name">{{track.name}}</a>
+            <div 
+                [ngClass]="{'track-order': trackService.allTracks[track.name].order}" 
+                [hidden]="!trackService.allTracks[track.name].order">
+                ({{trackService.allTracks[track.name].order}})
+            </div>
+        </li>
+    </ul>
+    <div class="col-md-12 small italic">
+        Turning tracks on/off for a large number of subjects may take longer. Use filters to reduce number
+        of Subjects
+    </div>
+</div>
+<div class="filter__buttons">
+    <a class="btn btn-apply" style="width: 95%; margin-left: 2%;" (click)="applySelectedTracks()">Apply Tracks</a>
+</div>
+ 

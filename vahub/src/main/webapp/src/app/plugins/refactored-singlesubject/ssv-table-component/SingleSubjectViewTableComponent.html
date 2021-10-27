@@ -1,0 +1,17 @@
+<div>
+    <input class="search-box" placeholder="Search..." type="text" (keyup)="onSearchChanged($event)"/>
+    <strong class="events-counter">{{tabTableData.size}}</strong> Events
+    <label class="check-box" style="padding-left: 15px" *ngIf="isToolPanelAvailable">
+        <input name="isToolPanelShown" type="checkbox" [(ngModel)]="isToolPanelShown"
+               (change)="showToolPanelChange()"/> Show table tool panel
+    </label>
+</div>
+<ag-grid-angular
+        class="ag-fresh"
+        [ngStyle]="{width: '96%', height: height}"
+        [gridOptions]="gridOptions"
+        [rowData]="tabTableData"
+        [columnDefs]="columnDefs"
+        [domLayout]="autoHeight"
+>
+</ag-grid-angular>

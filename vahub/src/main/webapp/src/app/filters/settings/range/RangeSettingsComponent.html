@@ -1,0 +1,11 @@
+<div class="range-control row">
+    <label for="{{id}}"></label>
+    <input class="range-input"
+           id="{{id}}"
+           type="number"
+           [(ngModel)]="inputModel"
+           (change)="handleChange($event)"
+           [roundInput]="currentValue"
+    />
+</div>
+

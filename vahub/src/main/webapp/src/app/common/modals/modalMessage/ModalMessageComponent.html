@@ -1,0 +1,19 @@
+<div *ngIf="ModalIsVisible" class="modal fade show in danger" [ngClass]="{'modal-background': ModalWithOverlay}" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header panel-danger">
+                <h4 class="modal-title">{{Title}}</h4>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+                <div [innerHTML]=Msg></div>
+            </div>
+            <div class="modal-footer">
+                <button style="cursor:default;" *ngIf="ModalBeDismissed" type="button" class="btn btn-default" (click)="cancelModal()">Cancel
+                </button>
+                <button style="cursor:default;" type="button" class="btn btn-default" (click)="okModal()">{{ButtonText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

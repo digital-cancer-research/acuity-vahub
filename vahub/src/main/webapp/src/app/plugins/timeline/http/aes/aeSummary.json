@@ -1,0 +1,29 @@
+[
+  {
+    "subjectId": "subject1",
+    "subject": null,
+    "events": [
+      {
+        "start": {
+          "date": 1462348178680,
+          "dayHour": 20.4,
+          "dayHourAsString": "20d 09:36"
+        },
+        "end": {
+          "date": 1462348178680,
+          "dayHour": 20.4,
+          "dayHourAsString": "20d 09:36"
+        },
+        "ongoing": true,
+        "imputedEndDate": true,
+        "duration": 0.0,
+        "maxCtc": 2,
+        "numberOfEvents": 5,
+        "pts": [
+          "pt1",
+          "pt2"
+        ]
+      }
+    ]
+  }
+]

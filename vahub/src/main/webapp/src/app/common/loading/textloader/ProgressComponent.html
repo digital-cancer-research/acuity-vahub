@@ -1,0 +1,13 @@
+<div *ngIf="loading" class="loader" [ngStyle]="{'height': backDropHeight}">
+    <div class="loader-background">
+        <div class="loader-message" [ngStyle]="{'margin-top': topOfMessage, 'visibility': loading ? 'visible': 'hidden'}">
+            <div class="loader-title">Loading...please wait</div>
+            <div class="circle-loader"></div>
+            <div id="messages">
+                <div id="messagecontent">
+                    <p *ngFor="let message of messages">{{message.text}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

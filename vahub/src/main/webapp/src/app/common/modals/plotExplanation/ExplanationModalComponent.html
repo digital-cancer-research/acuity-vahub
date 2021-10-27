@@ -1,0 +1,18 @@
+<div class="container-info" (click)="open()">
+    <span class="glyphicon glyphicon-info-sign"></span>
+</div>
+<div *ngIf="isVisible" class="modal fade show in danger" id="myModal">
+    <div [ngStyle]="{'width': explanationContent.modalWidth + 'px'}" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header panel-danger">
+                <h4 class="modal-title">{{explanationContent.header}}</h4>
+            </div>
+            <div class="modal-body">
+                <div [innerHTML]=explanationContent.content></div>
+            </div>
+            <div class="close-dialogue" (click)="close()">
+                <span class="glyphicon glyphicon-remove close-cross"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+{
+    "subjectId": "subject1",
+    "subject": "subject1",
+    "drugs": [
+        {
+            "drug": "drug 1",
+            "events": [
+                {
+                    "start": {
+                        "date": 949363200000,
+                        "dayHour": 10.2,
+                        "dayHourAsString": "10d 04:48"
+                    },
+                    "end": {
+                        "date": 949363200000,
+                        "dayHour": 12.3,
+                        "dayHourAsString": "12d 07:12"
+                    },
+                    "ongoing": false,
+                    "duration": 2.1,
+                    "imputedEndDate": false,
+                    "percentChange": {
+                        "perDay": -50,
+                        "perAdmin": -50
+                    },
+                    "drugDoses": [
+                        {
+                            "name": "drug 1",
+                            "dose": 10,
+                            "doseUnit": "mg",
+                            "doseFrequency": {
+                                "frequency": 1,
+                                "name": "QD",
+                                "rank": 1,
+                                "unit": "day"
+                            }
+                        },
+                        {
+                            "name": "drug 2",
+                            "dose": 40,
+                            "doseUnit": "mg",
+                            "doseFrequency": {
+                                "frequency": 1,
+                                "name": "QD",
+                                "rank": 1,
+                                "unit": "day"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "start": {
+                        "date": 949363200000,
+                        "dayHour": 12.3,
+                        "dayHourAsString": "12d 07:12"
+                    },
+                    "end": {
+                        "date": 949363200000,
+                        "dayHour": 13.0,
+                        "dayHourAsString": "13d 00:00"
+                    },
+                    "ongoing": false,
+                    "duration": 0.7,
+                    "imputedEndDate": false,
+                    "percentChange": null,
+                    "drugDoses": []
+                },
+               {
+                    "start": {
+                        "date": 949363200000,
+                        "dayHour": 16,
+                        "dayHourAsString": "16d 00:00"
+                    },
+                    "end": {
+                        "date": 949363200000,
+                        "dayHour": 20,
+                        "dayHourAsString": "20d 00:00"
+                    },
+                    "ongoing": false,
+                    "duration": 4,
+                    "imputedEndDate": false,
+                    "percentChange": {
+                        "perDay": -25,
+                        "perAdmin": -24
+                    },
+                    "drugDoses": [
+                        {
+                            "name": "drug 1",
+                            "dose": 10,
+                            "doseUnit": "mg",
+                            "doseFrequency": {
+                                "frequency": 1,
+                                "name": "QD",
+                                "rank": 1,
+                                "unit": "day"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

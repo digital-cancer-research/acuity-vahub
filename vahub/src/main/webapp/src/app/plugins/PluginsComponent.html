@@ -1,0 +1,17 @@
+<plugins-side-nav-bar></plugins-side-nav-bar>
+<div class="main" id="main" role="main">
+    <div [hidden]="location.includes('cohort-editor') || location.includes('aes/summary')">
+        <selected-filters [id]="'analytics'"></selected-filters>
+    </div>
+    <filters-bar>
+        <router-outlet></router-outlet>
+    </filters-bar>
+    <app-choice-modal [Title]="modalTitle"
+                      [Msg]="modalMessage"
+                      [ButtonAcceptText]="'Yes'"
+                      [ButtonDeclineText]="'No'"
+                      [ModalBeDismissed]="false"
+                      [ModalIsVisible]="modalVisible"
+                      (modalHasBeenSubmitted)="closeModal($event)">
+    </app-choice-modal>
+</div>

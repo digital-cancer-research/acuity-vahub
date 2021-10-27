@@ -1,0 +1,7 @@
+<label>{{label | sentenceCase}}:</label>
+<select class="form-control" [(ngModel)]="selectedOption" (change)="applyValue(event)">
+    <option *ngFor="let option of availableTrellisAxisOptions"
+            [value]="option" >
+        {{option | toLabel:tabId }}
+    </option>
+</select>

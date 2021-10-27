@@ -1,0 +1,38 @@
+<div id="intro8">
+    <div class="axis-label" (click)="toggleOpen()" title="{{tooltip}}">
+        {{toString(localOption) | sentenceCase}}
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </div>
+    <div class="axis-control" [@openClose]="openState()">
+        <div class="container-fluid" *ngIf="isOpen">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" [ngModel]="toString(localOption)" (change)="updateValueString($event)">
+                            <option *ngFor="let anoption of availableValueStrings" [value]="anoption">
+                                {{anoption | sentenceCase }}
+                            </option>
+                        </select>
+                        <div class="input-group" *ngIf="hasAdditionalSelection()">
+                            <div class="input-group-addon">Drug</div>
+                            <select class="form-control" [ngModel]="toAdditionalSelection(localOption)" (change)="updateAdditionalSelectionValue($event)">
+                                <option *ngFor="let option of additionalSelection" [value]="option">
+                                    {{option}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-warning pull-right ml10" (click)="closeControl()">Cancel
+                    </button>
+                    <button *ngIf="hasAdditionalSelection()" type="button" class="btn btn-warning pull-right" (click)="onApply()">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

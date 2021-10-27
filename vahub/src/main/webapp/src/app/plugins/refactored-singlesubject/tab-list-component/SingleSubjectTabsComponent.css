@@ -1,0 +1,39 @@
+.nav-tabs {
+    background-color: transparent;
+    padding-left: 15px;
+    padding-right: 0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+
+.nav-tabs a {
+    color: black;
+    margin-top: 5px;
+}
+
+.nav-tabs a:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.nav-tabs > li > a.active,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    border: 1px solid #ccc;
+    border-bottom: 1px solid white;
+}
+
+.nav > li > a {
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+
+.overflowed-tab {
+    visibility: hidden;
+}
+
+.overflowed-tab {
+    display: none;
+}

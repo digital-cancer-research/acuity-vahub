@@ -1,0 +1,22 @@
+<div class="tab-pane">
+    <ul class="filter-list">
+        <li class="configuration-item">
+            <a class="filter-list__title" (click)="openContent($event,'selection')">
+                <span class="triangle-icon"></span>
+                <span class="display-name" title="Track Selection">
+                    Track Selection
+                </span>
+            </a>
+            <timeline-track-selector [hidden]="openElement != 'selection'"></timeline-track-selector>
+        </li>
+        <li class="configuration-item">
+            <a class="filter-list__title" (click)="openContent($event,'settings')">
+                <span class="triangle-icon"></span>
+                <span class="display-name" title="Track Settings">
+                    Track Settings
+                </span>
+            </a>
+            <tracks-config [hidden]="openElement != 'settings'"></tracks-config>
+        </li>
+    </ul>
+</div>

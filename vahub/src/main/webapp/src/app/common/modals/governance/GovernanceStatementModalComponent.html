@@ -1,0 +1,7 @@
+<app-modal-message [Title]="GovernanceTitle"
+                   [Msg]="GovernanceMsg"
+                   [ButtonText]="GovernanceButtonText"
+                   [ModalBeDismissed]="GovernanceModalBeDismissed"
+                   [ModalIsVisible]="GovernanceModalIsVisible"
+                   [ModalWithOverlay]="true"
+                   (modalHasBeenSubmitted)="okGovernance($event)"></app-modal-message>

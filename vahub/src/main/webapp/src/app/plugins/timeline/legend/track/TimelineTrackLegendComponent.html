@@ -1,0 +1,9 @@
+<div class="legend-item">
+    <h5 class="row"><strong>{{trackLegendConfig.title}}</strong></h5>
+    <div *ngFor="let item of trackLegendConfig.items">
+        <timeline-track-legend-item
+                *ngIf="(!item.yAxisOption || (item.yAxisOption == yAxisOption)) && (!item.warning || ecgWarningsAvailable)"
+                [trackLegendItem]="item">
+        </timeline-track-legend-item>
+    </div>
+</div>

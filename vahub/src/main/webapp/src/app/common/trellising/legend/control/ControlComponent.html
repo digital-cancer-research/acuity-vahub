@@ -1,0 +1,27 @@
+<span class="control-component-label"
+      *ngIf="customControlLabel"
+      [ngClass]="{'control-component-label-no-control': !enableComponent}">
+    {{customControlLabel | sentenceCase}}
+</span>
+
+<span class="control-component" *ngIf="enableComponent">
+    <span [ngClass]="{'control-button': !noStyles, 'control-button-has-label': customControlLabel }"
+          class="glyphicon glyphicon-tint control-glyphicon"
+          (click)="toggle()"></span>
+    <div class="col-sm-12 control" *ngIf="open">
+        <div class="form-group">
+            <label [attr.for]="customControlLabel ? customControlLabel : 'series-select'">Colour by</label>
+            <select [attr.id]="customControlLabel ? customControlLabel : 'series-select'"
+                    [attr.name]="customControlLabel ? customControlLabel : 'series-select'"
+                    class="form-control" [ngModel]="option"
+                    (change)="updateSeries($event)">
+            <option *ngIf="isAllColoringOptionAvailable" [value]="staticAll">
+                {{staticAll}}
+            </option>
+            <option *ngFor="let item of options" [value]="item">
+                {{item | toLabel | sentenceCase}}
+            </option>
+        </select>
+        </div>
+    </div>
+</span>

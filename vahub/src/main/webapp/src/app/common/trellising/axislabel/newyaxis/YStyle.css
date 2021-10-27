@@ -1,0 +1,48 @@
+.axis-label {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    width: 300%;
+    text-align: center;
+    padding: 6px;
+}
+
+.axis-label > span {
+    margin-left: 3px;
+}
+
+.axis-control {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(20%) translateY(-50%);
+    z-index: 10;
+    padding: 6px;
+    border: 1px solid #ccc;
+    background: #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.axis-label:hover {
+    min-width: 160px;
+    padding: 5px 0;
+    font-size: 14px;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    cursor: default;
+}
+
+.btn-warning {
+    cursor: default;
+}
+
+.cycle-day {
+    display: flex;
+    justify-content: space-between;
+}

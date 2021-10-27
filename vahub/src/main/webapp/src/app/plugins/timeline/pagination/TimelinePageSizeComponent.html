@@ -1,0 +1,7 @@
+<dropdownselector
+        style="float: right;"
+        [name]="'Subjects per page: '"
+        [avaliableItems]="pageSizeOptions"
+        [currentSelectedItem]="currentPageSize"
+        (dropdownChanged)="setPageSize($event)">
+</dropdownselector>

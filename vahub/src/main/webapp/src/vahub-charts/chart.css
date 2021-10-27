@@ -1,0 +1,76 @@
+
+body {
+    --charts-axis-color: #666666;
+    --charts-axis-line-color: #e4e4e4;
+}
+
+.chart-title {
+    color: #333333;
+    font-size: 11px;
+    text-align: center;
+    width: 100%;
+}
+
+.chart-tooltip {
+    position: absolute;
+    padding: 10px;
+    z-index: 3;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.chart-dropdown-list {
+    position: absolute;
+    background: white;
+    list-style: none;
+    display: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    padding: 0;
+    border-radius: 2px;
+}
+
+.chart-dropdown-list li {
+    padding: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.chart-dropdown-list li:hover {
+    background: #a9c9db;
+}
+
+.chart-dropdown-toggle {
+    border: none;
+    outline: none;
+    background: white;
+    border-radius: 2px;
+    padding: 0;
+    height: 22px;
+}
+
+.chart-dropdown-toggle:hover, .chart-dropdown-toggle:active, .chart-dropdown-toggle:focus  {
+    background: #dbdbdb;
+}
+
+.y-axis line, .x-axis line, .y-axis path, .x-axis path{
+    stroke: var(--charts-axis-line-color);
+}
+
+.no-axis-line path{
+    stroke: none;
+}
+
+.timeline-y-axis{
+    transform: translate(-1px);
+}
+.timeline-y-axis path, .timeline-y-axis .tick line{
+    stroke: var(--charts-axis-color);
+}
+
+.y-axis text, .x-axis text{
+    fill: var(--charts-axis-color);
+}
+
+.hidden {
+    display: none;
+}

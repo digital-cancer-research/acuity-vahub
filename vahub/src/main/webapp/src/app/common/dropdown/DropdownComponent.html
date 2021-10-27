@@ -1,0 +1,20 @@
+<div *ngIf="avaliableItems?.length > 1" class="no-wrap">
+    <div class="btn-group">
+        <div class="col-sm-1"></div>
+        <label>{{name}}</label>
+    </div>
+    <div class="btn-group">
+
+        <button type="button" class="btn btn-default dropdown-toggle" (click)="toggle()">
+            {{currentSelectedItem.displayName}} <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" *ngIf="model.isOpen">
+            <li *ngFor="let avaliableItem of avaliableItems">
+                <a (click)="itemClicked(avaliableItem)">{{avaliableItem.displayName}}
+                    <span *ngIf="currentSelectedItem === avaliableItem" class="glyphicon glyphicon-ok"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

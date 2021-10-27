@@ -1,0 +1,10 @@
+<div *ngIf="showing" [ngStyle]="locationCss" class="timeline-context-menu">
+    <ul class="menu">
+        <li (click)="clickMenuItem(menuItem)" 
+            [ngClass]="{enabled: menuItem.enabled, disabled: !menuItem.enabled}" 
+            class="menuItem" 
+            *ngFor="let menuItem of menuItems">
+            {{menuItem.title}}
+        </li>
+    </ul>
+</div>

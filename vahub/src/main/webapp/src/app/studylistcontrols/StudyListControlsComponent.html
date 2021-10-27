@@ -1,0 +1,14 @@
+<div id="introB2" class="studies-controls">
+    <form class="search-simple">
+        <input type="text" #query placeholder="Search" name="search" [ngModel]="searchString">
+
+        <button type="submit">{{submitButtonText}}</button>
+    </form>
+    <form class="subject-counter">
+        <span class="counter-span">{{numberOfSubjects}}</span>
+        <span style="margin-right: 30px;"> Subjects</span>
+        <button class="btn btn-default" type="submit" (click)="handleSubmit.emit($event);" [disabled]="!numberOfSubjects " *ngIf="submitButtonText?.length">
+            {{submitButtonText}}
+        </button>
+    </form>
+</div>

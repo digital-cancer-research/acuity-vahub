@@ -1,0 +1,25 @@
+<div class="triangle-container" (click)="isHeaderCollapsed = !isHeaderCollapsed">
+    <span class="triangle-icon" [ngClass]="{active: !isHeaderCollapsed, closed: isHeaderCollapsed}"></span>
+    <span class="section-title">{{sectionHeader}}</span>
+</div>
+<div *ngIf="!isHeaderCollapsed" [class.show]="!isHeaderCollapsed">
+    <div>
+        <subject-info [header]="header"></subject-info>
+    </div>
+    <div *ngFor="let subheader of section.keys();trackBy:trackByHero" class="subsection-container">
+        <div *ngIf="sectionHeader!==subheader" class="triangle-container" (click)="toogleSubheaderCollapsed(subheader)">
+            <span class="triangle-icon small-icon"
+                  [ngClass]="{active: !isSubHeaderCollapsed[subheader], closed: isSubHeaderCollapsed[subheader]}">
+            </span>
+            <span class="subsection-title">{{subheader}}</span>
+        </div>
+        <div *ngIf="!isSubHeaderCollapsed[subheader] || sectionHeader === subheader" [class.show]="!isSubHeaderCollapsed[subheader]">
+            <div *ngFor="let tableName of section.get(subheader).keys();trackBy:trackBySubhero" class="table-container">
+                <span class="table-title" *ngIf="subheader!==tableName">{{tableName}}</span>
+                <summary-table [tabTableData]="section.get(subheader).get(tableName).tableData"
+                               [columnDefs]="getColumnDefs(subheader, tableName)">
+                </summary-table>
+            </div>
+        </div>
+    </div>
+</div>

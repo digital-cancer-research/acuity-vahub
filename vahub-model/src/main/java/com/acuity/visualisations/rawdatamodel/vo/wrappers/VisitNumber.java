@@ -1,0 +1,90 @@
+package com.acuity.visualisations.rawdatamodel.vo.wrappers;
+
+import com.acuity.visualisations.rawdatamodel.filters.RangeFilter;
+import com.acuity.visualisations.rawdatamodel.vo.HasContinuousRank;
+import com.google.common.math.DoubleMath;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+import java.io.Serializable;
+import java.util.Comparator;
+
+@Getter
+@EqualsAndHashCode(of = "value")
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class VisitNumber implements Serializable, Comparable<VisitNumber>, HasContinuousRank {
+
+    private final Double value;
+
+    public static VisitNumber fromValue(Double value) {
+        return value == null
+                ? null
+                : new VisitNumber(value);
+    }
+
+    /**
+     * Returns a VisitNumber object represented by the argument string value.
+     * "1.01", "3", "2.0", "2.1" - correct examples, i.e. only "." is used.
+     * "1,03" - not correct visit number.
+     *
+     * @return a VisitNumber object holding the value
+     * represented by the string argument.
+     * @throws NumberFormatException if the string does not contain parsable visit number.
+     */
+    public static VisitNumber fromValue(String value) {
+        return value == null
+                ? null
+                : new VisitNumber(Double.valueOf(value));
+    }
+
+    /**
+     * Normalises string representation of visit number,
+     * "3.00" -> "3", "4.03" -> "4.03", "3.1230" -> "3.123".
+     *
+     * @return normalised string representation of visit number.
+     * @throws NumberFormatException if the string does not contain parsable visit number.
+     */
+    public static String normalizeVisitNumberString(String value) {
+        VisitNumber visitNumber = fromValue(value);
+        return visitNumber == null
+                ? null
+                : visitNumber.toString();
+    }
+
+    public static RangeFilter<VisitNumber> wrapVisitNumberFilter(RangeFilter<Double> visitNumberFilter) {
+        return new RangeFilter<>(
+                VisitNumber.fromValue(visitNumberFilter.getFrom()),
+                VisitNumber.fromValue(visitNumberFilter.getTo()),
+                visitNumberFilter.getIncludeEmptyValues()
+        );
+    }
+
+    @Override
+    public String toString() {
+        if (value != null) {
+            if (DoubleMath.isMathematicalInteger(value)) {
+                return String.format("%d", value.longValue());
+            } else {
+                return String.format("%s", value);
+            }
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public int compareTo(VisitNumber o) {
+        return Comparator.comparing(VisitNumber::getValue).compare(this, o);
+    }
+
+    @Override
+    public double getRank() {
+        if (value != null) {
+            return value;
+        } else {
+            return 0;
+        }
+    }
+}

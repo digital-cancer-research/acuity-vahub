@@ -1,0 +1,19 @@
+<div *ngIf="names.length > 1" class="dataset-names">
+    <span *ngIf="isCollapsed" class="dataset-names__item">
+        {{names[0]}} <span class="dataset-names__item--note">(combined with other datasets)</span>
+        <button type="button" class="dataset-names__expand btn btn-link" (click)="toggle()">
+            [<em>show all datasets</em>]
+        </button>
+    </span>
+    <div *ngIf="!isCollapsed" class="dataset-list dataset-names__group">
+        <ol class="list list-unstyled">
+            <li *ngFor="let name of names" class="dataset-names__item">
+                {{name}}
+            </li>
+        </ol>
+        <button type="button" class="dataset-names__collapse btn btn-link" (click)="toggle()">
+            [<i>show first dataset only</i>]
+        </button>
+    </div>
+</div>
+<div *ngIf="names.length === 1"> {{names[0]}}</div>

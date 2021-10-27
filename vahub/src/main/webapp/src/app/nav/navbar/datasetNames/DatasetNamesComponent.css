@@ -1,0 +1,30 @@
+.dataset-names {
+    padding: 0;
+}
+
+.dataset-names__item {
+    color: var(--header-datasets-color);
+}
+
+.dataset-names__item--note {
+    color: var(--header-text-color);
+}
+
+.dataset-names__group {
+    line-height: 20px;
+}
+
+.dataset-names__group .list{
+    margin-bottom: 0;
+}
+
+.dataset-names__expand,
+.dataset-names__collapse {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    color: var(--header-text-color);
+    text-decoration: underline;
+    cursor: pointer;
+}

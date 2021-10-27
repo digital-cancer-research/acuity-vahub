@@ -1,0 +1,26 @@
+.details-area {
+    padding-left: 0;
+}
+
+.details-area__options {
+    padding: 20px 10px;
+    height: auto;
+}
+
+.details-table {
+    max-width: 400px;
+    margin-bottom: 0;
+}
+
+.details-table td {
+    text-align: center;
+}
+
+.details-table thead {
+    border-bottom: 0;
+}
+
+.details-table thead td {
+    background: #ebebeb;
+    vertical-align: middle;
+}

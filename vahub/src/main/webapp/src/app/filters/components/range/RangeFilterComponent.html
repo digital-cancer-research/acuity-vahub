@@ -1,0 +1,20 @@
+<div class="range-filter-margin">
+    <zoombar
+            [min]="model.availableValues.min"
+            [max]="model.availableValues.max"
+            [handleMin]="model.textBoxSelectedValues.from"
+            [handleMax]="model.textBoxSelectedValues.to"
+            [stepSize]="model.stepSize"
+            (onChange)="onChange($event)"
+            (onSlide)="onSlide($event)">
+    </zoombar>
+    <br/><br/>
+    <input step="{{model.stepSize}}" class="form-control filter-spinner range-filter-input pull-left" type="number"
+           value="{{model.textBoxSelectedValues.from}}" (change)="onLowerTextBoxChange($event)"/>
+    <input step="{{model.stepSize}}" class="form-control filter-spinner range-filter-input pull-right" type="number"
+           value="{{model.textBoxSelectedValues.to}}" (change)="onUpperTextBoxChange($event)"/>
+    <br/>
+    Include empty values: <input type="checkbox" [(ngModel)]="model.selectedValues.includeEmptyValues"
+                                 (change)="onIncludeEmptyValuesChanged($event)"/>
+</div>
+

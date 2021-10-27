@@ -1,0 +1,34 @@
+.video {
+    cursor: default;
+    width: 200px;
+}
+
+.video-column {
+    text-align: center;
+}
+
+.video-link {
+    color: #4088ff;
+    text-decoration: underline;
+    cursor: default;
+}
+
+.about-row {
+    width: 70%;
+    margin: auto;
+}
+
+.forced-height {
+    height: 205px !important;
+    cursor: default;
+}
+
+.thumbnail--study-list p {
+    margin-top: 10px;
+}
+
+.thumbnail__icon {
+    height: 90px;
+    margin-top: 10px;
+}
+

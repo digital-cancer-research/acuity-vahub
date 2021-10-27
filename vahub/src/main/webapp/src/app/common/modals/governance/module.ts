@@ -1,0 +1,1 @@
+export {GovernanceStatementModalComponent} from './GovernanceStatementModalComponent';

@@ -1,0 +1,1 @@
+export {StudyListComponent} from './StudyListComponent';

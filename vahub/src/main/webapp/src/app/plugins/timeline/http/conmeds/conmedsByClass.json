@@ -1,0 +1,41 @@
+[
+  {
+    "subjectId": "subjectId",
+    "subject": "ECODE",
+    "conmedClasses": [
+      {
+        "conmedClass": "Anilides",
+        "events": [
+          {
+            "start": {
+              "date": 1462348961388,
+              "dayHour": 20.4,
+              "dayHourAsString": "20d 09:36"
+            },
+            "end": {
+              "date": 1462348961388,
+              "dayHour": 20.4,
+              "dayHourAsString": "20d 09:36"
+            },
+            "conmeds": [
+              {
+                "conmed": "conmed1",
+                "doses": [
+                  80.0
+                ],
+                "frequencies": [
+                  "5mg/day"
+                ],
+                "indications": [
+                  "BONEMETASTASIS"
+                ]
+              }
+            ],
+            "numberOfConmeds": 2,
+            "ongoing": false
+          }
+        ]
+      }
+    ]
+  }
+]

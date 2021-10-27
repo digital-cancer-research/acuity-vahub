@@ -1,0 +1,61 @@
+.single-subject-image {
+    height: 50px;
+    margin: 10px;
+}
+
+.single-subject-text {
+    font-weight: bold;
+}
+
+.container {
+    width: 100%;
+    padding: 0;
+}
+
+li.dropdown > a:hover {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid white;
+}
+
+.nav-tabs {
+    background-color: transparent;
+    padding-left: 15px;
+    padding-right: 0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+
+.nav-tabs__main {
+    overflow: hidden;
+    flex-grow: 1;
+    height: 42px;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.nav-tabs-wrapper {
+    padding-right: 15px;
+}
+
+.nav-tabs__dropdown {
+    min-width: 83px;
+}
+
+.overflowed-tab {
+    display: none;
+}
+
+.subject-search-container {
+    max-width: 930px;
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+.ssv-logo {
+    width: 235px;
+    float:left;
+}

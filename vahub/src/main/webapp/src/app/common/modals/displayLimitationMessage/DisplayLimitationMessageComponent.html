@@ -1,0 +1,6 @@
+<app-modal-message [ButtonText]="modal.buttonText"
+                   [Title]="modal.title"
+                   [Msg]="modal.message"
+                   [ModalIsVisible]="modal.isVisible"
+                   (modalHasBeenSubmitted)="modal.modalHandler($event)">
+</app-modal-message>

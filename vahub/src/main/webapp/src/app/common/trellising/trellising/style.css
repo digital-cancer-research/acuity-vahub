@@ -1,0 +1,36 @@
+trellis-pagination {
+    position: relative;
+}
+
+.nodata {
+    display: grid;
+    place-items: center;
+    font-size: x-large;
+}
+
+.trellising-window {
+    padding-right: 60px;
+}
+
+.single-subject-padding {
+    padding-top: 20px;
+}
+
+.pagination-sm>li>a, .pagination-sm>li>span {
+    cursor: default;
+}
+
+cBio-jump {
+    position: relative;
+    float: right;
+    margin-top: -50px;
+    padding-right: 50px;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.d-block {
+    display: block;
+}

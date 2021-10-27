@@ -1,0 +1,24 @@
+<ul class="nav nav-tabs">
+    <li *ngIf="datasetViews.hasExposureSpotfireModules()">
+        <a routerLink="spotfire" routerLinkActive="active">
+            {{tabName.SPOTFIRE}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasExposureData()">
+        <a routerLink="/plugins/exposure/analyte-concentration" routerLinkActive="active">
+            {{tabName.ANALYTE_CONCENTRATION_OVER_TIME}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasPkResultData()">
+        <a routerLink="/plugins/dose-proportionality/box-plot" routerLinkActive="active">
+            {{tabName.DOSE_PROPORTIONALITY_BOX_PLOT}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasPkResultWithResponseData() && userPermissions.hasViewOncologyPackagePermission()">
+        <a routerLink="/plugins/pk-overall-response/box-plot" routerLinkActive="active">
+            {{tabName.PK_RESULT_OVERALL_RESPONSE}}
+        </a>
+    </li>
+</ul>
+<br/>
+<router-outlet></router-outlet>

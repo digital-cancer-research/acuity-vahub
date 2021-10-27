@@ -1,0 +1,12 @@
+<div>
+    <navigator></navigator>
+    <app-modal-message [Title]="RefreshTitle"
+                       [Msg]="RefreshMsg"
+                       [ButtonText]="RefreshButtonText"
+                       [ModalBeDismissed]="RefreshModalBeDismissed"
+                       [ModalIsVisible]="RefreshModalIsVisible"
+                       (modalHasBeenSubmitted)="okRefresh($event)"></app-modal-message>
+    <router-outlet></router-outlet>
+    <governance-statement-modal></governance-statement-modal>
+    <progress-messages [loading]="!sessionEventService.userDetails"></progress-messages>
+</div>

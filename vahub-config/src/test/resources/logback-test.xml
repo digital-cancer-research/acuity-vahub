@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT-LINE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-23.-23(%d{dd/MM HH:mm:ss} [%thread]) %-5level %-29.29(%logger{25}:%L) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.acuity" level="${root-level:-DEBUG}" />
+    <logger name="com.acuity.visualisations.common.cache" level="INFO" />
+    <logger name="org.springframework.aop.interceptor" level="DEBUG"/>            
+    <logger name="net.sf.ehcache" level="INFO"/>
+    <logger name="java.sql" level="WARN"/>
+    <logger name="org.flywaydb" level="INFO" />
+    <logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR" />
+    <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR" />
+    <logger name="org.springframework.context.support" level="ERROR" />
+    
+    <root level="WARN">
+        <appender-ref ref="STDOUT-LINE" />
+    </root>
+     
+</configuration>

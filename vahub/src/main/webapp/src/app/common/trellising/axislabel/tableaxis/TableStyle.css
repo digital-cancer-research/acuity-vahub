@@ -1,0 +1,48 @@
+.axis-container {
+    position: relative;
+    width: 272px;
+}
+
+.axis-label {
+    padding: 6px;
+    text-align: center;
+}
+
+.axis-control {
+    position: absolute;
+    margin-left: -135px;
+    padding: 6px;
+    z-index: 10;
+    border: 1px solid #ccc;
+    background: #ccc;
+    border-radius: 5px;
+    width: 270px;
+    overflow: hidden;
+    left: 50%;
+    top: 40px;
+}
+
+.axis-label > span {
+    margin-left: 3px;
+}
+
+.axis-label:hover {
+    min-width: 160px;
+    padding: 5px 0;
+    font-size: 14px;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    cursor: default;
+}
+
+.btn-warning {
+    cursor: default;
+}
+
+.ml10 {
+    margin-left: 10px;
+}

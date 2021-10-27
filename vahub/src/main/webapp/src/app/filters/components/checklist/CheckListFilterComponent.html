@@ -1,0 +1,10 @@
+<ul *ngIf="openedFilterModel && openedFilterModel.key === model.key">
+   <li *ngFor="let item of model.initialValues" 
+       [ngClass]="{'selected': isItemPresentInSelectedList(item), 'filter-input-readonly': !isItemPresentInAvailableList(item)}" >
+
+       <input [checked]="isItemPresentInSelectedList(item)" type="checkbox" (change)="toggleSelectedItem(item)" [disabled]="isLastAvailableItem(item)" 
+              [ngClass]="{'filter-input-readonly': !isItemPresentInAvailableList(item)}"/>
+
+       {{item || '(Empty)'}}
+   </li>
+</ul>

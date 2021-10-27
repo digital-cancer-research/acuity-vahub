@@ -1,0 +1,49 @@
+import {Routes} from '@angular/router';
+import {SummaryTabComponent} from './tabs/summary/SummaryTabComponent';
+import {DoseTabComponent} from './tabs/dose/DoseTabComponent';
+import {DoseDiscontinuationTabComponent} from './tabs/dose-discontinuation/DoseDiscontinuationTabComponent';
+import {ConmedsTabComponent} from './tabs/conmeds/ConmedsTabComponent';
+import {AdverseEventsTabComponent} from './tabs/adverse-events/AdverseEventsTabComponent';
+import {DeathTabComponent} from './tabs/death/DeathTabComponent';
+import {SeriousAdverseEventsTabComponent} from './tabs/serious-adverse-evemts/SeriousAdverseEventsTabComponent';
+import {ExacerbationsTabComponent} from './tabs/exacerbations/ExacerbationsTabComponent';
+import {LiverDiagInvestTabComponent} from './tabs/liver-diag-invest/LiverDiagInvestTabComponent';
+import {LiverRiskFactorsTabComponent} from './tabs/liver-risk-factors/LiverRiskFactorsTabComponent';
+import {MedicalHistoryTabComponent} from './tabs/medical-history/MedicalHistoryTabComponent';
+import {NicotineTabComponent} from './tabs/nicotine/NicotineTabComponent';
+import {SurgicalHistoryTabComponent} from './tabs/surgical-history/SurgicalHistoryTabComponent';
+import {AlcoholTabComponent} from './tabs/alcohol/AlcoholTabComponent';
+import {CardiacTabComponent} from './tabs/cardiac/CardiacTabComponent';
+import {VitalsTabComponent} from './tabs/vitals/VitalsTabComponent';
+import {LabsTabComponent} from './tabs/labs/LabsTabComponent';
+import {LiverTabComponent} from './tabs/liver/LiverTabComponent';
+import {RenalTabComponent} from './tabs/renal/RenalTabComponent';
+import {LangfunctionTabComponent} from './tabs/lungunction/LangfunctionTabComponent';
+import {SingleSubjectTimelineComponent} from './tabs/timeline/SingleSubjectTimelineComponent';
+import {SubjectSummaryTabComponent} from './tabs/new-summary/SubjectSummaryTabComponent';
+
+export const SingleSubjectViewRoutes: Routes = [
+    {path: '', pathMatch: 'full', redirectTo: 'summary-tab'},
+    {path: 'summary-tab', component: SummaryTabComponent},
+    {path: 'new-summary-tab', component: SubjectSummaryTabComponent},
+    {path: 'ae-tab', component: AdverseEventsTabComponent},
+    {path: 'sae-tab', component: SeriousAdverseEventsTabComponent},
+    {path: 'conmeds-tab', component: ConmedsTabComponent},
+    {path: 'exacerbations-tab', component: ExacerbationsTabComponent},
+    {path: 'dose-tab', component: DoseTabComponent},
+    {path: 'dose-discontinuation-tab', component: DoseDiscontinuationTabComponent},
+    {path: 'death-tab', component: DeathTabComponent},
+    {path: 'medicalhistory-tab', component: MedicalHistoryTabComponent},
+    {path: 'liver-risk-factors-tab', component: LiverRiskFactorsTabComponent},
+    {path: 'surgicalhistory-tab', component: SurgicalHistoryTabComponent},
+    {path: 'liverdiag-tab', component: LiverDiagInvestTabComponent},
+    {path: 'nicotine-tab', component: NicotineTabComponent},
+    {path: 'alcohol-tab', component: AlcoholTabComponent},
+    {path: 'lab-tab', component: LabsTabComponent},
+    {path: 'vitals-tab', component: VitalsTabComponent},
+    {path: 'hys-law', component: LiverTabComponent},
+    {path: 'renal-tab', component: RenalTabComponent},
+    {path: 'lungfunction-tab', component: LangfunctionTabComponent},
+    {path: 'cardiac-tab', component: CardiacTabComponent},
+    {path: 'timeline-tab', component: SingleSubjectTimelineComponent},
+];

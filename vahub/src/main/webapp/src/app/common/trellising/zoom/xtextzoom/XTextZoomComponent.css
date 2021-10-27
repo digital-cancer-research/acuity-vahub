@@ -1,0 +1,29 @@
+.left-input {
+    max-width: 50px;
+    text-align: right;
+}
+
+.left-input:focus {
+    outline-width: 0;
+}
+
+.right-input {
+    max-width: 50px;
+    text-align: right;
+}
+
+.right-input:focus {
+    outline-width: 0;
+}
+
+.text-zoom {
+    padding: 5px 0 0 17%;
+    color: #333333;
+    font-size: 13px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -1,0 +1,34 @@
+table#studyInfo,
+table#demography {
+  width: 35%;
+  float: left;
+  margin: 10px 20px 20px;
+  border: 1px solid #cbcbcb;
+}
+
+table tr {
+  border: 1px solid #cbcbcb;
+}
+
+table caption {
+  color: black;
+}
+
+#medHistory {
+  width: 55%;
+  float: left;
+  clear: both;
+  margin: 20px;
+}
+
+.notifications {
+  padding: 20px;
+  font-size: 16px;
+  color: #cbcbcb;
+  font-style: italic;
+}
+
+.summary-container {
+  margin-left: 100px;
+  overflow: hidden;
+}

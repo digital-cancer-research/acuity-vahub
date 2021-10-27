@@ -1,0 +1,15 @@
+<h3 id="sharingTitle">Sharing</h3>
+Share with me, plus users selected below
+<form class="search-simple">
+    <input type="text" placeholder="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
+    <button type="submit">Submit</button>
+</form>
+<div class="selectable-list">
+    <ul class="select-list" id="userList">
+        <li *ngFor="let item of (allDatasetUsers | cohortUserFilter:[searchText])" [ngClass]="{'selected': isSharedToUser(item)}" >
+            <a class="item" (click)="toggleSharedUser(item)">{{item.fullName}}</a>
+        </li>
+    </ul>
+</div>
+<a class="btn btn-sm button available-cohort-button select-button" (click)="selectAll()">Select All</a>
+<a class="btn btn-sm button available-cohort-button" (click)="deselectAll()">Deselect All</a>

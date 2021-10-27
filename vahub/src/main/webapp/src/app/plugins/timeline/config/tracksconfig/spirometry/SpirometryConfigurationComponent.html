@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <h5 class="row"><strong>Spirometry Y-axis value</strong></h5>
+    <div class="row">
+        <form role="form">
+            <div *ngFor="let spirometryYAxisValueOption of spirometryYAxisValueOptions">
+                <label>
+                    <input type="radio" [checked]="spirometryYAxisValueOption === currentSpirometryYAxisValue"
+                                        (click)="updateYAxisValueOption(spirometryYAxisValueOption)"> {{spirometryYAxisValueOption}}
+                </label>
+            </div>
+        </form>
+    </div>
+</div>

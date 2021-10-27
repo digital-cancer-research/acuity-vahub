@@ -1,0 +1,9 @@
+.main {
+    margin-left: 60px;
+}
+
+:host >>> .nav>li>a.active {
+    border-color: #eee #eee #ddd;
+    text-decoration: none;
+    background-color: #eee;
+}

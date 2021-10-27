@@ -1,0 +1,11 @@
+<div class="search-container">
+    <single-subject-search-input
+            [availableSubjects]="availableSubjects$ | async"
+            [selectedSubjectId]="selectedSubjectId$ | async"
+            [subjectSearchString]="subjectSearchString$ | async"
+            (newSearchString)="updateSubjectSearchString($event)"
+            (clearSubjectSelection)="clearSubjectSelection()"
+            (newSelectedSubject)="updateSelectedSubject($event)"
+    >
+    </single-subject-search-input>
+</div>

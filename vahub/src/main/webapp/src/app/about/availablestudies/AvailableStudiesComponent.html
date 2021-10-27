@@ -1,0 +1,36 @@
+<div class="main main--grey study-selection-content" id="main" role="main" xmlns="http://www.w3.org/1999/html">
+    <study-selection-controls [numberOfSubjects]="totalNumberOfSubjects | async"
+                              [submitButtonText]=""
+                              (handleUpdateQuery)="handleUpdateQuery($event)"
+                              (handleSubmit)="openDataset()"></study-selection-controls>
+
+    <study-list [studyList]="availableDatasets | async"
+                [studyWarnings]="studyWarnings | async"
+                [searchString]="searchString | async"
+                [acls]="acls | async"
+                [selectedDatasets]="selectedDatasets | async"
+                [isMultipleCollapseAvailable]="true"
+                [userActionText]="'This page shows all datasets that are currently loaded in ACUITY'"
+                [datasetIdAndNumSubjectsMap]="datasetIdAndNumSubjectsMap | async"
+                (handleSelectDataset)="onSelectDataset($event)"></study-list>
+</div>
+
+<details-table [details]="counts | async"></details-table>
+
+<progress-messages [loading]="loading | async"></progress-messages>
+
+<app-modal-message [Title]="datasetsInfoModal.title"
+                   [Msg]="datasetsInfoModal.body"
+                   [ButtonText]="datasetsInfoModal.buttonText"
+                   [ModalBeDismissed]="false"
+                   [ModalIsVisible]="datasetsInfoModal.isVisible"
+                   (modalHasBeenSubmitted)="dismissDatasetInfoModal()">
+</app-modal-message>
+
+<app-modal-message [Title]="requestAccessModal.title"
+                   [Msg]="requestAccessModal.body"
+                   [ButtonText]="requestAccessModal.buttonText"
+                   [ModalBeDismissed]="false"
+                   [ModalIsVisible]="requestAccessModal.isVisible"
+                   (modalHasBeenSubmitted)="dismissRequestAccessModal()">
+</app-modal-message>

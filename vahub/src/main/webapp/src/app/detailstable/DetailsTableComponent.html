@@ -1,0 +1,29 @@
+<section class="details-area draggable" (window:resize)="onWindowResize($event)">
+    <header class="details-area-header">
+        <a class="details-area__toggle" (click)="openOrClose()"></a>
+        <span>Counts of Drug Programmes, Studies and Datasets loaded currently</span>
+    </header>
+    <div class="details-area-content">
+        <div class="details-area__options">
+            <table class="details-table table table-bordered">
+                <thead>
+                    <tr>
+                        <td *ngFor="let detail of details?.keySeq()" class="details-table__cell details-cell">
+                            {{detail}}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="details-table__row">
+                        <td *ngFor="let detail of details?.keySeq()" class="details-table__cell details-cell">
+                            <div class="details-cell__body">{{details.get(detail)}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="details-area__table">
+
+        </div>
+    </div>
+</section>

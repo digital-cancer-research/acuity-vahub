@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+    <li>
+        <a routerLink="/plugins/population-summary/summary-plot" routerLinkActive="active">{{tabName.POPULATION_SUMMARY_PLOT}}</a>
+    </li>
+    <li>
+        <a routerLink="/plugins/population-summary/summary-table" routerLinkActive="active">{{tabName.POPULATION_SUMMARY_TABLE}}</a>
+    </li>
+</ul>
+<br/>
+<apply-safety-filters-modal></apply-safety-filters-modal>
+<router-outlet></router-outlet>

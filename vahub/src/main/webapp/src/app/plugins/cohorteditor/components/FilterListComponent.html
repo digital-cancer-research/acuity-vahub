@@ -1,0 +1,29 @@
+<div id="filtersInCohort">
+        <div class="row">
+            <div class="col-md-12">
+                <span>Filter subjects in the cohort based on attributes and experienced events</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="selectable-list col-md-9">
+                <ul class="select-list">
+                    <li *ngFor="let filterInstance of getFiltersForSelectedCohort(); let first = first"
+                        [ngClass]="{'selected': selectedFilterInstance === filterInstance}">
+                        <a class="item" (click)="selectFilterInstance(filterInstance)"><span class="and">{{!first ? 'AND&nbsp;' : ''}}</span>{{formatFilterInstanceName(filterInstance)}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group col-md-3" [ngClass]="{open: addFilterOpen}">
+                <button id="addFilterButton" type="button" class="btn btn-sm btn-default" [disabled]="!selectedCohortId">Add filter</button>
+                <button type="button" class="btn btn-sm btn-default dropdown-toggle" (click)="addFilterOpen = !addFilterOpen" [disabled]="!selectedCohortId">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a [ngClass]="{disabled: hasFilterInstance('POPULATION')}" (click)="addPopulationFilter()">Population Filter</a></li>
+                    <li><a [ngClass]="{disabled: hasFilterInstance('AES')}" (click)="addAeFilter()">Adverse Event Filter</a></li>
+                </ul>
+            </div>
+        </div>
+</div>

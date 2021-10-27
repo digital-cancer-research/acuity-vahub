@@ -1,0 +1,32 @@
+[
+    {
+        "subjectId": "subject1",
+        "subject": "subject1",
+        "events": [
+            {
+                "start": {
+                    "date": 1462457140157,
+                    "dayHour": 12.3,
+                    "dayHourAsString": "12d 07:12"
+                },
+                "visitNumber": 12,
+                "numAboveReferenceRange": 4,
+                "numBelowReferenceRange": 2,
+                "numAboveSeverityThreshold": 0,
+                "numBelowSeverityThreshold": 0
+            },
+            {
+                "start": {
+                    "date": 1462457140157,
+                    "dayHour": 1.3,
+                    "dayHourAsString": "1d 07:12"
+                },
+                "visitNumber": 1,
+                "numAboveReferenceRange": 4,
+                "numBelowReferenceRange": 2,
+                "numAboveSeverityThreshold": 0,
+                "numBelowSeverityThreshold": 0
+            }
+        ]
+    }
+]

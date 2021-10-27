@@ -1,0 +1,32 @@
+[
+  {
+    "subjectId": "subjectId",
+    "subject": "ECODE",
+    "events": [
+      {
+        "start": {
+          "date": 1462348961388,
+          "dayHour": 20.4,
+          "dayHourAsString": "20d 09:36"
+        },
+        "end": {
+          "date": 1462348961388,
+          "dayHour": 20.4,
+          "dayHourAsString": "20d 09:36"
+        },
+        "ongoing": false,
+        "duration": 0.0,
+        "comorbidMedicalHistories": [
+          "history1",
+          "history2"
+        ],
+        "nonComorbidMedicalHistories": [
+          "history1",
+          "history2"
+        ],
+        "numberOfDoseReceived": 3,
+        "severityGrade": "MILD"
+      }
+    ]
+  }
+]

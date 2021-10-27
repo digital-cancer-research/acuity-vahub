@@ -1,0 +1,1 @@
+export {ManualComponent} from './ManualComponent';

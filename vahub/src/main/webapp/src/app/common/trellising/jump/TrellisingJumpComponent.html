@@ -1,0 +1,11 @@
+<div [hidden]="loading">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5" *ngFor="let link of currentTabLinks">
+        <button class="btn btn-link"
+                style="margin-top: -20px;"
+                (click)="jump(link)">
+            <span class="glyphicon glyphicon-new-window"></span>
+            {{link.label}}
+        </button>
+    </div>
+</div>

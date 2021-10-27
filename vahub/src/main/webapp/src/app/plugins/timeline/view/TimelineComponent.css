@@ -1,0 +1,48 @@
+.timeline-container {
+    display: flex;
+    flex-flow: row wrap;
+    padding-right: 50px;
+}
+
+.tracks-container {
+    padding-left: 0;
+}
+
+.timeline-sidebar {
+    padding-left: 0;
+    margin-left: 0;
+    position: relative;
+    flex: 1;
+    width: 100%;
+}
+
+.timeline-zoom {
+    padding-right: 40px;
+    width: 77%;
+    padding-left: 6px;
+}
+
+.timeline-axis-label {
+    width: 23%
+}
+
+.timeline-pagination {
+    display: table;
+    margin: auto;
+}
+
+.timeline-page-size {
+    margin-top: 5px;
+    margin-bottom: 5px
+}
+
+.timeline-download {
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+@media (min-width: 1200px) {
+    .timeline-sidebar {
+        margin-left: -12px;
+    }
+}

@@ -1,0 +1,19 @@
+.notifications {
+  padding: 20px;
+  font-size: 16px;
+  color: #cbcbcb;
+  font-style: italic;
+}
+
+.section-container {
+  margin-bottom: 15px;
+}
+
+.details-area__export {
+  float: right;
+  padding-right: 100px;
+}
+
+.subject-export-button {
+  cursor: pointer;
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "plotType": "STACKED_BARCHART",
+    "trellising": [],
+    "data": [
+      {
+        "name": "DEU",
+        "color": "#117733",
+        "categories": [
+          "Placebo",
+          "SuperDex 10 mg",
+          "SuperDex 20 mg"
+        ],
+        "series": [
+          {
+            "category": "Placebo",
+            "rank": 1,
+            "value": 23
+          },
+          {
+            "category": "SuperDex 10 mg",
+            "rank": 2,
+            "value": 31
+          },
+          {
+            "category": "SuperDex 20 mg",
+            "rank": 3,
+            "value": 15
+          }
+        ]
+      },
+      {
+        "name": "FRA",
+        "color": "#CC6677",
+        "categories": [
+          "Placebo",
+          "SuperDex 10 mg",
+          "SuperDex 20 mg"
+        ],
+        "series": [
+          {
+            "category": "Placebo",
+            "rank": 1,
+            "value": 16
+          },
+          {
+            "category": "SuperDex 10 mg",
+            "rank": 2,
+            "value": 28
+          },
+          {
+            "category": "SuperDex 20 mg",
+            "rank": 3,
+            "value": 18
+          }
+        ]
+      },
+      {
+        "name": "USA",
+        "color": "#332288",
+        "categories": [
+          "Placebo",
+          "SuperDex 10 mg",
+          "SuperDex 20 mg"
+        ],
+        "series": [
+          {
+            "category": "Placebo",
+            "rank": 1,
+            "value": 17
+          },
+          {
+            "category": "SuperDex 10 mg",
+            "rank": 2,
+            "value": 32
+          },
+          {
+            "category": "SuperDex 20 mg",
+            "rank": 3,
+            "value": 17
+          }
+        ]
+      }
+    ]
+  }
+]

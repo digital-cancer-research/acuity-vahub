@@ -1,0 +1,39 @@
+/* Spotfire Visualization Grid */
+
+.spotfire-grid-block {
+    float: left;
+    width: 330px;
+    height: 100px;
+}
+
+.spotfire-grid-block img {
+    width: 52px;
+    float: left;
+    cursor: default;
+}
+
+.spotfire-grid-block-text {
+    max-width: 250px;
+    overflow-x: hidden;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+
+/* Link (a) to a dataset  */
+a.vis:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.vis {
+    color: black;
+}
+
+a.vis:hover {
+    color: #003399; /*blue*/
+    background-color: #def;
+}

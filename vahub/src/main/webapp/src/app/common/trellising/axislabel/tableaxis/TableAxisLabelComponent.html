@@ -1,0 +1,43 @@
+<div class="axis-container">
+    <div class="axis-label" (click)="toggle()" title="{{tooltip}}">
+        {{option.displayOption | toLabel:tabId  | sentenceCase }} {{drugOption && 'of '+ drugOption }}
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </div>
+    <div class="axis-control"
+         [ngClass]="{ 'axis-control__high': hasSecondRow() }"
+         *ngIf="isOpen"
+         @enterLeaveTrigger>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <select id="series-select" name="series-select" class="form-control" [(ngModel)]="option.displayOption" (change)="onDisplayOptionChange()">
+                    <option *ngIf="isAllColoringOptionAvailable" [value]="allOption.displayOption">
+                        {{allOption.displayOption}}
+                    </option>
+                    <option *ngFor="let item of options" [value]="item.displayOption">
+                        {{item.displayOption | toLabel:tabId | sentenceCase}}
+                    </option>
+                </select>
+
+                <div class="input-group" *ngIf="option.drugs">
+                    <div class="input-group-addon">Drug</div>
+                    <select class="form-control" [(ngModel)]="drugOption">
+                        <option *ngFor="let drug of option.drugs" [value]="drug">
+                            {{drug}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-warning pull-right ml10" (click)="closeControl()">Cancel
+                    </button>
+                    <button *ngIf="option.drugs" type="button" class="btn btn-warning pull-right"
+                            (click)="applyChanges()">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

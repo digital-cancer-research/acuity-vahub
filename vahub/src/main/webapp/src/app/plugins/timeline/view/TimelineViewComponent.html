@@ -1,0 +1,9 @@
+<div *ngIf="!loading" id="intro5" class="timeline-view-container" [ngStyle]="{'max-height': maxHeight}">
+    <timline-context-menu-holder></timline-context-menu-holder>
+    <timeline-subject *ngFor="let subject of subjects; trackBy: trackBySubjectId"
+                      [subject]="subject"
+                      [showSubjectId]="true"
+                      (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)">
+    </timeline-subject>
+    <div *ngIf="isEmpty" class="timeline-no-data">No data to display</div>
+</div>

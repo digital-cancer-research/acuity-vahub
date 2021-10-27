@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "classpath:spring/detect/mybatis/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="callSettersOnNulls" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+    
+    <typeHandlers>
+        <typeHandler handler="com.acuity.visualisations.common.handlers.NumberTypeHandler" javaType="java.lang.Number"/>
+        <typeHandler handler="com.acuity.visualisations.common.handlers.PostgresStringTypeHandler" javaType="java.lang.String"/>
+    </typeHandlers>
+    
+    <plugins>
+        <plugin interceptor="com.acuity.visualisations.common.aspect.TimeMePlugin" />
+    </plugins>
+</configuration>

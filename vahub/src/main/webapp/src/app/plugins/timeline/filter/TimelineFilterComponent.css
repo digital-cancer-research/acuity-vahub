@@ -1,0 +1,17 @@
+/*:host >>> .timeline-filter-list li a.active:after {*/
+/*-webkit-transform: rotate(180deg);*/
+/*transform: rotate(180deg);*/
+/*}*/
+
+.timeline-filter-list-collection {
+    display: none;
+}
+
+.imeline-filter-list-title {
+    font-weight: 700;
+}
+
+.timeline-filter-list-title .display-name {
+    margin-left: 5%;
+}
+

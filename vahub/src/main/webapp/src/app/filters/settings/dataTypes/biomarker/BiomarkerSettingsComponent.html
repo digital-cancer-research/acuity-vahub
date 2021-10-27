@@ -1,0 +1,44 @@
+<div class="tab-pane">
+    <ul class="filter-list"
+        *ngIf="!(trellisingObservables.loading | async) && (trellisingObservables.zoomRangeRequired$ | async)">
+        <li class="settings-item"
+            [ngClass]="{'active': settingsOpenedModel[biomarkerSettings.NUMBER_OF_SUBJECTS_SHOWN_IN_ZOOM]}">
+            <a class="filter-list__title"
+               (click)="changeSettingVisibility(biomarkerSettings.NUMBER_OF_SUBJECTS_SHOWN_IN_ZOOM)">
+                <span class="triangle-icon"></span>
+                <span class="display-name">
+                    {{biomarkerSettings.NUMBER_OF_SUBJECTS_SHOWN_IN_ZOOM | sentenceCase}}
+                </span>
+            </a>
+            <div class="filter-list__content" style="cursor: default"
+                 title="'Please enter the number of subjects you wish to view'">
+                <zoomrange [hidden]="!settingsOpenedModel[biomarkerSettings.NUMBER_OF_SUBJECTS_SHOWN_IN_ZOOM]"
+                           [id]="'numberX'"
+                           [zoom]="trellisingObservables.xAxisZoom | async"
+                           [maxConst]="maxX"
+                           (handleUpdateRange)="trellisingDispatcher.updateZoomRange('xAxis', $event)">
+                </zoomrange>
+            </div>
+        </li>
+
+        <li class="settings-item"
+            [ngClass]="{'active': settingsOpenedModel[biomarkerSettings.NUMBER_OF_GENES_SHOWN_IN_ZOOM]}">
+            <a class="filter-list__title"
+               (click)="changeSettingVisibility(biomarkerSettings.NUMBER_OF_GENES_SHOWN_IN_ZOOM)">
+                <span class="triangle-icon"></span>
+                <span class="display-name">
+                    {{biomarkerSettings.NUMBER_OF_GENES_SHOWN_IN_ZOOM | sentenceCase}}
+                </span>
+            </a>
+            <div class="filter-list__content" style="cursor: default"
+                 title="'Please enter the number of genes you wish to view'">
+                <zoomrange [hidden]="!settingsOpenedModel[biomarkerSettings.NUMBER_OF_GENES_SHOWN_IN_ZOOM]"
+                           [id]="'numberY'"
+                           [zoom]="trellisingObservables.yAxisZoom | async"
+                           [maxConst]="maxY"
+                           (handleUpdateRange)="trellisingDispatcher.updateZoomRange('yAxis', $event)">
+                </zoomrange>
+            </div>
+        </li>
+    </ul>
+</div>

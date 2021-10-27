@@ -1,0 +1,27 @@
+<div class="search-container">
+    <div class="ssv-logo">
+        <img src="/assets/images/single-subject-black.png" class="single-subject-image"/>
+        <span class="single-subject-text"> Single Subject View </span>
+    </div>
+    <div class="subject-search-container">
+        <ssv-subject-search></ssv-subject-search>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="container" collapseTabs (window:resize)="onResize()">
+    <ul class="nav nav-tabs nav-tabs-wrapper">
+        <li class="nav-tabs__main">
+            <ssv-tabs></ssv-tabs>
+        </li>
+
+        <li class="dropdown nav-tabs__dropdown" [class.open]="dropdownOpen">
+            <a class="dropdown-toggle" role="button" data-toggle="dropdown" (click)="toggleDropdown()">
+                More<span *ngIf="(pluginsService.selectedTab | async)">: {{pluginsService.selectedTab | async}}</span>
+                <span class="caret"></span>
+            </a>
+            <ssv-tabs [isDropdown]="true" [class.open]="dropdownOpen"></ssv-tabs>
+
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>

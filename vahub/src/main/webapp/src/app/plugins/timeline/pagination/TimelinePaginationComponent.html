@@ -1,0 +1,8 @@
+<div *ngIf="showPagination()" style="margin-bottom: 10px;">
+    <trellis-pagination
+            [currentPage]="currentPage"
+            [pages]="pages"
+            [isLoading]="loading"
+            (updatePage)="setCurrentPage($event)">
+    </trellis-pagination>
+</div>

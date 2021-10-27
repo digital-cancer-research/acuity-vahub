@@ -1,0 +1,46 @@
+<div class="container-fluid background-white timeline-config" [hidden]="isComponentHidden">
+    <div class="row">
+        <div class="col-md-12">
+            <labs-config *ngIf="isVisible(trackName.LABS, 4)"
+                         [labsYAxisValue]="timelineObservables.labsYAxisValue | async"
+                         (updateLabsYAxisValue)="timelineConfigurationService.setLabsYAxisValue($event)">
+            </labs-config>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ecg-y-axis-config *ngIf="isVisible(trackName.ECG, 3)"
+                               [ecgYAxisValue]="timelineObservables.ecgYAxisValue | async"
+                               (updateEcgYAxisValue)="timelineConfigurationService.setEcgYAxisValue($event)">
+            </ecg-y-axis-config>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ecg-warnings-config *ngIf="isVisible(trackName.ECG, 0)"
+                                 [ecgWarnings]="timelineObservables.ecgWarnings | async"
+                                 (updateEcgWarnings)="timelineConfigurationService.setEcgWarnings($event)">
+            </ecg-warnings-config>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <vitals-config *ngIf="isVisible(trackName.VITALS, 3)"
+                           [vitalsYAxisValue]="timelineObservables.vitalsYAxisValue | async"
+                           (updateVitalsYAxisValue)="timelineConfigurationService.setVitalsYAxisValue($event)">
+            </vitals-config>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <spirometry-config *ngIf="isVisible(trackName.SPIROMETRY, 3)"
+                               [spirometryYAxisValue]="timelineObservables.spirometryYAxisValue | async"
+                               (updateSpirometryYAxisValue)="timelineConfigurationService.setSpirometryYAxisValue($event)">
+            </spirometry-config>
+        </div>
+    </div>
+</div>

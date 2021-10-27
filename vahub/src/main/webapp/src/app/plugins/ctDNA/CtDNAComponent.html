@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+    <li *ngIf="datasetViews.hasCtDnaData()">
+        <a routerLink="/plugins/ctdna/ctDNA-plot" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/ctdna/ctDNA-plot')}">{{tabName.CTDNA}}</a>
+    </li>
+</ul>
+<br/>
+<router-outlet></router-outlet>

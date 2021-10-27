@@ -1,0 +1,14 @@
+<li class="filter-item" [ngClass]="{'cohort-filter-item': isCohortFilter}" *ngFor="let filterModel of model.filters">
+    <a class="filter-list__title" (click)="openContent($event, model)">
+        <span class="triangle-icon"> </span>
+        <span class="display-name" title="{{filterModel.displayName}}">
+                    {{filterModel.displayName}}
+                    <span class="amount" *ngIf="filterModel.showNumberOfSelectedFilters()">
+                        ({{filterModel.numberOfSelectedFilters}})
+                    </span>
+                </span>
+    </a>
+    <div class="filter-list__content filter-collection">
+        <listfilter [openedFilterModel]="filterModel" [model]="filterModel"></listfilter>
+    </div>
+</li>

@@ -1,0 +1,20 @@
+<div class="tab-pane">
+    <ul class="filter-list">
+        <li class="settings-item" [ngClass]="{'active': isOpen}">
+            <a class="filter-list__title" (click)="isOpen = !isOpen">
+                <span class="triangle-icon"></span>
+                <span class="display-name" title="Scaling">
+                    Scaling
+                </span>
+            </a>
+            <radio-buttons-setting [hidden]="!isOpen"
+                                   [availableValues]="trellisingObservables.availableScaleTypes | async"
+                                   [previousSelectedValue]="previousSelectedScale"
+                                   (onChange)="setSelectedScale($event)">
+            </radio-buttons-setting>
+        </li>
+    </ul>
+    <div class="filter__buttons">
+        <a class="btn btn-settings-apply" (click)="apply()">Apply</a>
+    </div>
+</div>

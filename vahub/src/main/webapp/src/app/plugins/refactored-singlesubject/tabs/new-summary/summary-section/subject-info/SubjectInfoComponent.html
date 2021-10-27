@@ -1,0 +1,18 @@
+<div class="header-container grid">
+    <div *ngFor="let col of columns">
+        <div class="grid-item">
+            <div *ngFor="let row of col">
+                <div class="grid-item">
+                    <div class="grid-cols">
+                        <div class="grid-item header-name">
+                            {{row.displayName}}:
+                        </div>
+                        <div class="grid-item header-value">
+                            {{row.value}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

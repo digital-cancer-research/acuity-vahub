@@ -1,0 +1,9 @@
+<div class="filter-list__content" style="display: block;" [ngClass]="{'not-allowed': inactive}">
+    <ul>
+        <li *ngFor="let item of elements.keySeq().toArray()"
+            [ngClass]="{'selected': elements.get(item) && !inactive, 'inactive': inactive}"
+            (click)="selectElement(item)">
+            <a style="display: inline-block !important;">{{item | sentenceCase}}</a>
+        </li>
+    </ul>
+</div>

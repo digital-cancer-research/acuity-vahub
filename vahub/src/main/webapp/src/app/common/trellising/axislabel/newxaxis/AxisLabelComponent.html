@@ -1,0 +1,49 @@
+<div class="axis-container">
+    <div class="axis-label" (click)="toggleOpen()" title="{{tooltip}}">
+        {{ textUtils.changeWeekToAssessmentWeek(selectedOption.displayedOption, tabId) | toLabel:tabId | sentenceCase }}
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </div>
+    <div class="axis-control" *ngIf="isOpen" [@openClose]="getAnimationState()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" [(ngModel)]="selectedOption.displayedOption"
+                                (change)="updateDisplayValue()">
+                            <option *ngFor="let option of availableOptions" [value]="option.displayedOption">
+                                {{option.displayedOption | toLabel:tabId | sentenceCase }}
+                            </option>
+                        </select>
+                        <div class="input-group"
+                             *ngIf="selectedOption.params && selectedOption.params.BIN_SIZE !== undefined">
+                            <div class="input-group-addon">Bin</div>
+                            <input class="form-control" [(ngModel)]="selectedOption.params.BIN_SIZE"
+                                   (change)="changeBinSize()"
+                                   min="0" type="number">
+                        </div>
+                        <div class="input-group"
+                             *ngIf="selectedOption.params && selectedOption.params.DRUG_NAME">
+                            <div class="input-group-addon">Drug</div>
+                            <select class="form-control" [(ngModel)]="selectedOption.params.DRUG_NAME">
+                                <option *ngFor="let drug of options.get('drugs')" [value]="drug">
+                                    {{drug}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-warning pull-right ml10" (click)="closeControl()">Cancel
+                    </button>
+                    <button *ngIf="selectedOption.params && (selectedOption.params.BIN_SIZE || selectedOption.params.DRUG_NAME)"
+                            type="button" class="btn btn-warning pull-right"
+                            (click)="updateOption()">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div collapseTabs (window:resize)="onResize()">
+    <ul class="nav nav-tabs nav-tabs-wrapper">
+        <li class="nav-tabs__main">
+            <aes-tabs></aes-tabs>
+        </li>
+        <li class="dropdown nav-tabs__dropdown" [class.open]="dropdownOpen">
+            <a class="dropdown-toggle" role="button" data-toggle="dropdown" (click)="toggleDropdown()">
+                More<span *ngIf="(pluginsService.selectedTab | async)">: {{pluginsService.selectedTab | async}}</span>
+                <span class="caret"></span>
+            </a>
+            <aes-tabs [isDropdown]="true" [class.open]="dropdownOpen"></aes-tabs>
+        </li>
+    </ul>
+    <br/>
+    <router-outlet></router-outlet>
+</div>

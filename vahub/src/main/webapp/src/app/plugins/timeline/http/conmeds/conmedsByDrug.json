@@ -1,0 +1,30 @@
+[
+  {
+    "subjectId": "subjectId",
+    "subject": "ECODE",
+    "conmedMedications": [
+      {
+        "conmedMedication": "medication",
+        "events": [
+          {
+            "start": {
+              "date": 1462348961388,
+              "dayHour": 20.4,
+              "dayHourAsString": "20d 09:36"
+            },
+            "end": {
+              "date": 1462348961388,
+              "dayHour": 20.4,
+              "dayHourAsString": "20d 09:36"
+            },
+            "conmed": "conmed1",
+            "dose": 80.0,
+            "frequency": "5mg/day",
+            "indication": "BONEMETASTASIS",
+            "ongoing": false
+          }
+        ]
+      }
+    ]
+  }
+]

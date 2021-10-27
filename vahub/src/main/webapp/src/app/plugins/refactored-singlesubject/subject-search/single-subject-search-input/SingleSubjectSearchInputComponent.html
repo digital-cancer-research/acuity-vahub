@@ -1,0 +1,28 @@
+<div class="search-container">
+    <div class="search-with-dropdown">
+        <div class="triangle-container" (click)="setDropdownVisibility(!isListOpen)">
+            <span class="triangle-icon" [ngClass]="{active: isListOpen}"></span>
+        </div>
+        <div class="search-input-container">
+            <input type="text"
+                   placeholder="Search subject ID"
+                   [ngModel]="subjectSearchString"
+                   (ngModelChange)="onSearchInputChange($event)"
+                   (click)="setDropdownVisibility(true)"
+            />
+        </div>
+        <div class="search-dropdown-menu" *ngIf="isListOpen">
+            <ul>
+                <li *ngFor="let subject of availableSubjects.toArray()"
+                    (click)="selectSubject(subject)"
+                    [ngClass]="{'chosen-subject': (subject === selectedSubjectId)}"
+                >
+                    <span>{{subject}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear-subject-container">
+        <span class="clear-subject" (click)="clearSubject()"> Clear Selection </span>
+    </div>
+</div>

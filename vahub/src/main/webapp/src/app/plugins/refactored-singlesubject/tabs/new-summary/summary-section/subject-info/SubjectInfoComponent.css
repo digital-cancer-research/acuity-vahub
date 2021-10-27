@@ -1,0 +1,27 @@
+.header-container {
+    margin-bottom: 15px;
+    margin-left: 50px;
+    justify-items: start;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+.grid-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.header-name{
+    text-align: right;
+    color: grey;
+    font-size: small;
+}
+
+.header-value {
+    text-align: left;
+    font-size: small;
+}

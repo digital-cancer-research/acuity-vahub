@@ -1,0 +1,9 @@
+<div class="row" class="zoom-bar-container">
+    <div class="col-md-12" class="zoom-bar-column">
+        <timeline-xaxis [zoom]="zoom"></timeline-xaxis>
+        <div class="zoom-bar-row">
+            <timeline-zoom-bar [zoom]="zoom" [vertical]="false"
+                               (updateZoom)="updateZoom.emit($event)"></timeline-zoom-bar>
+        </div>
+    </div>
+</div>

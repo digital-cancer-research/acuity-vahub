@@ -1,0 +1,13 @@
+<div class="container-fluid" *ngIf="anyWarningAvailable()">
+    <h5 class="row"><strong>ECG Warnings</strong></h5>
+    <div class="row">
+        <form role="form">
+            <div *ngFor="let ecgWarningsOption of ecgWarningsOptions">
+                <label *ngIf="currentEcgWarnings[ecgWarningsOption.key].available">
+                    <input type="checkbox" [checked]="currentEcgWarnings[ecgWarningsOption.key].selected"
+                           (click)="updateEcgWarningsOption(ecgWarningsOption)"> {{ecgWarningsOption.label}}
+                </label>
+            </div>
+        </form>
+    </div>
+</div>

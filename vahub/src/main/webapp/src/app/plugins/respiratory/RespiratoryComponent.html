@@ -1,0 +1,40 @@
+<ul class="nav nav-tabs">
+    <li *ngIf="datasetViews.hasExacerbationsData()">
+        <a routerLink="/plugins/exacerbations/exacerbations-counts" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/exacerbations/exacerbations-counts')}">
+            {{tabName.EXACERBATIONS_COUNTS}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasRespiratryData()">
+        <a routerLink="/plugins/respiratory/lung-function-box-plot" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/respiratory/lung-function-box-plot')}">
+            {{tabName.RESPIRATORY_LUNG_FUNCTION_MEASUREMENTS_OVER_TIME}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasExacerbationsData()">
+        <a routerLink="/plugins/exacerbations/exacerbations-over-time" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/exacerbations/exacerbations-over-time')}">
+            {{tabName.EXACERBATIONS_OVER_TIME}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasExacerbationsData()">
+        <a routerLink="/plugins/exacerbations/exacerbations-onset" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/exacerbations/exacerbations-onset')}">
+            {{tabName.EXACERBATIONS_ONSET}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasRespiratorySpotfireModules()">
+        <a routerLink="/plugins/respiratory/acuity-spotfire" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/respiratory/acuity-spotfire')}">
+            {{tabName.RESPIRATORY_ACUITY_RESPIRATORY_MODULES}}
+        </a>
+    </li>
+    <li *ngIf="datasetViews.hasDetectRespiratorySpotfireModules()">
+        <a routerLink="/plugins/respiratory/detect-spotfire" routerLinkActive="active"
+           [ngClass]="{'router-link-active': isActive('/plugins/respiratory/detect-spotfire')}">
+            {{tabName.RESPIRATORY_DETECT_RESPIRATORY_MODULES}}
+        </a>
+    </li>
+</ul>
+<br/>
+<router-outlet></router-outlet>

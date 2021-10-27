@@ -1,0 +1,19 @@
+<div *ngIf="selectedSubject && !loading" style="margin-left: 15px; margin-top: 15px" class="summary-container">
+    <div class="details-area__export">
+        <a class="subject-export-button details-area__export--save" (click)="onDownloadTables()">
+            <span class="glyphicon glyphicon-save details-area__export__icon"></span>
+            <span>Export all tables</span>
+        </a>
+    </div>
+    <div *ngFor="let section of sections.keys()" class="section-container">
+        <summary-section [sectionHeader]="section" [section]="sections.get(section)" [header]="header"></summary-section>
+    </div>
+</div>
+
+<div class="notifications" *ngIf="!selectedSubject">
+    No subject is currently selected
+</div>
+
+<div *ngIf="loading">
+    <progress-messages [loading]="loading" [height]="600"></progress-messages>
+</div>

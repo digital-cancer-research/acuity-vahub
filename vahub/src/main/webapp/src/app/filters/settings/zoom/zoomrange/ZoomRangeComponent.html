@@ -1,0 +1,10 @@
+<div class="range-control row">
+    <label for="{{id}}"></label>
+    <input class="range-input"
+           id="{{id}}"
+           type="number"
+           [(ngModel)]="currentValue"
+           (change)="handleChange($event)"
+    />
+</div>
+

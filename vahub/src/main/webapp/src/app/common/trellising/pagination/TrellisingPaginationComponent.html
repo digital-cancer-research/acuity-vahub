@@ -1,0 +1,21 @@
+<ul class="pagination pagination-sm " style="cursor: default" *ngIf="showPagination()">
+    <li class="page-item" *ngIf="moreToLeft()">
+        <a
+           aria-label="Previous"
+           (click)="first()">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    <li *ngFor="let apage of displayedPages()"
+        class="page-item"
+        [ngClass]="{active: activePage(apage), disabled: isLoading}">
+        <a (click)="updatePage.emit(apage)">{{apage}}</a>
+    </li>
+    <li class="page-item" *ngIf="moreToRight()">
+        <a
+           aria-label="Next"
+           (click)="last()">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>

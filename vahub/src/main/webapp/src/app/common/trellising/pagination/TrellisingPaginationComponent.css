@@ -1,0 +1,8 @@
+.pagination {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+ul li a {
+    z-index: 0;
+}

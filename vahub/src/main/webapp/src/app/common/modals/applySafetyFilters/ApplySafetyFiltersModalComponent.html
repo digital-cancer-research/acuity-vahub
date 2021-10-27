@@ -1,0 +1,20 @@
+<div *ngIf="modalIsVisible" class="modal fade show in danger" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header panel-danger">
+                <h4 class="modal-title">Restrict to Safety Population?</h4>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+                <div>Do you want to immediately apply a population filter within this analysis to restrict the set of subjects to only those designated as within the 
+                    'Safety Population'? <br /> <br />
+                    Note that this filter can be found at the top of the list population filters and may be freely toggled at any time.</div>
+            </div>
+            <div class="modal-footer">
+                <button style="cursor:default;" type="button" class="btn btn-default" (click)="cancelModal()">Do not apply filter</button>
+                <button style="cursor:default;" type="button" class="btn btn-default" (click)="okModal()">Apply filter</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="dialogue" *ngIf="box?.show" [style.top]="(box?.y - 20) +'px'" [style.left]="(box?.x + 25) + 'px'">
+    <div class="close-dialogue" (click)="close()">
+        <span class="glyphicon glyphicon-remove close-cross" aria-hidden="true"></span>
+    </div>
+    <div *ngIf="!(selectionDetail || multiSelectionDetail)">
+        <div class="description">Loading...</div>
+    </div>
+    <div *ngIf="selectionDetail">
+        <div class="description">
+            <span class="number">{{percentageOfSubjects()}}%</span> of population
+        </div>
+        <div class="description">
+            <span class="number">{{selectionDetail.subjectIds ? selectionDetail.subjectIds.length : 0}}</span> subjects
+            selected
+        </div>
+        <div class="description">
+            <span class="number">
+                {{selectionDetail.eventIds ? selectionDetail.eventCount || selectionDetail.eventIds.length : 0}}
+            </span> events
+            selected
+        </div>
+    </div>
+    <div *ngIf="multiSelectionDetail">
+        <div class="description">
+            <span class="number">{{percentageOfSubjectsMulti()}}%</span> of population
+        </div>
+        <div class="description">
+            <span class="number">{{multiSelectionDetail.subjectIds ? multiSelectionDetail.subjectIds.length : 0}}</span> subjects
+            selected
+        </div>
+        <div class="description">
+            <!--we should show event count for the first table only-->
+            <span class="number">{{multiSelectionDetail.eventIds.first() ? multiSelectionDetail.eventIds.first().length : 0}}</span> events
+            selected
+        </div>
+    </div>
+    <div [hidden]="isSingleSubjectView()">
+        <button class="btn btn-default btn-block"
+                type="button"
+                (click)="setAsPopulation()"
+                [disabled]="shouldBeDisabled()">
+            Set as population
+        </button>
+    </div>
+    <div [hidden]="isSingleSubjectView()">
+        <button class="btn btn-default btn-block"
+                type="button"
+                (click)="setAsTimeline()"
+                [disabled]="shouldBeDisabled()">
+                View on timeline
+        </button>
+    </div>
+    <div>
+        <button class="btn btn-default btn-block" type="button" (click)="clearAllMarkingsAction()">
+            Clear marking
+        </button>
+    </div>
+    <div [hidden]="jumpToAesFromAeNumberLocation == ''">
+        <button class="btn btn-default btn-block"
+                type="button"
+                (click)="setAesNumberFilterAndGotoAes()"
+                [disabled]="!selectionDetail?.subjectIds">
+            View Linked AEs
+        </button>
+    </div>
+</div>

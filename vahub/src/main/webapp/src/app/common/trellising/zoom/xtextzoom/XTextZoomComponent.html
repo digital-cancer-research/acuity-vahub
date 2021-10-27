@@ -1,0 +1,10 @@
+<div class="text-zoom">
+    <span>Categories displayed</span>
+    <input class="left-input" type="number" min="{{inputValues.absMin}}" max=" {{inputValues.absMax}}"
+           [(ngModel)]="inputValues.zoomMin"
+           (change)="updateMinValue()"/>
+    <span>to</span>
+    <input class="right-input" type="number" min="{{inputValues.absMin}}" max="{{inputValues.absMax}}"
+           [(ngModel)]="inputValues.zoomMax"
+           (change)="updateMaxValue()"/>
+</div>

@@ -1,0 +1,19 @@
+<div class="main main--grey study-selection-content" id="main" role="main" xmlns="http://www.w3.org/1999/html">
+    <study-selection-controls
+            [numberOfSubjects]="totalNumberOfSubjects | async"
+            [submitButtonText]="'Start Analysis'"
+            (handleUpdateQuery)="handleUpdateQuery($event)"
+            (handleSubmit)="openDataset()">
+    </study-selection-controls>
+
+    <study-list [studyList]="availableDatasets | async"
+                [acls]="acls | async"
+                [studyWarnings]="studyWarnings | async"
+                [datasetIdAndNumSubjectsMap]="datasetIdAndNumSubjectsMap | async"
+                [selectedDatasets]="selectedDatasets | async"
+                [userActionText]="'Select a dataset that you want to analyse'"
+                [isMultipleCollapseAvailable]="isMultipleCollapseAvailable"
+                (handleSelectDataset)="onSelectDataset($event)">
+    </study-list>
+</div>
+<progress-messages [loading]="loading | async"></progress-messages>

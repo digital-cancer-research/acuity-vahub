@@ -1,0 +1,28 @@
+<div class="row">
+    <div *ngIf="showSubjectId" class="col-sm-1 subject-label subject hvr-fade" 
+         data-toggle="tooltip" data-placement="left" [title]="subject.subjectId" 
+         [ngStyle]="{'height': maxHeight + 'px', 'font-size': (maxHeight > 30 ? 12 : 9) + 'px'}" 
+         (mouseover)="setHighlight(true)" 
+         (mouseleave)="setHighlight(false)">
+         {{subject.subjectId}}
+    </div>
+    <div class="col-sm-11 subject">
+        <div *ngFor="let track of (subject.tracks | ordertrack); let i = index; trackBy trackByTrackName"
+                         [ngStyle]="{'margin-bottom': getGapBetweenTracks(i) + 'px'}">
+            <timeline-track
+                        [track]="track" 
+                        [subjectId]="subject.subjectId" 
+                        [subjectHighlighted]="highlighted"
+                        [zoom]="timelineObservables.zoom | async"
+                        [labsYAxisValue]="timelineObservables.labsYAxisValue | async"
+                        [spirometryYAxisValue]="timelineObservables.spirometryYAxisValue | async"
+                        [ecgYAxisValue]="timelineObservables.ecgYAxisValue | async"
+                        [ecgWarnings]="timelineObservables.ecgWarnings | async"
+                        [vitalsYAxisValue]="timelineObservables.vitalsYAxisValue | async"
+                        [plotBands]="timelineObservables.plotBands | async"
+                        (cursorXCoordinate)="cursorXCoordinate.emit($event)"
+                        (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)">
+            </timeline-track>
+        </div>
+    </div>
+</div>
