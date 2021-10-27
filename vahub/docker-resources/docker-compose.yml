@@ -1,0 +1,13 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  vahub:
+    image: vahub:${ACUITY_VERSION}
+    environment:
+      - ENV_TYPE_PROFILE=dev
+      - AUTH_PROFILE=local-no-security
+      - CONFIG_PROFILE=local-config
+      - OTHER_PROFILES=NoScheduledJobs
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "postgres:${DB_ADDRESS}"

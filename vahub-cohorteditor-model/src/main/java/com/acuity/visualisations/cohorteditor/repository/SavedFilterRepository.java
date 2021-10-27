@@ -1,0 +1,42 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.acuity.visualisations.cohorteditor.repository;
+
+import com.acuity.visualisations.cohorteditor.entity.SavedFilter;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+public interface SavedFilterRepository extends CrudRepository<SavedFilter, Long>, SavedFilterRepositoryCustom {
+
+    @Query("SELECT DISTINCT sf "
+            + "FROM SavedFilter sf "
+            + "JOIN FETCH sf.instances "
+            + "WHERE sf.id IN ("
+            + "   SELECT sf.id "
+            + "       FROM SavedFilter sf "
+            + "     JOIN sf.permissions p "
+            + "     WHERE p.prid = :prid"
+            + ") "
+            + "OR sf.owner = :prid "
+            + "ORDER BY sf.createdDate DESC")
+    List<SavedFilter> listByUser(@Param("prid") String prid);
+
+    List<SavedFilter> findByName(String name);
+}

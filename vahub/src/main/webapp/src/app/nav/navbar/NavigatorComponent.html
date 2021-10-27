@@ -1,0 +1,108 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<nav id="intro1" class="navbar navbar-fixed-top hub-header" [ngStyle]="{'height': headerHeight + 'px'}"
+     style='margin-bottom: 0; overflow: hidden;'>
+    <div class="container-fluid">
+        <div class="nav navbar-nav arrow-link" [hidden]="isOnStudySelectionPage()">
+            <a routerLink="" routerLinkActive="active">
+                <img class="back-btn" (click)="navigate('')" src="/assets/images/back-black.png">
+            </a>
+        </div>
+        <span class="title" (click)="navigate('home')">Analytics</span>
+        <h1 #navBarStudiesContainer class="navbar-studies" [hidden]="hideStudyName()">
+            <dataset-names *ngIf="currentDatasets" [names]="currentDatasets"
+                           (toggleNavBar)="toggleNavBarStudies()"></dataset-names>
+        </h1>
+
+        <ul class="hub-header-text-nav" [hidden]="!hideStudyName()">
+            <li [ngClass]="{active: isActive('about')}" (click)="navigate('about')">
+                <a routerLink="/about" routerLinkActive="active">
+                    <span class="">About</span>
+                </a>
+            </li>
+            <li [ngClass]="{active: isActive('support')}" (click)="navigate('support')">
+                <a routerLink="/home" routerLinkActive="active">
+                    <span class="">Support</span>
+                </a>
+            </li>
+            <li [hidden]="!hasDevelopmentTeamPermission()"
+                (click)="clearCache()">
+                <a>
+                    <span class="">Clear cache</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="hub-header__nav">
+            <li id="introB5" *ngIf="existsReferenceToBestPractice()"
+                data-toggle="tooltip" data-placement="bottom"
+                [title]="'Guidance on how ACUITY should be used by you and your team to balance the benefits of using ACUITY with the possible risks to study integrity'">
+                <a target="_blank"
+                   [href]="support.bestPractice">
+                    <span class="glyphicon glyphicon-book nav-img"></span>
+                    <span class="nav-item">Best Practice</span>
+                </a>
+            </li>
+            <li id="introB4" *ngIf="support">
+                <a href="mailto:{{support.feedback}}?subject=ACUITY_Feedback"
+                   data-toggle="tooltip" data-placement="bottom"
+                   [title]="'Provide feedback to the ACUITY development team'">
+                    <span class="glyphicon glyphicon-envelope nav-img"></span>
+                    <span class="nav-item">Feedback</span>
+                </a>
+            </li>
+            <li>
+                <a (click)="toggleHelpDropdown()">
+                    <img src="/assets/images/help-black.png" class="nav-img">
+                    <span class="nav-item">Help</span>
+                </a>
+            </li>
+            <li>
+                <div class="nav-simple-text" title="{{userName}}">{{userName}}</div>
+            </li>
+            <li>
+                <a href="/logout">
+                    <span class="glyphicon glyphicon-log-out nav-img"></span>
+                    <span class="nav-item">Log out</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<div class="help-dropdown-menu" [hidden]="hideHelpDropdown" (click)="toggleHelpDropdown()">
+    <ul>
+        <li (click)="startIntroJs($event)" class="cursor-pointer" [hidden]="hideOnScreenHelp">
+            <a>On Screen Help</a>
+        </li>
+        <li class="cursor-pointer">
+            <a href="/#/support" target="_blank" routerLinkActive="active">Support</a>
+        </li>
+        <li class="cursor-pointer" [hidden]="hideOnHelpManual">
+            <a href="/#/manual" target="_blank" routerLinkActive="active">Help manual</a>
+        </li>
+    </ul>
+</div>
+
+<app-modal-message
+        [Title]="modalDialogTitle"
+        [Msg]="modalDialogText"
+        [ButtonText]="modalDialogSubmitText"
+        [ModalBeDismissed]="modalDialogCanCancel"
+        [ModalIsVisible]="modalDialogVisible"
+        (modalHasBeenSubmitted)="modalDialogSubmitted($event)">
+</app-modal-message>
+

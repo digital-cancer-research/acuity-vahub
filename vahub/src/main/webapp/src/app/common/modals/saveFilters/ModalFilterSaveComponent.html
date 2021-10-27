@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div [ngClass]="{'hide' : !ModalIsVisible, 'show': ModalIsVisible}" class="modal fade in danger" id="myModal"
+     role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header panel-danger">
+                <h4 class="modal-title">Save {{Title}} filter set</h4>
+            </div>
+            <div class="modal-body">
+                <!--<ng-content></ng-content>-->
+                <div class="form-group">
+                    <label for="filterName">Name this filter set:</label>
+                    <input type="text" class="form-control" name="filterName" id="filterName">
+                </div>
+                <div class="widgets">
+                    <div *ngFor="let filter of FiltersList" class="widget widget-population">
+                        <div class="widget-overview" style="padding-right:5px;">
+                            <span>{{filter.displayName}}
+                                <span *ngIf="filter.type == 2 || filter.type == 3">({{filter.displayValues.length}})</span>
+                                <span *ngIf="filter.type == 0 || filter.type == 1">
+                                    <span *ngIf="filter.displayValues.from">&ge; {{filter.displayValues.from}}</span>
+                                    <span *ngIf="filter.displayValues.to">&le; {{filter.displayValues.to}}</span>
+                                    <span *ngIf="filter.displayValues.includeEmptyValues">, includes empty values</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="ModalBeDismissed" type="button" class="btn btn-default" (click)="cancelModal()">Close
+                </button>
+                <button type="button" class="btn btn-default" (click)="okModal()">{{ButtonText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.main-content__intro {
+  margin: 15px;
+  display: block;
+  color: #3F4444;
+  padding-left: 35px;
+  padding-right: 85px;
+}
+
+.main-content__collapse {
+  color: #3F4444;
+  padding: 0;
+}
+
+.studies {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+  margin-left: -50px;
+  list-style: none;
+}
+
+.studies > li {
+  margin-bottom: 5px;
+  background: white;
+}
+
+.drug-programme {
+  overflow: hidden;
+  -webkit-transition: max-height 0.5s ease;
+  transition: max-height 0.5s ease;
+}
+
+.drug-programme.opened {
+  max-height: 1250px;
+}
+
+.drug-programme.closed {
+  max-height: 50px;
+}
+
+.studies--collapse__content {
+  max-height: 1200px;
+  overflow-y: auto;
+}
+
+.studies__title {
+  display: block;
+  padding: 8px 15px;
+  font-size: 24px;
+  color: #3F4444;
+  position: relative;
+  cursor: default;
+}
+
+.studies__title:hover, .studies__title:active, .studies__title:focus {
+  color: #3F4444;
+}
+
+.studies--collapse .studies__title:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 20px;
+  height: 12px;
+  margin-top: -6px;
+  background-image: url(/assets/images/expand-button.png);
+  background-size: 20px;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.studies--collapse .studies__title.expanded:after {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.studies--collapse__content {
+  display: block
+}
+
+.study-group__header {
+  background-color: var(--branding-color-transparent);
+  padding: 8px 15px;
+  font-size: 16px;
+}
+
+.study-group__header span:first-child {
+  padding-left: 15px;
+}
+
+.study-group__header span {
+  color: var(--bright-branding-color);
+}
+
+.study-group__header span + span {
+  float: right;
+}
+
+.study-group-table__row--first-column {
+  padding-left: 30px;
+}
+
+.study-group-table__row--header {
+  padding: 8px 15px;
+  overflow: auto;
+  color: #9DB0AC;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.study-group-table__row--header span {
+  width: 20%;
+  /*width: 17.5%;*/
+  display: block;
+  float: left;
+  text-align: center;
+}
+
+.study-group-table__row--header span:first-child {
+  /*width: 30%;*/
+  width: 40%;
+  text-align: left;
+  padding-left: 25px;
+}
+
+/*.study-group--shared .study-group-table__row--header span {*/
+/*width: 20%;*/
+/*}*/
+
+/*.study-group--shared .study-group-table__row--header span:first-child {*/
+/*width: 35%;*/
+/*margin-left: 0;*/
+/*text-align: left;*/
+/*color: #3F4444;*/
+/*font-size: 20px;*/
+/*font-size: 2rem;*/
+/*}*/
+
+/*.study-group--bookmarks .study-group-table__row--header span {*/
+/*width: 25%;*/
+/*}*/
+
+/*.study-group--bookmarks .study-group-table__row--header span:first-child {*/
+/*margin-left: 0;*/
+/*width: 50%;*/
+/*text-align: left;*/
+/*color: #3F4444;*/
+/*font-size: 20px;*/
+/*font-size: 2rem;*/
+/*}*/
+
+/*.study-group--recent .study-group-table__row--header span {*/
+/*width: 20%;*/
+/*}*/
+
+/*.study-group--recent .study-group-table__row--header span:first-child {*/
+/*width: 80%;*/
+/*margin-left: 0;*/
+/*text-align: left;*/
+/*color: #3F4444;*/
+/*font-size: 20px;*/
+/*font-size: 2rem;*/
+/*}*/
+
+.study-group-table__row {
+  padding: 8px 15px 8px 15px;
+  overflow: auto;
+  border-bottom: 1px solid #ebebeb;
+  position: relative;
+  cursor: default;
+}
+
+.study-group-table__row span {
+  width: 20%;
+  /*width: 17.5%;*/
+  display: block;
+  float: left;
+  text-align: center;
+}
+
+.study-group-table__row span:first-child {
+  /*width: 30%;*/
+  width: 40%;
+  text-align: left;
+  padding-left: 25px;
+}
+
+.study-group-table__row:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid #3F4444;
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 15px;
+  border-radius: 50%;
+  background-position: 50%;
+}
+
+.study-group-table__row.selected:before {
+  background-color: #3F4444;
+  background-image: url(/assets/images/tick.png);
+}
+
+.study-group-table__row.disabled:before {
+  border-color: #ebebeb;
+  cursor: not-allowed;
+}
+
+.study-group-table__row:hover {
+  cursor: default;
+  background-color: rgba(235, 235, 235, 0.5);
+}

@@ -1,0 +1,88 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<ul [ngClass]="{'nav': !isDropdown, 'nav-tabs': !isDropdown, 'no-padding-right': !isDropdown, 'dropdown-menu': isDropdown, 'dropdown-menu-right': isDropdown}">
+    <li>
+        <a routerLink="summary-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_SUMMARY_TAB.name}}</a>
+    </li>
+    <li *ngIf="isOngoing()">
+        <a routerLink="new-summary-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_NEW_SUMMARY_TAB.name}}</a>
+    </li>
+    <li>
+        <a routerLink="timeline-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_TIMELINE.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasDoseData() && isOngoing()">
+        <a routerLink="dose-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_DOSE_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasDoseDiscontinuationData()">
+        <a routerLink="dose-discontinuation-tab"
+           routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_DOSE_DISCONTINUATION_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasRespiratryData() || datasetViews.hasExacerbationsData()">
+        <a routerLink="exacerbations-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_EXACERBATIONS_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasRespiratryData() || datasetViews.hasExacerbationsData()">
+        <a routerLink="lungfunction-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_LUNG_LINEPLOT.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasAesData()">
+        <a routerLink="ae-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_AE_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasSeriousAesData()">
+        <a routerLink="sae-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_SAE_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasConmedsData()">
+        <a routerLink="conmeds-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_CONMEDS_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasLabsData()">
+        <a routerLink="lab-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_LAB_LINEPLOT.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasVitalsData()">
+        <a routerLink="vitals-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_VITALS_LINEPLOT.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasCardiacData()">
+        <a routerLink="cardiac-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_CARDIAC_LINEPLOT.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasLiverData()">
+        <a routerLink="hys-law" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_LIVER_HYSLAW.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasRenalData()">
+        <a routerLink="renal-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_RENAL_LINEPLOT.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasDeathData()">
+        <a routerLink="death-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_DEATH_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasMedicalHistoryData()">
+        <a routerLink="medicalhistory-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_MEDICAL_HISTORY_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasSurgicalHistoryData()">
+        <a routerLink="surgicalhistory-tab"
+           routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_SURGICAL_HISTORY_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasLiverDiagnosticInvestigationData()">
+        <a routerLink="liverdiag-tab"
+           routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_LIVER_DIAG_INVEST_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasLiverRiskFactorsData()">
+        <a routerLink="liver-risk-factors-tab"
+           routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_LIVER_RISK_FACTORS_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasAlcoholData()">
+        <a routerLink="alcohol-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_ALCOHOL_TAB.name}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasNicotineData()">
+        <a routerLink="nicotine-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_NICOTINE_TAB.name}}</a>
+    </li>
+</ul>

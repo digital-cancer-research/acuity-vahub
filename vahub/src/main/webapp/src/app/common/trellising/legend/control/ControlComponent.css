@@ -1,0 +1,70 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.control-button {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    min-height: 27px;
+    min-width: 27px;
+    padding: 5px;
+    border: 1px solid white;
+}
+
+.control-button-has-label {
+    position: relative;
+    margin-left: -15px;
+    top: 30px;
+}
+
+.control {
+    width: 100%;
+    padding-top: 30px;
+    padding: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    margin: 0px 0px 7px 14px;
+}
+
+.control > .control-button {
+    top: 0;
+}
+
+.control-button:hover {
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    cursor: default;
+}
+
+.control-component-label {
+    top: 0;
+    left: 0;
+    margin-left: -15px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -10px;
+    display: block;
+}
+
+.control-component-label-no-control {
+    margin-bottom: 0;
+}

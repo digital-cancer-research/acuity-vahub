@@ -1,0 +1,94 @@
+#!/bin/sh
+
+#
+# Copyright 2021 The University of Manchester
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# To install this pre-commit hook you need to copy this file to .git/hooks/ at the root of your project.
+
+VAHUB_WEBAPP="vahub/src/main/webapp"
+
+# path to local npm binary within webapp folder
+NPM_LOCAL="node/npm"
+
+# path to local npm binary within webapp folder
+NPM_GLOBAL="npm"
+
+# global flag if command exited normally
+PASS=true
+
+# Checks last command exit code and exits with error code to prevent commit.
+# $1 - running command
+# $2 - command description
+check_npm_task_status () {
+  if [ $? != 0 ]; then
+    echo "Execution of command '$1' FAILED. Please check"
+    PASS=false
+  fi
+}
+
+# Runs npm task for given project.
+# $1 - required, task
+# $2 - required, task description
+run_npm_task () {
+  local task="$1"
+  local file_name="$2"
+
+  local current_dir="$(pwd)"
+  npm_run_task="$NPM_GLOBAL run $task $current_dir/$file_name"
+  if ! [ -x "$(command -v $NPM_GLOBAL)" ]; then
+    local expected_npm=$current_dir/$VAHUB_WEBAPP/$NPM_LOCAL
+    if [ ! -f $expected_npm ]; then
+      echo "WARNING: npm binary not found ($expected_npm)!"
+      exit 1;
+    fi
+    npm_run_task="$expected_npm run $task $current_dir/$file_name"
+  fi
+  cd $VAHUB_WEBAPP
+
+  $npm_run_task
+  # exit if test/jscs errors were found
+  check_npm_task_status "$npm_run_task"
+
+  # back to initial folder
+  cd $current_dir
+}
+
+# Runs js checks: tests, code style.
+run_js_checks () {
+  run_npm_task "test" "Karma Tests"
+}
+
+# Runs checks for js files if js files are in commit.
+run_js_checks_for_commit () {
+  local number_of_js_files_to_commit="$(git diff --staged --name-only | grep -i '\.ts$' | wc -l )"
+
+  # Run checks for js files if user wants to commit js file.
+  if [ $number_of_js_files_to_commit != 0 ]; then
+    # run_js_checks
+    for file in $(git diff --cached --name-only | grep -E '\.(ts|tsx)$')
+    do
+       run_npm_task "tslint" "$file" # we only want to lint the staged changes, not any un-staged changes
+    done
+
+    if ! $PASS; then
+      printf "COMMIT FAILED: Your commit contains files that should pass TSLint but do not. Please fix the TSLint errors and try again.\n"
+      exit 1
+    fi
+  fi
+}
+
+run_js_checks_for_commit
+

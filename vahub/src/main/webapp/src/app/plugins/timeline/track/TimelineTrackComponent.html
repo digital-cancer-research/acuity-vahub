@@ -1,0 +1,59 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="row" [ngSwitch]="track.name">
+    <ng-template [ngSwitchCase]="trackName.SUMMARY">
+        <status-track [track]="track" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [zoom]="zoom" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)"
+             [plotBands]="plotBands"></status-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.AES">
+        <aes-track [track]="track" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [zoom]="zoom" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)"
+             [plotBands]="plotBands"></aes-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.DOSE">
+        <dose-track [track]="track" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [zoom]="zoom" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)" [plotBands]="plotBands"
+            ></dose-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.CONMEDS">
+        <conmeds-track [track]="track" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [zoom]="zoom" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)" [plotBands]="plotBands"
+            ></conmeds-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.LABS">
+        <labs-track [track]="track" [labsYAxisValue]="labsYAxisValue" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [plotBands]="plotBands"
+            [zoom]="zoom" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)" ></labs-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.EXACERBATION">
+        <exacerbation-track [track]="track" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [zoom]="zoom" [plotBands]="plotBands" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)"
+            ></exacerbation-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.ECG">
+        <ecg-track [track]="track" [ecgYAxisValue]="ecgYAxisValue" [ecgWarnings]="ecgWarnings" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [plotBands]="plotBands"
+            [zoom]="zoom" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)" ></ecg-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.VITALS">
+        <vitals-track [track]="track" [vitalsYAxisValue]="vitalsYAxisValue" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted"
+            [zoom]="zoom" [plotBands]="plotBands" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)" ></vitals-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.SPIROMETRY">
+        <spirometry-track [track]="track" [spirometryYAxisValue]="spirometryYAxisValue" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted"
+            [zoom]="zoom" [plotBands]="plotBands" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)" ></spirometry-track>
+    </ng-template>
+    <ng-template [ngSwitchCase]="trackName.PRD">
+        <patientdata-track [track]="track" [subjectId]="subjectId" [subjectHighlighted]="subjectHighlighted" [zoom]="zoom" [plotBands]="plotBands" (expandOrCollapseTrack)="expandOrCollapseTrack.emit($event)"
+        ></patientdata-track>
+    </ng-template>
+    <ng-template ngSwitchDefault></ng-template>
+</div>

@@ -1,0 +1,102 @@
+# manages "X-Application-Context" HTTP header setting (more info: https://docs.spring.io/spring-boot/docs/1.4.x/reference/html/common-application-properties.html )
+management:
+  add-application-context-header: false
+
+server:
+  # manages links rendering behind proxy (more info: https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/howto-embedded-servlet-containers.html#howto-use-tomcat-behind-a-proxy-server )
+  use-forward-headers: true
+  session:
+    # Tomcat session persistence setting
+    persistent: true
+    # session cookie name used by SpringBoot (by default JSESSIONID;
+    # more info: https://stackoverflow.com/questions/25918556/spring-boot-configure-custom-jsessionid-for-embedded-server )
+    cookie:
+      name: VAHUBSESSIONID
+
+# path to the logs directory (more info: https://docs.spring.io/spring-boot/docs/1.5.4.RELEASE/reference/htmlsingle/#boot-features-custom-log-configuration )
+logging:
+  path: /var/log
+
+# database connection data. if needed, the ones you need may be overridden for particular app in its config.
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/acuity_db
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+    fetch:
+      size: 256
+    initial-size: 10
+    max-active: 50
+    max-idle: 30
+    min-idle: 10
+    max-wait: 10000
+    validation-query: SELECT 1
+    test-while-idle: true
+    test-on-borrow: true
+    test-on-return: true
+
+acuity:
+  # used by AdminUI and VAHub to connect to VASecurity
+  vasecurity:
+    url: http://vasecurity:8000
+    username:
+    password:
+  # used by AdminUI and VASecurity to connect to VAHUb
+  vahub:
+    url: http://vahub:8000
+    username:
+    password:
+  # for VASecurity authorization module used in all ACUITY apps (basic authentication settings; should be here as long as basic authentication is used)
+  security:
+    basic-auth:
+      users:
+        - username:
+          password:
+          roles:
+            - REMOTE_USER
+            - ACL_ADMINISTRATOR
+            - TRAINED_USER
+          authorities:
+            - ADMIN
+
+# used only to define Kryo cache directory path in local FS; may be useful if you make VAHub connect to different DBs
+# and want to keep different sets of cached data, also allows to keep separate cache directory for integration tests
+env:
+  name:
+    dev
+
+# customer-specific settings:
+branding:
+  about:
+    welcomeVideo:
+    howtoVideo:
+  # support and feedback emails
+  support:
+    email: support@example.com
+    feedback: feedback@example.com
+    # link to the VAHub best practices manual (if exists)
+    best-practice:
+  # info about supporters shown on the VAHub Support page
+  super-users:
+    - name: Example User
+      email: example-user@example.com
+      location: Example Location
+      department: Example Team
+      about: example description
+  branding-colors:
+    brandingColor: '#d4e9f2'
+    headerTextColor: black
+    headerDatasetsColor: '#0043af'
+    brightBrandingColor: '#0092b6'
+    activePanelColor: '#a3d2e3'
+    widgetColor: '#64bbd4'
+    widgetBrightColor: '#00a5c6'
+    transparency: 0.5
+  # path to the directory (inside the VAHub war) with customer-specific images (like logo); "images" if empty
+  path-to-images:
+  # links to external services displayed on the VAHub home page (if empty, corresponding buttons are disabled)
+  extended-options:
+    omics-services-url: http://omics.example.com
+    patient-services-url: http://patient-services.example.com
+    ai-and-ml-services-url: http://ai-and-ml-services.example.com

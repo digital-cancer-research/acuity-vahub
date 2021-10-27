@@ -1,0 +1,49 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="container">
+    <div class="alert alert-info color-black h4" role="alert">Support</div>
+    <div class="row support-row">
+        <div class="col-md-3 col-md-offset-4" *ngIf="support">
+            <a class="thumbnail forced-height home-thumbnail"
+               href="mailto:{{support.email}}?subject=ACUITY_Support">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <p>Support Mailbox</p>
+            </a>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isSuperUsersEmpty()">
+    <div id="super-users" class="alert alert-info color-black h4" role="alert">Super Users</div>
+
+    <div class="row super-list" *ngIf="superUsers">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>About</th>
+            </tr>
+            <tr *ngFor="let user of superUsers">
+                <td>{{user.name}}</td>
+                <td><a href="mailto:{{user.email}}?subject=ACUITY_Query" class="emailLink">{{user.email}}</a>
+                </td>
+                <td>{{user.department}}</td>
+                <td>{{user.about}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

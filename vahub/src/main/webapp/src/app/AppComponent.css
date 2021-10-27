@@ -1,0 +1,171 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* app css stylesheet */
+
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    background-color: white;
+    line-height: 1.42857;
+    color: #333333;
+    height: 100%;
+}
+
+.bold{
+    font-weight: bold !important;
+}
+
+.italic {
+    font-style: italic;
+    font-size: 16px !important;
+}
+
+.trim-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.trbl-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.75) center no-repeat;
+
+    /* set this absurdly high to ensure it's always on top */
+    z-index: 999999;
+}
+
+.trbl-loader-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: large;
+}
+
+/* side bar */
+.main {
+  float: left;
+}
+
+.sidebar {
+  float: right;
+}
+
+/******************************************************************************
+* Below are styles that are applied to multiple components. The ":host >>>" segment
+* tells Angular to apply this style to child components (in this case, children of the App component)
+*/
+
+:host >>> form.search-simple {
+  padding: 15px 15px;
+  position: relative;
+}
+
+:host >>> form.search-simple input {
+  background-color: #ebebeb;
+  border: 0;
+  width: 100%;
+  padding: 0 10px;
+  line-height: 40px;
+}
+
+:host >>> form.search-simple button {
+  border: 0;
+  background: #3F4444;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-indent: -10000px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-image: url(/assets/images/search-white.png);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  cursor: default;
+}
+
+:host >>> .btn-disabled {
+  background: #3F4444;
+  color: white;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+  display: inline;
+  padding: 12px 20px;
+  margin-top: 10px;
+  background: #ebebeb;
+  border: none;
+}
+
+:host >>> .btn-disabled:hover, .btn-disabled:active, .btn-disabled:focus {
+  background: #ebebeb;
+  color: white;
+  cursor: default;
+}
+
+
+:host >>> .home-thumbnail {
+    background-color: rgb(238, 238, 238);
+    color: black;
+    cursor: pointer;
+}
+
+:host >>> .home-thumbnail:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+:host >>> .home-thumbnail span {
+    margin-top: 25px;
+    text-align: center;
+    display: block;
+    font-size: 75px;
+}
+
+:host >>> .home-thumbnail p {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 15px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    :host >>> .forced-height {
+        height: 185px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    :host >>> .forced-height {
+        height: 200px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    :host >>> .forced-height {
+        height: 185px;
+    }
+}

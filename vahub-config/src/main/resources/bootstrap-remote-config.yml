@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: vahub
+  cloud:
+    config:
+      enabled: true

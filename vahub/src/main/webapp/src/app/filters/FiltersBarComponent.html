@@ -1,0 +1,281 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="main col-lg-12 main-well">
+            <div class="well">
+                <ng-content></ng-content>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div id="intro6" class="filters" [ngClass]="{'closed': !isVisible}">
+                <!-- Nav tabs -->
+                <div class="filter-tabs" id="intro7" *ngIf="options.showEventFilter || options.showPopulationFilter">
+                    <a class="filters__toggle" [ngClass]="{'closed': !isVisible}" (click)="toggleSidePanel()">
+                        <span>Open / Close Filters</span></a>
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a class="population-tab" (click)="changeTab(sidePanelTab.POPULATION)">
+                                <span>Population Filters</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="cohort-tab" (click)="changeTab(sidePanelTab.COHORT)">
+                                <span>Cohort Filters</span>
+                            </a>
+                        </li>
+                        <li *ngIf="options.showEventFilter">
+                            <a class="events-tab" (click)="changeTab(sidePanelTab.EVENTS)">
+                                <span>{{options.eventFiltersName}}</span>
+                            </a>
+                        </li>
+                        <li *ngIf="options.showTimelineFilter">
+                            <a class="tracks-tab" (click)="changeTab(sidePanelTab.TRACKS)">
+                                <span>Timeline Settings</span>
+                            </a>
+                        </li>
+                        <li *ngIf="options.showSettings">
+                            <a class="settings-tab" (click)="changeTab(sidePanelTab.SETTINGS)">
+                                <span>{{options.settingsName}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <div class="tab-pane active population" id="population">
+                        <h3>Population Filters</h3>
+                        <populationfilter (clearAll)="onClearAll(true)"
+                                          (exportFilters)="onExportFilters($event)">
+                        </populationfilter>
+                    </div>
+
+                    <div class="tab-pane cohort" id="cohort">
+                        <h3>Cohort Filters</h3>
+                        <cohortfilter (clearAll)="onClearAll(true)"
+                                      (exportFilters)="onExportFilters($event)">
+                        </cohortfilter>
+                    </div>
+
+                    <div class="tab-pane events" *ngIf="options.showEventFilter" id="events">
+                        <h3>{{options.eventFiltersName}}</h3>
+                        <div class="events-filter" *ngIf="options.showTimelineFilter">
+                            <timeline-filter (clearAll)="onClearAll(false)"
+                                             (exportFilters)="onExportFilters($event)">
+                            </timeline-filter>
+                        </div>
+                        <div [ngSwitch]="options?.filterId" class="events-filter">
+                            <div class="events-filter" *ngSwitchCase="filterId.EXPOSURE">
+                                <exposure-filter (clearAll)="onClearAll(false)"
+                                                 (exportFilters)="onExportFilters($event)">
+                                </exposure-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.AES">
+                                <aesfilter style="height:100%" (clearAll)="onClearAll(false)"
+                                           (exportFilters)="onExportFilters($event)">
+                                </aesfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CONMEDS">
+                                <conmedsfilter style="height:100%" (clearAll)="onClearAll(false)"
+                                               (exportFilters)="onExportFilters($event)">
+                                </conmedsfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.LAB">
+                                <labsfilter (clearAll)="onClearAll(false)"
+                                            (exportFilters)="onExportFilters($event)">
+                                </labsfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.PATIENT_REPORTED_DATA">
+                                <patientdatafilter (clearAll)="onClearAll(false)"
+                                                   (exportFilters)="onExportFilters($event)">
+                                </patientdatafilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.VITALS">
+                                <vitalsfilter (clearAll)="onClearAll(false)"
+                                              (exportFilters)="onExportFilters($event)">
+                                </vitalsfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.RENAL">
+                                <renalfilter (clearAll)="onClearAll(false)"
+                                             (exportFilters)="onExportFilters($event)">
+                                </renalfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.RECIST">
+                                <recistfilter (clearAll)="onClearAll(false)"
+                                              (exportFilters)="onExportFilters($event)">
+                                </recistfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.LIVER">
+                                <liverfunctionfilter (clearAll)="onClearAll(false)"
+                                                     (exportFilters)="onExportFilters($event)">
+                                </liverfunctionfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.DOSE">
+                                <dosefilter (clearAll)="onClearAll(false)"
+                                            (exportFilters)="onExportFilters($event)">
+                                </dosefilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.LUNG_FUNCTION">
+                                <lungfunctionfilter (clearAll)="onClearAll(false)"
+                                                    (exportFilters)="onExportFilters($event)">
+                                </lungfunctionfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.EXACERBATIONS">
+                                <exacerbationsfilter (clearAll)="onClearAll(false)"
+                                                     (exportFilters)="onExportFilters($event)">
+                                </exacerbationsfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CARDIAC">
+                                <cardiacfilter (clearAll)="onClearAll(false)"
+                                               (exportFilters)="onExportFilters($event)">
+                                </cardiacfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.DOSE_DISCONTINUATION">
+                                <dose-discontinuation-filter (clearAll)="onClearAll(false)"
+                                                             (exportFilters)="onExportFilters($event)">
+                                </dose-discontinuation-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.SAE">
+                                <serious-aes-filter (clearAll)="onClearAll(false)"
+                                                    (exportFilters)="onExportFilters($event)">
+                                </serious-aes-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.DEATH">
+                                <deathfilter (clearAll)="onClearAll(false)"
+                                             (exportFilters)="onExportFilters($event)">
+                                </deathfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.MEDICAL_HISTORY">
+                                <medical-history-filter (clearAll)="onClearAll(false)"
+                                                        (exportFilters)="onExportFilters($event)">
+                                </medical-history-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.SURGICAL_HISTORY">
+                                <surgical-history-filter (clearAll)="onClearAll(false)"
+                                                         (exportFilters)="onExportFilters($event)">
+                                </surgical-history-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.LIVER_DIAGNOSTIC_INVESTIGATION">
+                                <liver-diag-invest-filter (clearAll)="onClearAll(false)"
+                                                          (exportFilters)="onExportFilters($event)">
+                                </liver-diag-invest-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.LIVER_RISK_FACTORS">
+                                <liver-risk-factors-filter (clearAll)="onClearAll(false)"
+                                                           (exportFilters)="onExportFilters($event)">
+                                </liver-risk-factors-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.ALCOHOL">
+                                <alcohol-filter (clearAll)="onClearAll(false)"
+                                                (exportFilters)="onExportFilters($event)">
+                                </alcohol-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CVOT">
+                                <cvotfilter (clearAll)="onClearAll(false)"
+                                            (exportFilters)="onExportFilters($event)">
+                                </cvotfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.NICOTINE">
+                                <nicotine-filter (clearAll)="onClearAll(false)"
+                                                 (exportFilters)="onExportFilters($event)">
+                                </nicotine-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CIEVENTS">
+                                <cieventsfilter (clearAll)="onClearAll(false)"
+                                                (exportFilters)="onExportFilters($event)">
+                                </cieventsfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CEREBROVASCULAR">
+                                <cerebrovascularfilter (clearAll)="onClearAll(false)"
+                                                       (exportFilters)="onExportFilters($event)">
+                                </cerebrovascularfilter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.BIOMARKERS">
+                                <biomarkers-filter (clearAll)="onClearAll(false)"
+                                                   (exportFilters)="onExportFilters($event)">
+                                </biomarkers-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.TUMOUR_RESPONSE">
+                                <tumourresponse-filter (clearAll)="onClearAll(false)"
+                                                       (exportFilters)="onExportFilters($event)">
+                                </tumourresponse-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CTDNA">
+                                <ctdna-filter (clearAll)="onClearAll(false)"
+                                              (exportFilters)="onExportFilters($event)">
+                                </ctdna-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.DOSE_PROPORTIONALITY">
+                                <dose-proportionality-filter (clearAll)="onClearAll(false)"
+                                                 (exportFilters)="onExportFilters($event)">
+                                </dose-proportionality-filter>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.PK_RESULT_OVERALL_RESPONSE">
+                                <pk-overall-response-filter (clearAll)="onClearAll(false)"
+                                                        (exportFilters)="onExportFilters($event)">
+                                </pk-overall-response-filter>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane tracks" *ngIf="options.showTimelineFilter">
+                        <h3>Timeline Settings</h3>
+                        <timeline-configurations></timeline-configurations>
+                    </div>
+                    <div class="tab-pane settings" *ngIf="options.showSettings">
+                        <div [ngSwitch]="options?.filterId" class="events-filter">
+                            <div class="events-filter" *ngSwitchCase="filterId.EXPOSURE">
+                                <h3>Analyte Concentration Settings</h3>
+                                <exposure-settings></exposure-settings>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.DOSE_PROPORTIONALITY">
+                                <h3>Dose Proportionality Settings</h3>
+                                <dose-proportionality-settings></dose-proportionality-settings>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.TUMOUR_RESPONSE">
+                                <h3>Prior Therapy Settings</h3>
+                                <prior-therapy-settings></prior-therapy-settings>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.BIOMARKERS">
+                                <h3>Genomic Profile Settings</h3>
+                                <biomarker-settings></biomarker-settings>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.PK_RESULT_OVERALL_RESPONSE">
+                                <h3>PK-Response Settings</h3>
+                                <pk-overall-response-settings></pk-overall-response-settings>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.AES">
+                                <h3>AEs Chord Diagram Settings</h3>
+                                <aes-chord-settings></aes-chord-settings>
+                            </div>
+                            <div class="events-filter" *ngSwitchCase="filterId.CTDNA">
+                                <h3>ctDNA Settings</h3>
+                                <ctdna-settings></ctdna-settings>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<clear-filter-modal
+        [FilterName]="clearedFilterName"
+        [ModalIsVisible]="clearAllModalIsVisible"
+        (modalHasBeenSubmitted)="clearAllFilters($event)">
+</clear-filter-modal>

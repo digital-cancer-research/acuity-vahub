@@ -1,0 +1,82 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="dialogue" *ngIf="box?.show" [style.top]="(box?.y - 20) +'px'" [style.left]="(box?.x + 25) + 'px'">
+    <div class="close-dialogue" (click)="close()">
+        <span class="glyphicon glyphicon-remove close-cross" aria-hidden="true"></span>
+    </div>
+    <div *ngIf="!(selectionDetail || multiSelectionDetail)">
+        <div class="description">Loading...</div>
+    </div>
+    <div *ngIf="selectionDetail">
+        <div class="description">
+            <span class="number">{{percentageOfSubjects()}}%</span> of population
+        </div>
+        <div class="description">
+            <span class="number">{{selectionDetail.subjectIds ? selectionDetail.subjectIds.length : 0}}</span> subjects
+            selected
+        </div>
+        <div class="description">
+            <span class="number">
+                {{selectionDetail.eventIds ? selectionDetail.eventCount || selectionDetail.eventIds.length : 0}}
+            </span> events
+            selected
+        </div>
+    </div>
+    <div *ngIf="multiSelectionDetail">
+        <div class="description">
+            <span class="number">{{percentageOfSubjectsMulti()}}%</span> of population
+        </div>
+        <div class="description">
+            <span class="number">{{multiSelectionDetail.subjectIds ? multiSelectionDetail.subjectIds.length : 0}}</span> subjects
+            selected
+        </div>
+        <div class="description">
+            <!--we should show event count for the first table only-->
+            <span class="number">{{multiSelectionDetail.eventIds.first() ? multiSelectionDetail.eventIds.first().length : 0}}</span> events
+            selected
+        </div>
+    </div>
+    <div [hidden]="isSingleSubjectView()">
+        <button class="btn btn-default btn-block"
+                type="button"
+                (click)="setAsPopulation()"
+                [disabled]="shouldBeDisabled()">
+            Set as population
+        </button>
+    </div>
+    <div [hidden]="isSingleSubjectView()">
+        <button class="btn btn-default btn-block"
+                type="button"
+                (click)="setAsTimeline()"
+                [disabled]="shouldBeDisabled()">
+                View on timeline
+        </button>
+    </div>
+    <div>
+        <button class="btn btn-default btn-block" type="button" (click)="clearAllMarkingsAction()">
+            Clear marking
+        </button>
+    </div>
+    <div [hidden]="jumpToAesFromAeNumberLocation == ''">
+        <button class="btn btn-default btn-block"
+                type="button"
+                (click)="setAesNumberFilterAndGotoAes()"
+                [disabled]="!selectionDetail?.subjectIds">
+            View Linked AEs
+        </button>
+    </div>
+</div>

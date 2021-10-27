@@ -1,0 +1,74 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.acuity.visualisations.rawdatamodel.vo;
+
+import java.util.Date;
+import java.util.OptionalInt;
+
+import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.daysBetween;
+
+public interface HasStartEndDate extends HasStartDate {
+
+    Date getEndDate();
+
+    /*
+     * Detect has pre calc results, so need to use these if they are present.
+     */
+    default Integer getDurationRaw() {
+        return null;
+    }
+    
+    default Boolean isCalcDurationIfNull() {
+        return true;
+    }
+
+    /**
+     * Duration of days of the event.
+     *
+     * <pre>
+     * Monday to Monday, is duration of 1.
+     * Monday to Tuesday, is duration of 2.
+     * Monday to Wednesday, is duration of 3.
+     *
+     * Hence, 7.2 - 7.5 = 7 - 7 + 1 = 1
+     * Hence, 7.2 - 8.5 = 8 - 7 + 1 = 2
+     * Hence, 7.2 - 9.9 = 9 - 7 + 1 = 3
+     * Hence, 9.001 - 9.99999 = 9 - 9 + 1 = 1
+     * </pre>
+     */
+    default Integer getDuration() {
+        if ((isCalcDurationIfNull() != null && isCalcDurationIfNull()) && getDurationRaw() == null) {
+            if (isValid()) {
+                final OptionalInt duration = daysBetween(getStartDate(), getEndDate());
+                return duration.isPresent() ? duration.getAsInt() + 1 : null;
+            } else {
+                return null;
+            }
+        } else {
+            return getDurationRaw();
+        }
+    }
+
+    /**
+     * is a valid drug dose event, hence start <= end
+     *
+     * @return boolean isValid
+     */
+    default boolean isValid() {
+        return (getEndDate() != null && getStartDate() != null && (getStartDate().before(getEndDate())));
+    }
+}

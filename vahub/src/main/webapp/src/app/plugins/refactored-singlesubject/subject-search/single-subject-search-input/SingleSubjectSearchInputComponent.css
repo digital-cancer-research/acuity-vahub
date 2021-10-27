@@ -1,0 +1,132 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.triangle-container {
+    width: 5%;
+    float: left;
+    background-color: #3F4444;
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+}
+
+.triangle-icon.active {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.search-input-container {
+    height: 100%;
+}
+
+.search-input-container input {
+    background-color: #ebebeb;
+    padding: 0 10px;
+    line-height: 40px;
+    border: 0;
+    width: 100%;
+}
+
+.triangle-icon {
+    background-size: 20px;
+    top: 8px;
+    position: absolute;
+    background-image: url(/assets/images/expand-button-white.png);
+    width: 20px;
+    height: 20px;
+    left: 10px;
+}
+
+.search-input-container {
+    height: 100%;
+    max-width: 930px;
+    width: 95%;
+    float: left;
+    position: relative;
+}
+
+.search-dropdown-menu ul li:hover {
+    background-color: #ebebeb;
+}
+
+.search-dropdown-menu ul li.chosen-subject {
+    background-color: #ebebeb;
+}
+.search-dropdown-menu ul li.chosen-subject:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #3F4444;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.search-dropdown-menu ul li {
+    position: relative;
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px solid #ebebeb;
+    padding-left: 30px;
+}
+
+.search-dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    border: 1px solid #d4d2d2;
+    background: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    border-radius: 4px;
+    margin-top: 1px;
+    z-index: 99;
+}
+
+.search-container {
+    height: 40px;
+}
+
+.clear-subject-container .clear-subject:hover{
+    text-decoration: underline;
+}
+.clear-subject-container .clear-subject{
+    cursor: pointer;
+}
+.clear-subject-container {
+    width: 15%;
+    max-width: 110px;
+    float: left;
+    text-align: right;
+    padding-top: 20px
+}
+
+.search-with-dropdown {
+    width: 85%;
+    position: relative;
+    height: 100%;
+    float: left;
+}

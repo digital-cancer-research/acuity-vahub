@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div *ngFor="let filter of ssfmodel.filters">
+    <h5 style="cursor: pointer; display: block; padding: 8px 15px; font-size: 16px; font-size: 1.6rem; color: #3F4444;">{{filter.name}}</h5>
+    <div *ngIf="openedFilterModel && openedFilterModel.key === ssfmodel.key" data-step="7" data-intro="This is the filters bar" data-position="left">
+        <div style="padding-left: 15px; cursor: pointer;" *ngFor="let item of filter.initialValues">
+            <label [ngClass]="{'filter-input-readonly': !filter.isItemPresentInAvailableList(item)}">
+                <input [checked]="filter.isItemPresentInSelectedList(item)" 
+                        type="checkbox" (change)="onChange(filter.name, item, $event.target)"
+                       [disabled]="filter.isLastAvailableItem(item)"
+                       [ngClass]="{'filter-input-readonly': !filter.isItemPresentInAvailableList(item)}"/>
+                {{item || '(Empty)'}}
+            </label>
+        </div>
+    </div>
+</div>
+
+
+  
+  
+  
+  
+  

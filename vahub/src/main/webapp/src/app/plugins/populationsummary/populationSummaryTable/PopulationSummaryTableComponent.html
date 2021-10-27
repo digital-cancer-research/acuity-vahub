@@ -1,0 +1,96 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="container-fluid">
+    <div class="row padding-right-50" [hidden]="(trellisingObservables.loading | async) || (trellisingObservables.noData | async)">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-6">
+                    <new-trellis-xaxis
+                        [tabId]="tabId"
+                        [isOpenBottom]="true"
+                        [option]="trellisingObservables.newXAxisOption | async"
+                        [options]="trellisingObservables.newXAxisOptions | async"
+                        [customTooltip]="columnSettingsTooltip"
+                        (update)="changeColumnGrouping($event)"
+                        class="table-settings">
+                    </new-trellis-xaxis>
+                </div>
+            </div>
+            <div class="overflow-x table-wrapper">
+                <table class="table dashboard-table">
+                    <thead>
+                        <tr>
+                            <th class="no-border"></th>
+                            <th *ngFor="let header of dashboardTableModel.dashboard.tableHeaders"
+                                (click)="selectData($event,header,'column')"
+                                class="dashboard-column-header">
+                                {{header.columnName}}
+                                <div> (N = {{header.total | roundValue}})</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="no-border table-settings-td">
+                                <trellis-table-axis
+                                    [trellising]="trellisingObservables.trellising | async"
+                                    [baseTrellising]="trellisingObservables.baseTrellising | async"
+                                    [selectedDrug]="trellisingObservables.drugForColorBy$ | async"
+                                    [isAllColoringOptionAvailable]="trellisingObservables.isAllColoringOptionAvailable | async"
+                                    [customTooltip]="rowSettingsTooltip"
+                                    class="table-settings">
+                                </trellis-table-axis>
+                            </td>
+                            <td *ngFor="let column of dashboardTableModel.dashboard.tableHeaders"
+                                class="dashboard-column-subheader">
+                                {{trellisingObservables.newYAxisOption | async | toGroupByOption | toLabel:tabId | sentenceCase}}
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let row of dashboardTableModel.dashboard.table">
+                        <td (click)="selectData($event,row,'row')"
+                            class="dashboard-row-header">{{row.rowName}}
+                        </td>
+                        <td (click)="selectData($event,cell,'cell',row.rowName)"
+                            *ngFor="let cell of row.rowValue"
+                            class="dashboard-value"
+                            [ngClass]="{'bg-info': cellSelected(cell.columnName+' '+row.rowName)}">
+                            {{cell.countValue | roundValue}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <new-trellis-xaxis
+                            [tabId]="tabId"
+                            [isOpenBottom]="true"
+                            [customTooltip]="valueSettingsTooltip"
+                            [option]="trellisingObservables.newYAxisOption | async"
+                            [options]="trellisingObservables.newYAxisOptions | async"
+                            (update)="selectColumnOptions($event)"
+                            class="table-settings">
+                    </new-trellis-xaxis>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!(trellisingObservables.loading | async) && (trellisingObservables.noData | async)" class="nodata" [ngStyle]="{'min-height': 300 + 'px', 'padding-top': 200 + 'px'}">
+        No data to display
+    </div>
+    <progress-messages [loading]="trellisingObservables.loading | async"></progress-messages>
+</div>

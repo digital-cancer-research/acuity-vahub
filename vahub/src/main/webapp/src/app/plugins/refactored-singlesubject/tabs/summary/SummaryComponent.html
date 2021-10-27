@@ -1,0 +1,57 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="summary-container" *ngIf="!loading && !!selectedSubject">
+    <table class="table" id="studyInfo" *ngIf="selectedSubject">
+        <caption> <h3> Study Information </h3> </caption>
+        <tr>
+            <td> Subject ID</td>
+            <td> {{subjectDetail.get('subjectId')}} </td>
+        </tr>
+        <tr *ngFor="let key of studyDataKeys">
+            <td> {{ subjectDetailMetadata.get('study')[key] }} </td>
+            <td> {{ getStudyTableValue(key) }} </td>
+        </tr>
+        <tr *ngFor="let key of studySpecificFiltersKeys">
+            <td> {{ key }} </td>
+            <td> {{ studySpecificFilters[key] || 'No information' }} </td>
+        </tr>
+    </table>
+
+    <table class="table" id="demography" *ngIf="selectedSubject">
+        <caption> <h3> Demography </h3> </caption>
+        <tr *ngFor="let key of demographyKeys">
+            <td> {{ subjectDetailMetadata.get('demography')[key] }} </td>
+            <td> {{ getDemographyTableValue(key) }} </td>
+        </tr>
+    </table>
+
+    <div id="medHistory" *ngIf="selectedSubject && subjectDetailMetadata.get('medicalHistories')">
+        <h3>Medical History</h3>
+        <span> {{ getMedicalHistoryValue() }} </span>
+        <br/>
+        <br/>
+        <a *ngIf="hasMedicalHistoryTabData()" routerLink="../medicalhistory-tab"><span class="glyphicon glyphicon-new-window"></span> Jump to Medical History table</a>
+    </div>
+</div>
+
+<div class="notifications" *ngIf="!selectedSubject">
+    No subject is currently selected
+</div>
+
+<div *ngIf="loading">
+    <progress-messages [loading]="loading" [height]="600"></progress-messages>
+</div>

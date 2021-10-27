@@ -1,0 +1,116 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+.noUi-horizontal .noUi-handle-lower {
+  border-radius: 20px !important;
+}
+
+.noUi-horizontal .noUi-handle-upper {
+  border-radius: 20px !important;
+}
+
+.noUi-vertical .noUi-handle-lower {
+  border-radius: 20px !important;
+}
+
+.noUi-vertical .noUi-handle-upper {
+  border-radius: 20px !important;
+}
+
+.noUi-horizontal .noUi-handle {
+  height: 21px !important;
+  width: 21px !important;
+  left: -11px !important;
+  top: -4px !important;
+  box-shadow: None !important;
+  border: 1px solid #999 !important;
+}
+
+.noUi-vertical .noUi-handle {
+  height: 21px !important;
+  width: 21px !important;
+  left: -4px !important;
+  top: -11px !important;
+  box-shadow: None !important;
+  border: 1px solid #999 !important;
+}
+
+.noUi-handle:hover {
+  background: #eee;
+  cursor: default;
+}
+
+.noUi-handle:before {
+  display: None !important;
+}
+
+.noUi-handle:after {
+  display: None !important;
+}
+
+.noUi-horizontal .noUi-background {
+  background: #E9E9E9 !important;
+  height: 14px !important;
+  box-shadow: None !important;
+}
+
+.noUi-horizontal .noUi-base {
+  background: #E9E9E9 !important;
+  height: 14px !important;
+  box-shadow: None !important;
+}
+
+.noUi-vertical .noUi-background {
+  background: #E9E9E9 !important;
+  width: 14px !important;
+  box-shadow: None !important;
+}
+
+.noUi-vertical .noUi-base {
+  background: #E9E9E9 !important;
+  width: 14px !important;
+  box-shadow: None !important;
+}
+
+.noUi-connect {
+  background: #98AFA5 !important;
+}
+
+.noUi-vertical .noUi-base {
+  width: 14px !important;
+}
+
+.noUi-horizontal .noUi-base {
+  height: 14px !important;
+}
+
+.noUi-vertical {
+  width: 14px !important;
+}
+
+.noUi-horizontal {
+  height: 14px !important;
+}
+
+.noUi-horizontal .noUi-origin {
+  height: 14px !important;
+}
+
+.noUi-target {
+  box-shadow: None !important;
+  z-index: 0;
+}

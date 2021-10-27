@@ -1,0 +1,68 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="main-content">
+    <div class="main-content__intro">
+        <span>{{userActionText}}</span>
+        <button type="button" class="btn btn-link pull-right main-content__collapse"
+                *ngIf="isMultipleCollapseAvailable"
+                (click)="toggleAll()">
+            <span *ngIf="isViewCollapsed">Expand All</span>
+            <span *ngIf="!isViewCollapsed">Collapse All</span>
+        </button>
+    </div>
+    <ul class="studies studies--collapse">
+        <li *ngFor="let drugProgramme of studyList.keySeq()">
+            <div class="drug-programme"
+                 [ngClass]="{'opened': drugProgrammeIsExpanded(drugProgramme), 'closed': !drugProgrammeIsExpanded(drugProgramme)}">
+                <section id="introB1" class="studies__title"
+                   [ngClass]="{'expanded': drugProgrammeIsExpanded(drugProgramme)}"
+                   (click)="expandDrugProgramme(drugProgramme, undefined)">{{drugProgramme}}</section>
+                <div class="studies--collapse__content">
+                    <div class="study-group"
+                         *ngFor="let study of studyList.get(drugProgramme).keySeq()">
+                        <div class="study-group__header">
+                            <span>{{study}}</span>
+                            <span class="studyWarnings">
+                            {{studyWarnings.get(study)?.get('value') }}
+                                <span class="glyphicon glyphicon-warning-sign" *ngIf="studyWarnings.get(study)"></span>
+                            </span>
+                        </div>
+                        <div id="introB3" class="study-group-table">
+                            <div class="study-group-table__row--header">
+                                <span class="study-group-table__row--first-column">Dataset name</span>
+                                <span>Number of dosed subjects</span>
+                                <span>Data cutoff</span>
+                                <span>Last recorded event</span>
+                            </div>
+                            <div class="study-group-table__row"
+                                 *ngFor="let dataset of studyList.get(drugProgramme).get(study)"
+                                 [ngClass]="{selected: isDatasetSelected(dataset), disabled: isDatasetDisabled(dataset)}"
+                                 (click)="onSelectDataset(dataset, false)">
+                             <span class="study-group-table__row--first-column"
+                                   data-toggle="tooltip" data-placement="bottom"
+                                   [title]="getTooltip(dataset)">{{dataset.get('name')}}</span>
+                                <span>{{datasetIdAndNumSubjectsMap.get(dataset.get('id')).get('numberOfDosedSubjects')}}</span>
+                                <span>{{datasetIdAndNumSubjectsMap.get(dataset.get('id')).get('dataCutoffDate') | utc : true}}</span>
+                                <span>{{datasetIdAndNumSubjectsMap.get(dataset.get('id')).get('lastRecordedEventDate') | utc : true}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

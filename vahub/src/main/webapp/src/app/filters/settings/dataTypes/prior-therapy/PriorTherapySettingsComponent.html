@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="tab-pane">
+    <ul class="filter-list">
+        <li class="settings-item" [ngClass]="{'active': isOpen}">
+            <a class="filter-list__title" (click)="isOpen = !isOpen">
+                <span class="triangle-icon"></span>
+                <span class="display-name" title="Therapies">
+                    Therapies
+                </span>
+            </a>
+            <radio-buttons-setting [hidden]="!isOpen"
+                                   [previousSelectedValue]="previouslySelectedTrellising"
+                                   [currentOption]="selectedTrellising"
+                                   [availableValues]="therapiesOptions"
+                                   (onChange)="setTherapies($event)">
+            </radio-buttons-setting>
+        </li>
+    </ul>
+    <div class="filter__buttons">
+        <a class="btn btn-settings-apply" (click)="apply()">Apply</a>
+    </div>
+</div>

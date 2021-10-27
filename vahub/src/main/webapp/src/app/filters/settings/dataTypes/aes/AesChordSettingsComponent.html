@@ -1,0 +1,75 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="tab-pane">
+    <ul class="filter-list">
+        <li class="settings-item"
+            [ngClass]="{'active': settingsOpenedModel[aesChordSettings.TERM_LEVEL]}">
+            <a class="filter-list__title" (click)="changeSettingVisibility(aesChordSettings.TERM_LEVEL)">
+                <span class="triangle-icon"></span>
+                <span class="display-name" title="Term Level">
+                    Term Level
+                </span>
+            </a>
+            <radio-buttons-setting [name]="'Term Level'"
+                                   [hidden]="!settingsOpenedModel[aesChordSettings.TERM_LEVEL]"
+                                   [previousSelectedValue]="previousSelectedTermLevel"
+                                   [currentOption]="plotSettings"
+                                   [availableValues]="termLevelTypes"
+                                   (onChange)="setTermLevel($event)">
+            </radio-buttons-setting>
+        </li>
+        <li class="settings-item"
+            [ngClass]="{'active': settingsOpenedModel[aesChordSettings.DAYS_CONSTITUTE_LINK]}">
+            <a class="filter-list__title" (click)="changeSettingVisibility(aesChordSettings.DAYS_CONSTITUTE_LINK)">
+                <span class="triangle-icon"></span>
+                <span class="display-name">
+                    Number of days between AEs to constitute a link
+                </span>
+            </a>
+            <div class="filter-list__content" style="cursor: default" title="Max days = 30">
+                <range-setting [hidden]="!settingsOpenedModel[aesChordSettings.DAYS_CONSTITUTE_LINK]"
+                               [id]="'daysBetweenAEsToConstitute'"
+                               [maxConst]="maxDays"
+                               [minConst]="minDays"
+                               [currentValue]="previousTimeFrame"
+                               (onChange)="setDaysNumberBetweenAEs($event)">
+                </range-setting>
+            </div>
+        </li>
+        <li class="settings-item"
+            [ngClass]="{'active': settingsOpenedModel[aesChordSettings.NUMBER_OF_VISIBLE_LINKS]}">
+            <a class="filter-list__title" (click)="changeSettingVisibility(aesChordSettings.NUMBER_OF_VISIBLE_LINKS)">
+                <span class="triangle-icon"></span>
+                <span class="display-name">
+                    % of the links of the chord that contains the highest number of links
+                </span>
+            </a>
+            <div class="filter-list__content" style="cursor: default">
+                <range-setting [hidden]="!settingsOpenedModel[aesChordSettings.NUMBER_OF_VISIBLE_LINKS]"
+                               [id]="'numberOfVisibleLinks'"
+                               [maxConst]="maxPercentageOfLinks"
+                               [minConst]="minPercentageOfLinks"
+                               [currentValue]="previousPercentageOfLinks"
+                               (onChange)="setNumberOfLinks($event)">
+                </range-setting>
+            </div>
+        </li>
+    </ul>
+    <div class="filter__buttons">
+        <a class="btn btn-settings-apply" (click)="apply()">Apply</a>
+    </div>
+</div>

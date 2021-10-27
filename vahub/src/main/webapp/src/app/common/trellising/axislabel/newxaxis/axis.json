@@ -1,0 +1,66 @@
+[
+  {
+    "groupByOption": "START_DATE",
+    "params": {
+      "TIMESTAMP_TYPE": "DAYS_SINCE_FIRST_DOSE",
+      "BIN_SIZE": 1
+    }
+  },
+  {
+    "groupByOption": "START_DATE",
+    "params": {
+      "TIMESTAMP_TYPE": "DAYS_SINCE_FIRST_DOSE",
+      "BIN_SIZE": 1
+    }
+  },
+  {
+    "groupByOption": "START_DATE",
+    "params": {
+      "TIMESTAMP_TYPE": "WEEKS_SINCE_FIRST_DOSE",
+      "BIN_SIZE": 1
+    }
+  },
+  {
+    "groupByOption": "START_DATE",
+    "params": {
+      "TIMESTAMP_TYPE": "DAYS_SINCE_RANDOMIZATION",
+      "BIN_SIZE": 1
+    }
+  },
+  {
+    "groupByOption": "START_DATE",
+    "params": {
+      "TIMESTAMP_TYPE": "WEEKS_SINCE_RANDOMIZATION",
+      "BIN_SIZE": 1
+    }
+  },
+  {
+    //    "displayedOption": "DAYS_SINCE_FIRST_DOSE_OF_DRUG",
+    "groupByOption": "START_DATE",
+    "params": [
+      {
+        "TIMESTAMP_TYPE": "DAYS_SINCE_FIRST_DOSE_OF_DRUG",
+        "BIN_SIZE": 1,
+        "DRUG_NAME": "STDY4321"
+      },
+      {
+        "TIMESTAMP_TYPE": "WEEKS_SINCE_RANDOMIZATION",
+        "BIN_SIZE": 1
+      }
+    ]
+  },
+  {
+//    "displayedOption": "DAYS_SINCE_FIRST_DOSE_OF_DRUG",
+    "groupByOption": "START_DATE",
+    "params": {
+      "TIMESTAMP_TYPE": "WEEKS_SINCE_FIRST_DOSE_OF_DRUG",
+      "BIN_SIZE": 1,
+      "DRUG_NAME": "STDY4321"
+    }
+  },
+  {
+//    "displayedOption": "FINAL_DIAGNOSIS",
+    "groupByOption": "FINAL_DIAGNOSIS",
+    "params": {}
+  }
+]

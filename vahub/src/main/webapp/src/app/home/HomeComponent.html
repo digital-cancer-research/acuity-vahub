@@ -1,0 +1,64 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="home-container">
+    <div class="container">
+        <div class="about-container">
+            <img src="/assets/images/acuity-logo.png" id="logo" class="app-logo" alt="logo"/>
+            <div class="row getting-started-row">
+                <div class="flex-container aligned">
+                    <div class="flex-item">
+                        <a class="thumbnail forced-height home-thumbnail" (click)="navigate('')"
+                           data-toggle="tooltip" data-placement="bottom"
+                           [title]="'Click here to select the study you want to analyse'">
+                            <img src="/assets/images/analytics-services.png" id="analytics-services" alt=" "
+                                 class="thumbnail-img"/>
+                            <p>Analytics Services</p>
+                        </a>
+                    </div>
+                    <div class="flex-item" [ngClass]="{'no-cursor': !extendedOptions.omicsServicesUrl}" data-toggle="tooltip" data-placement="bottom"
+                         title="{{getTooltipText(!!extendedOptions.omicsServicesUrl)}}">
+                        <a class="thumbnail forced-height home-thumbnail" href="{{extendedOptions.omicsServicesUrl}}"
+                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !extendedOptions.omicsServicesUrl}">
+                            <img src="/assets/images/omics.png" id="omics" alt=" " class="thumbnail-img"/>
+                            <p>‘Omics’ Services</p>
+                        </a>
+                    </div>
+                    <div class="flex-item" [ngClass]="{'no-cursor': !extendedOptions.patientServicesUrl}" data-toggle="tooltip" data-placement="bottom"
+                         title="{{getTooltipText(!!extendedOptions.patientServicesUrl)}}">
+                        <a class="thumbnail forced-height home-thumbnail" href="{{extendedOptions.patientServicesUrl}}"
+                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !extendedOptions.patientServicesUrl}">
+                            <img src="/assets/images/patient.png" id="patient" alt=" " class="thumbnail-img"/>
+                            <p>Patient Services</p>
+                        </a>
+                    </div>
+                    <div class="flex-item" [ngClass]="{'no-cursor': !extendedOptions.aiAndMlServicesUrl}" data-toggle="tooltip" data-placement="bottom"
+                         title="{{getTooltipText(!!extendedOptions.aiAndMlServicesUrl)}}">
+                        <a class="thumbnail forced-height home-thumbnail" href="{{extendedOptions.aiAndMlServicesUrl}}"
+                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !extendedOptions.aiAndMlServicesUrl}">
+                            <img src="/assets/images/machine_learning.png" id="machine-learning" alt=" "
+                                 class="thumbnail-img"/>
+                            <p>AI and Machine Learning Services</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="company-logo" *ngIf="hasCompanyLogo">
+        <img src="/assets/{{pathToImages}}/company.png" id="company" class="company-image" alt=" "/>
+    </div>
+</div>

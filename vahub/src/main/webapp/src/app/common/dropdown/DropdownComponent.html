@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div *ngIf="avaliableItems?.length > 1" class="no-wrap">
+    <div class="btn-group">
+        <div class="col-sm-1"></div>
+        <label>{{name}}</label>
+    </div>
+    <div class="btn-group">
+
+        <button type="button" class="btn btn-default dropdown-toggle" (click)="toggle()">
+            {{currentSelectedItem.displayName}} <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" *ngIf="model.isOpen">
+            <li *ngFor="let avaliableItem of avaliableItems">
+                <a (click)="itemClicked(avaliableItem)">{{avaliableItem.displayName}}
+                    <span *ngIf="currentSelectedItem === avaliableItem" class="glyphicon glyphicon-ok"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

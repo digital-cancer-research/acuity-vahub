@@ -1,0 +1,64 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.video {
+    cursor: pointer;
+    width: 200px;
+}
+
+.video-column {
+    text-align: center;
+}
+
+.video-link {
+    color: #4088ff;
+    text-decoration: underline;
+}
+
+.support-row {
+    width: 90%;
+    margin: auto;
+}
+
+.super-list {
+    width: 80%;
+    margin: auto;
+}
+
+.forced-height {
+    height: 205px !important;
+    cursor: default;
+}
+
+.user-info {
+    background-color: #deeaf6;
+}
+
+.emailLink{
+    cursor: default;
+}
+
+div.img-circle {
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+tr:nth-child(even) {
+    background-color: #deeaf6;
+}

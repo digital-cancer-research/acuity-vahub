@@ -1,0 +1,92 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<ul class="filter-list timeline-filter-list">
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.AES]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">AE Filter</span>
+        </a>
+        <aesfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                   (exportFilters)="onExportFilters($event)"></aesfilter>
+    </li>
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.DOSE]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Dose Filter</span>
+        </a>
+        <dosefilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                    (exportFilters)="onExportFilters($event)"></dosefilter>
+    </li>
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.CONMEDS]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Conmeds Filter</span>
+        </a>
+        <conmedsfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                       (exportFilters)="onExportFilters($event)"></conmedsfilter>
+    </li>
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.LABS]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Labs Filter</span>
+        </a>
+        <labsfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                    (exportFilters)="onExportFilters($event)"></labsfilter>
+    </li>
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.VITALS]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Vitals Filter</span>
+        </a>
+        <vitalsfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                      (exportFilters)="onExportFilters($event)"></vitalsfilter>
+    </li>
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.PRD]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Patient Data Filter</span>
+        </a>
+        <patientdatafilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                      (exportFilters)="onExportFilters($event)"></patientdatafilter>
+    </li>
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.ECG]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">ECG Filter</span>
+        </a>
+        <cardiacfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                      (exportFilters)="onExportFilters($event)"></cardiacfilter>
+    </li>
+    
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.SPIROMETRY]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Spirometry Filter</span>
+        </a>
+        <lungfunctionfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                      (exportFilters)="onExportFilters($event)"></lungfunctionfilter>
+    </li>
+
+    <li class="timeline-filter-item" *ngIf="visibilities[trackNames.EXACERBATION]">
+        <a class="filter-list__title timeline-filter-list-title" (click)="openContent($event)">
+            <span class="triangle-icon"> </span>
+            <span class="display-name">Exacerbations Filter</span>
+        </a>
+        <exacerbationsfilter class="timeline-filter-list-collection" (clearAll)="onClearAll()"
+                      (exportFilters)="onExportFilters($event)"></exacerbationsfilter>
+    </li>
+</ul>

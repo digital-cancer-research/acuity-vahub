@@ -1,0 +1,88 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="timeline-container" *ngIf="(isSingleSubjectComponent && !(isLoading | async) && !!(selectedSubjectId | async)) || !isSingleSubjectComponent">
+    <div class="col-sm-10 tracks-container">
+
+        <progress-messages [loading]="timelineObservables.loading | async" [height]="600"></progress-messages>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2 timeline-download">
+                    <span data-toggle="tooltip" data-placement="right" [title]="'Chart context menu'"
+                          class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" (click)="toggleModal()"></span>
+                </div>
+                <div class="col-sm-5" *ngIf="timelineObservables.showPagination | async">
+                    <timeline-pagination class="timeline-pagination"
+                                         [numberOfSubjects]="timelineObservables.totalNumberOfSubjects | async"
+                                         [loading]="timelineObservables.loading | async"
+                                         [page]="timelineObservables.page | async"
+                                         (updatePage)="timeline.updatePageContent($event)">
+                    </timeline-pagination>
+                </div>
+                <div class="col-sm-5 timeline-page-size" *ngIf="timelineObservables.showPagination | async">
+                    <timeline-page-size [hidden]="timelineObservables.loading | async"
+                                        [page]="timelineObservables.page | async"
+                                        (updatePage)="timeline.updatePageContent($event)"></timeline-page-size>
+                </div>
+            </div>
+        </div>
+
+        <!-- timeline view is the viewport for timeline plot -->
+        <timeline-view [hidden]="timelineObservables.loading | async"
+                       [subjects]="timelineObservables.subjects | async"
+                       [maxHeight]="maxHeight"
+                       [loading]="timelineObservables.loading | async"
+                       (expandOrCollapseTrack)="timeline.expandOrCollapseTrack($event)">
+        </timeline-view>
+
+        <div *ngIf="!(timelineObservables.loading | async)"  class="row" [hidden]="timelineObservables.loading | async">
+            <div class="col-sm-3 timeline-axis-label">
+                <timeline-axis-label
+                        [options]="timelineObservables.dayZeroOptions | async"
+                        [option]="timelineObservables.dayZero | async"
+                        (update)="timeline.updateDayZero($event)">
+                </timeline-axis-label>
+            </div>
+            <div class="col-sm-9 pull-right timeline-zoom">
+                <timeline-zoom [zoom]="timelineObservables.zoom | async"
+                               (updateZoom)="timeline.updateZoom($event)">
+                </timeline-zoom>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar col-sm-2 timeline-sidebar">
+        <timeline-legend
+                [loading]="timelineObservables.loading | async"
+                [labsYAxisValue]="timelineObservables.labsYAxisValue | async"
+                [spirometryYAxisValue]="timelineObservables.spirometryYAxisValue | async"
+                [ecgWarnings]="timelineObservables.ecgWarnings | async">
+        </timeline-legend>
+    </div>
+</div>
+
+<app-modal-message [Title]="'Can not download!'"
+                   [Msg]="'Downloading images and printing directly from ACUITY are not available for the Timeline chart type. If you require an image of the Timeline chart please use the Snipping Tool that can be found under: Start > All Programs > Accessories.'"
+                   [ButtonText]="'OK'"
+                   [ModalBeDismissed]="false"
+                   [ModalIsVisible]="modalVisible"
+                   (modalHasBeenSubmitted)="toggleModal()">
+</app-modal-message>
+
+<!-- Message on SSV plugin for timeline-tab -->
+<div class="notifications" *ngIf="isSingleSubjectComponent && !(selectedSubjectId | async)">
+    No subject is currently selected
+</div>

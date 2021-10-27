@@ -1,0 +1,65 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="axis-container">
+    <div class="axis-label" (click)="toggleOpen()" title="{{tooltip}}">
+        {{ textUtils.changeWeekToAssessmentWeek(selectedOption.displayedOption, tabId) | toLabel:tabId | sentenceCase }}
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </div>
+    <div class="axis-control" *ngIf="isOpen" [@openClose]="getAnimationState()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" [(ngModel)]="selectedOption.displayedOption"
+                                (change)="updateDisplayValue()">
+                            <option *ngFor="let option of availableOptions" [value]="option.displayedOption">
+                                {{option.displayedOption | toLabel:tabId | sentenceCase }}
+                            </option>
+                        </select>
+                        <div class="input-group"
+                             *ngIf="selectedOption.params && selectedOption.params.BIN_SIZE !== undefined">
+                            <div class="input-group-addon">Bin</div>
+                            <input class="form-control" [(ngModel)]="selectedOption.params.BIN_SIZE"
+                                   (change)="changeBinSize()"
+                                   min="0" type="number">
+                        </div>
+                        <div class="input-group"
+                             *ngIf="selectedOption.params && selectedOption.params.DRUG_NAME">
+                            <div class="input-group-addon">Drug</div>
+                            <select class="form-control" [(ngModel)]="selectedOption.params.DRUG_NAME">
+                                <option *ngFor="let drug of options.get('drugs')" [value]="drug">
+                                    {{drug}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-warning pull-right ml10" (click)="closeControl()">Cancel
+                    </button>
+                    <button *ngIf="selectedOption.params && (selectedOption.params.BIN_SIZE || selectedOption.params.DRUG_NAME)"
+                            type="button" class="btn btn-warning pull-right"
+                            (click)="updateOption()">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

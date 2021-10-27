@@ -1,0 +1,282 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<marking-dialogue [jumpToAesFromAeNumberLocation]="trellisingObservables.jumpToAesFromAeNumberLocation | async"
+                  [dialogueBox]="markingDialogue"
+                  [selection]="selection"
+                  [selectionDetail]="selectionDetail"
+                  [multiSelectionDetail]="multiSelectionDetail"
+                  (setTimelineState)="trellisingDispatcher.setInitialStateOfTimeline()"
+                  (clearMarkings)="trellisingDispatcher.clearSelections()"></marking-dialogue>
+<div id="intro5" [ngSwitch]="plot?.plotType">
+    <div *ngSwitchCase="plotType.BOXPLOT">
+        <boxplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [xRange]="xRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [scaleType]="getScaleType()"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)"></boxplot>
+    </div>
+    <div *ngSwitchCase="plotType.RANGEPLOT">
+        <rangeplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [xRange]="xRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [series]="plot?.series"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)"></rangeplot>
+    </div>
+    <div *ngSwitchCase="plotType.JOINEDRANGEPLOT">
+        <joinedrangeplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [xRange]="xRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [series]="plot?.series"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)"></joinedrangeplot>
+    </div>
+    <div *ngSwitchCase="plotType.STACKED_BARCHART">
+        <stackedbarplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [series]="plot?.series"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </stackedbarplot>
+    </div>
+    <div *ngSwitchCase="plotType.GROUPED_BARCHART">
+        <groupedbarplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [series]="plot?.series"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </groupedbarplot>
+    </div>
+    <div *ngSwitchCase="plotType.SCATTERPLOT">
+        <scatterplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [xRange]="xRange"
+                [selection]="selection"
+                [tabId]="tabId"
+                [trellising]="plot.trellising"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </scatterplot>
+    </div>
+    <div *ngSwitchCase="plotType.ERRORPLOT">
+        <errorplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [xRange]="xRange"
+                [selection]="selection"
+                [tabId]="tabId"
+                [trellising]="plot.trellising"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </errorplot>
+    </div>
+    <div *ngSwitchCase="plotType.BARLINECHART">
+        <barlineplot [plotData]="plot?.data" [height]="height" [isCategorical]="isCategorical()"
+                     [xAxisLabel]="xAxisLabel()" [globalXAxisLabel]="globalXAxisLabel()"
+                     [yAxisLabel]="yAxisLabel()" [globalYAxisLabel]="globalYAxisLabel()" [title]="title()"
+                     [zoomX]="xAxisZoom" [zoomY]="yAxisZoom"
+                     [yRange]="yRange" [tabId]="tabId" [selection]="selection"
+                     [trellising]="plot.trellising"
+                     [series]="plot?.series"
+                     (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </barlineplot>
+    </div>
+    <div *ngSwitchCase="plotType.LINECHART">
+        <lineplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [series]="plot?.series"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </lineplot>
+    </div>
+    <div *ngSwitchCase="plotType.SIMPLE_LINEPLOT">
+        <simple-lineplot
+                [plotData]="plot?.data"
+                [height]="height"
+                [isCategorical]="isCategorical()"
+                [xAxisLabel]="xAxisLabel()"
+                [globalXAxisLabel]="globalXAxisLabel()"
+                [yAxisLabel]="yAxisLabel()"
+                [globalYAxisLabel]="globalYAxisLabel()"
+                [title]="title()"
+                [aggregationSetting]="trellisingObservables.trellising | async"
+                [plotSettings]="plotSettings"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [xRange]="xRange"
+                [yRange]="yRange"
+                [tabId]="tabId"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [series]="plot?.series"
+                [scaleType]="getScaleType()"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </simple-lineplot>
+    </div>
+    <div *ngSwitchCase="plotType.HEATMAP">
+        <heat-map
+                [plotData]="plot?.data"
+                [height]="height"
+                [title]="title()"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [tabId]="tabId"
+                [zoomY]="yAxisZoom"
+                [yRange]="yRange"
+                [xRange]="xRange"
+                [zoomX]="xAxisZoom"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </heat-map>
+    </div>
+    <div *ngSwitchCase="plotType.WATERFALL">
+        <waterfall-plot
+                [plotData]="plot?.data"
+                [height]="height"
+                [title]="title()"
+                [selection]="selection"
+                [yRange]="yRange"
+                [zoomX]="xAxisZoom"
+                [zoomY]="yAxisZoom"
+                [trellising]="plot.trellising"
+                [tabId]="tabId"
+                [colorByValue]="getColorByValue()"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </waterfall-plot>
+    </div>
+    <div *ngSwitchCase="plotType.COLUMNRANGE">
+        <columnrange-plot
+                [plotData]="plot?.data"
+                [height]="height"
+                [title]="title()"
+                [selection]="selection"
+                [zoomY]="yAxisZoom"
+                [zoomX]="xAxisZoom"
+                [yRange]="yRange"
+                [trellising]="plot.trellising"
+                [tabId]="tabId"
+                [plotSettings]="plotSettings"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </columnrange-plot>
+    </div>
+    <div *ngSwitchCase="plotType.CHORD">
+        <chord-diagram
+                [plotData]="plot?.data"
+                [height]="height"
+                [title]="title()"
+                [selection]="selection"
+                [trellising]="plot.trellising"
+                [plotSettings]="plotSettings"
+                [tabId]="tabId"
+                (displayMarkingDialogue)="displayMarkingDialogue($event)">
+        </chord-diagram>
+    </div>
+    <div *ngSwitchDefault>
+        <div *ngIf="title()" class="no-data" [style.height]="lineHeight()">
+            <span [style.top]="lineTop()">{{title()}} - no data</span>
+        </div>
+    </div>
+</div>

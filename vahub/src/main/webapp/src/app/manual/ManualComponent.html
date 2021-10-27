@@ -1,0 +1,491 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div id="wrapper">
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li class="text-center user-image-back"></li>
+                <li *ngIf="qnaMakerProperties">
+                    <a routerLink="/manual" fragment="FAQ" (click)="onAnchorClick()"><i class="glyphicon glyphicon-list-alt"></i>Frequently Asked Questions</a>
+                </li>
+                <li>
+                    <a routerLink="/manual" fragment="introduction" (click)="onAnchorClick()"><i class="glyphicon glyphicon-blackboard"></i>Introduction</a>
+                </li>
+                <li>
+                    <a routerLink="/manual" fragment="study" (click)="onAnchorClick()"><i class="glyphicon glyphicon-th"></i>Select Study</a>
+                <li>
+                    <a routerLink="/manual" fragment="incontext" (click)="onAnchorClick()"><i class="glyphicon glyphicon-pencil"></i>In context help</a>
+                </li>
+                <li>
+                    <a (click)="collapse($event)"><i class="glyphicon glyphicon-wrench"></i>Plot tools<span class="glyphicon glyphicon-chevron-left"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a routerLink="/manual" fragment="axis" (click)="onAnchorClick()">Axis tools</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="colour" (click)="onAnchorClick()">Colour by tools</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="zooming" (click)="onAnchorClick()">Zooming</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="linking" (click)="onAnchorClick()">Linking between views</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="context" (click)="onAnchorClick()">Context Specific Jumping</a>
+                            </li>
+                        </ul>
+                </li>
+                <li>
+                    <a (click)="collapse($event)"><i class="glyphicon glyphicon-filter"></i>Filtering<span class="glyphicon glyphicon-chevron-left"></span> </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a routerLink="/manual" fragment="population_filters" (click)="onAnchorClick()">Population filters</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="the_widget" (click)="onAnchorClick()">The widget bar</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="event" (click)="onAnchorClick()">Event Filtering</a>
+                            </li>
+                        </ul>
+
+                </li>
+                <li>
+                    <a (click)="collapse($event)"><i class="glyphicon glyphicon-picture"></i>Views<span class="glyphicon glyphicon-chevron-left"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a routerLink="/manual" fragment="view" (click)="onAnchorClick()">Selecting a view</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="population" (click)="onAnchorClick()">Population
+                                    Summary</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="adverse" (click)="onAnchorClick()">Example. Adverse Event view</a>
+                            </li>
+                            <li>
+                                <a (click)="collapse($event)">Timeline Chart<span class="glyphicon glyphicon-chevron-left"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a routerLink="/manual" fragment="the_timeline" (click)="onAnchorClick()">The Timeline Chart</a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="/manual" fragment="adding" (click)="onAnchorClick()">Adding tracks</a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="/manual" fragment="drilling" (click)="onAnchorClick()">Getting more detail</a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="/manual" fragment="filtering" (click)="onAnchorClick()">Filtering the timeline</a>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li>
+                                <a (click)="collapse($event)">Single subject views<span class="glyphicon glyphicon-chevron-left"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a routerLink="/manual" fragment="single" (click)="onAnchorClick()">Single Subject views</a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="/manual" fragment="summary_tab" (click)="onAnchorClick()">Summary</a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="/manual" fragment="single_subject" (click)="onAnchorClick()">The single subject timeline</a>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="details" (click)="onAnchorClick()">Details on demand</a>
+                            </li>
+
+                        </ul>
+                </li>
+                <li>
+                    <a (click)="collapse($event)"><i class="glyphicon glyphicon-paste"></i>Example Queries<span class="glyphicon glyphicon-chevron-left"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a routerLink="/manual" fragment="question1" (click)="onAnchorClick()">Example Question 1</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="question2" (click)="onAnchorClick()">Example Question 2</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manual" fragment="question3" (click)="onAnchorClick()">Example Question 3</a>
+                            </li>
+                        </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <h2>ACUITY Training Manual</h2><br/>
+            <div class="row" *ngIf="qnaMakerProperties" >
+                <div class="col-md-12">
+                    <h4 class="anchor" id="FAQ" >ACUITY FREQUENTLY ASKED QUESTIONS</h4><br/>
+                </div>
+            </div>
+            <div class="row" *ngIf="qnaMakerProperties">
+                <div class="col-md-4">
+                    <div class="search-bar">
+                        <input name="submit"
+                               type="submit"
+                               value="Ask"
+                               class="ask-button"
+                               (click)="makeBotRequest()"
+                               [disabled]="loading"/>
+                        <label>Please Ask a Question</label>
+                        <span><input name="question" type="text" maxlength="1000" id="question" class="search-field"
+                                     [(ngModel)]="question" (keydown)="makeBotRequest($event)"
+                                     (blur)="clearBotAnswer()"/></span>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="circle-loader" *ngIf="loading"></div>
+                    <p id="textDiv" [innerText]="answer" *ngIf="!loading"></p>
+                </div>
+            </div>
+            <hr/>
+            <div class="row help-content">
+                <div class="col-md-10">
+                    <h3 id="introduction" class="anchor">INTRODUCTION TO KEY ACUITY FUNCTIONALITY</h3>
+
+                    <p>This training provides a basic introduction to the ACUITY system. This guide will walk you through
+                        some of the main features and functionality in ACUITY, this is not exhaustive and there is always
+                        more than one way to do something in the system. There are also some example questions that
+                        exploit some of the key ACUITY functionality and views. If the answer to your question is not
+                        here then please use the question box at the top of the page to see if that can help. </p>
+                    <p>On many of the points in this page the <img src="/assets/images/task.png"> icon is
+                        an activity to try in ACUITY. This is to help familiarise yourself with the ACUITY tool.</p>
+                    <br/>
+                    <h4 id="study" class="anchor">STUDY SELECTION PAGE</h4>
+                    <p>This page is accessed through the 'Analysis' link in ACUITY and provides access to studies in
+                        ACUITY. You will only see the studies you have access to here. You will see the name of the drug
+                        programmer, if you click this then there will be a list of studies available to you. Select the
+                        study and then Start analysis in the top right hand corner of the page. It is possible to select
+                        more than one study at a time although they each have to belong to the same drug programme.
+                        Selecting more than one study does not aggregate the study data merely displays the data from
+                        studies in a single view.</p><br/>
+                    <p><img src="/assets/images/task.png"> Try selecting a study.
+                    <p><i> You will need to click next to the name of the dataset (and that can be more than one study
+                        if available) and then the Start Analysis button in the top right hand corner to go to the
+                        ACUITY analysis</i>.</p><br/>
+                    <h4 id="population" class="anchor">POPULATION SUMMARY</h4>
+                    <p>When an analysis loads (after selecting a dataset in the Study selection page) the first page the
+                        user sees is the population summary bar chart. This provides a summary across all dosed patients
+                        in the study. Both the x and y-axis can be changed by clicking the icon next to the title of the
+                        axis and the filters can be used to filter the subjects shown
+                        (see <a routerLink="/manual" fragment="population_filters" (click)="onAnchorClick()">population filter</a>.)</p><br/>
+                    <h4 id="incontext" class="anchor">IN CONTEXT HELP</h4>
+                    <p>In context help is available by clicking the in the top right hand corner. This will walk you
+                        through some of the main features of ACUITY by an interactive pop up on the screen. This can be
+                        useful to bring to your attention the main features of ACUITY. <br/>
+                        <img src="/assets/images/task.png"> Click on the help icon and look at what it provides.</p><br/>
+                    <h4 id="axis" class="anchor">AXIS TOOLS</h4>
+                    <p>Most axes in ACUITY can be changed from the default values shown by clicking the icon next to the
+                        axis title. The different plots have different options available and it is worth exploring the
+                        individual plots for more details, <br/><img src="/assets/images/task.png"> Try
+                        changing the y-axis to percentage of all subjects from count of subjects. <br/>
+                        <img src="/assets/images/task.png"> Also try changing the x-axis.</p><br/>
+                    <h4 id="colour" class="anchor">COLOUR BY TOOLS</h4>
+                    <p>In many plots there is the option to change the Colour By option of the bars or lines e.g. In the
+                        population summary you can show the bars coloured by country, by actual treatment arm, by sex
+                        etc. This is done by clicking the paint drop icon located in the top right hand corner of the
+                        plot where available. If the paint icon is not present then it is not possible to change the
+                        colour of the plots at this time.<br/><img src="/assets/images/task.png"> Try
+                        changing the Colour By in the population summary plot to Age.</p><br/>
+                    <h4 id="population_filters" class="anchor">POPULATION FILTERS</h4>
+                    <p>On every plot there are population filters. These enable the user to restrict the subjects that
+                        are shown in the plot, for example to a specific treatment arm (where available) or to a
+                        particular age cohort etc. To do this click either the icon to the right of the screen for
+                        population filters or an alternative way is if you would like to select subjects from a given
+                        plot you are looking at you can select them with your mouse and then when given the opiton
+                        select 'set as population'. This applies the population filter of subject and limits to only
+                        those subjects included in the selection. When a population filter has been applied the widget
+                        bar at the top will show the applied filters and what they have been set to. <br/>
+                        <img src="/assets/images/task.png"> Try filtering the data, for example click
+                        sex and uncheck m.</p><br/>
+                    <p><i>To apply a filter in ACUITY you must click apply at the bottom of the filter panel. <br/>To
+                        close the filter panel click</i></p><br/>
+                    <h4 id="the_widget" class="anchor">THE WIDGET BAR</h4>
+                    <p>When a filter has been applied the plot will reload with the new filtered data and the filter
+                        will appear in the Population panel at the top of the page under the title bar. This panel will
+                        tell you the total number of subjects and now, if a filter has been applied, how many subjects
+                        are actually shown in the plot. Sometimes, for example if a number of subjects have been
+                        filtered, the widget bar will tell you a filter has been applied but not the details. To get the
+                        details simply click the widget of interest and the full details will appear in a pop up on the
+                        screen.</p><br/>
+                    <p>In ACUITY it is very easy to clear the filter, simply click the icon next to the filter you want
+                        to remove.<br/> <img src="/assets/images/task.png"> Try clearing the filter now.
+                    </p><br/>
+                    <h4 id="view" class="anchor">VIEW SELECTION</h4>
+                    <p>There are many different views of the data available in ACUITY. The views that are available for
+                        you on your study will depend on whether that data has been made available to ACUITY and whether
+                        you have permission to see that data. To see what views are available, hover over the bar with
+                        the icons to the left of your screen.<br/>As you hover the full name of the set of views will be
+                        displayed. Within some views e.g. Adverse events, Laboratory measurements and single subject
+                        there are multiple ways to look at the data and these appear as tabs acros the top of the view,
+                        clicking a tab will show each plot. <br/>
+                    <h5 id="adverse" class="anchor">ADVERSE EVENT VIEW</h5>
+                    <p>This next section is looking at one particular view in ACUITY to get you familiar with the axis
+                        controls and tabs, try doing the tasks below.
+                    <p>
+                    <p><img src="/assets/images/task.png"> When you get to the Adverse Event View (or any
+                        other view) try changing the axis or the Colour by options where available. <br/>
+                    <img src="/assets/images/task.png"> Also have a look at the different tabs
+                        (where available) at the top of the page, these are the different views of the same data. The
+                        data can also be viewed in table format.</p><br/>
+                    <h5 id="event" class="anchor">EVENT FILTERING</h5>
+                    <p>In any of the views of the data, other than the Population Summary, an additional filter: the
+                        event filters are available to the right hand side of the screen. The content of this filter
+                        will change depending on the view you are looking at. For example, if you are in the Adverse
+                        Event view, the content will be around Adverse Events, if you are in a Labs view it will be
+                        about Lab Events and so on. <br/>
+                        <img src="/assets/images/task.png"> Go to Adverse Events as an example. Here we can look at the event filter.<br/>
+                        As an example we will filter based on Preferred Term and select headache. <br/>
+                        <img src="/assets/images/task.png"> Click Preferred Term in the
+                        event filters and start to type headache into the search box. <br/>
+                        <img src="/assets/images/task.png"> Select headache and click apply</p><br/>
+                    <p>What will happen is the plot(s) will reload to show just the bars that matched your search and at
+                        the top, under the Population bars there is now an Adverse Event widget bar with details of the
+                        filter that has been applied and the total number of events that match that filter.</p><br/>
+                    <h4 id="the_timeline" class="anchor">THE TIMELINE CHART</h4>
+                    <p>A key view in ACUITY is the Timeline View, this brings together many different types of
+                        data/events and aligns them on a single time axis making it possible to see where different
+                        events occure relative to one another. It is available by clicking the icon in the panel to the
+                        left or alternatively within a different view if events or subjects are selected there will be
+                        the option to <i> View on timeline</i>. This will take you directly to the timeline view with
+                        only the selected subjects shown and the relavant tracks. A track is a row of data. So for
+                        example if you select subjects in the adverse event view and select <i>View on timeline</i> then
+                        the timeline will load for only the selected patient and the rows shown will be the adverse
+                        events for those subjects.</p><br/>
+                    <p>Unless there are population filters set by default, all subjects will be shown in this view,
+                        although for performance of the system only 20 are shown at a time. The next 20 subjects will be
+                        available on page 2 and so on. Unless you have got to this view via the interactivity section
+                        (described above) the default view is the Status summary for each subject. This tells us how
+                        long each subject has been on the study, when they were screened, randomised, received their
+                        first investigational product etc. (where that information is available for the dataset.)</p>
+                    <br/>
+                    <p>This view is very interactive and it is possible to show different amounts of detail. The next
+                        few sections describe this in more detail, the key is to right click on a track and/or use the
+                        timeline settings which is with the filters to the right of the screen.<br/>
+                    <h5 id="adding" class="anchor">ADDING TIMELINE TRACKS</h5>
+                    <p>Each row in the Timeline view is called a track. Tracks can be added and removed from this view
+                        using the filter panel to the right.<br/><img src="/assets/images/task.png"> The
+                        first step is to add tracks to the data using the new Track icon in the filters to the right.
+                        <br/>This gives you the option to add different datatypes.<br/>
+                        <img src="/assets/images/task.png"> In this example we will add (where available) Adverse Events and Lab measurements.<br/>
+                        The plot will refresh with the new tracks, which are added at a summary level (i.e. a single track per datatype).</p>
+                    <p>The next section will discuss drilling down on each track, so showing more detailed information
+                        rather than just a summary.<br/><br/>
+                    <h5 id="drilling" class="anchor">DRILLING DOWN ON THE TIMELINE CHART</h5>
+                    <p>With each track added at the summary level the next step is to drill down to more detailed
+                        information. This can be done by right clicking on a particular track and selecting Expand. Note
+                        that for some data types it is possible to drill down more than once, for example for laboratory
+                        measurements a summary level which is a single track for all lab measurements on a given day.
+                        The next level is laboratory category (e.g. chemistry, hematology etc.) with a single track for
+                        each category covering all measurements on a given day. The next level is a single track for
+                        each laboratory measurement provided as a symbol (squares for measurements within reference
+                        ranges and triangles for measurements above and below the reference rages). The final level is a
+                        track per laboratory measurement shown as a line chart over time.<br/>
+                    <p>When you right click a track there will be a number of options:
+                    <ul>
+                        <li>Expand: this drills down to the next level of detail for this data type and subject only
+                        </li>
+                        <li>Expand all adverse event tracks: this drills down to the next level of detail for this data
+                            type across all subjects.
+                        </li>
+                    </ul>
+                    <p>There is a legend associated with the timeline track, you will need to close the filters to see
+                        the legend </p><br/>
+                    <h5 id="filtering" class="anchor">FILTERING TIMELINE DATA</h5>
+                    <p>Events in the Timeline View can be filtered in the same way as they can be in other plots. The
+                        main difference here is that different event filters are added as tracks are added. So for
+                        instance if the Adverse Event track is added then Adverse Event filters get added to the event
+                        filter.<br/><img src="/assets/images/task.png"> Try filtering some events and see
+                        how the filters change in the Timeline View.</p><br/>
+                    <h5 id="zooming" class="anchor">ZOOMING</h5>
+                    <p>Like in other views the zoom bar at the bottom can be used to zoom in and out on the plot.
+                        <br/><img src="/assets/images/task.png"> Try using the zoom bar to look at a
+                        particular time range in detail</p><br/>
+                    <h4 id="single" class="anchor">SINGLE SUBJECT VIEWS</h4>
+                    <p>Single Subject views of the data are available by clicking the icon in the panel to the left.
+                        There are a number of tabs that provide very detailed information about a single patient. If a
+                        single patient has not already been selected then start typing the patient identifier into the
+                        search box at the top of the page, it will auto-complete meaning it will provide a dropdown of
+                        all the subjects matching your search criteria for you to select from.There are a number of tabs
+                        under the search box which provide different views of the data for this subject.</p><br/>
+                    <p><img src="/assets/images/task.png"> Select a single patient using the drop down list
+                    </p><br/>
+                    <h5 id="summary_tab" class="anchor">THE SINGLE SUBJECT SUMMARY TAB</h5>
+                    <p>This tab has tabular summary details about the subject for instance demography information,
+                        specific information about the subject relating to the study and a list of medical history.
+                    <h5 id="single_subject" class="anchor">THE SINGLE SUBJECT TIMELINE VIEW</h5>
+                    <p>This view is the same as the timeline chart discussed in the
+                        <a routerLink="/manual" fragment="the_timeline" (click)="onAnchorClick()">
+                        section above</a> but for a single patient. Unless any filters have already been applied all tracks will
+                        be shown for this subject by default. The timeline view here has the same interactivity
+                        discussed previously i.e. it can be filtered, tracks turned on/off and has drill down capability.<br/>
+                        <img src="/assets/images/task.png"> Within the Single subject views look at the
+                        information and plots provided in the different tabs.</p><br/>
+                    <h4 id="linking" class="anchor">LINKING BETWEEN VIEWS (INTERACTIVITY)</h4>
+                    <p>A key piece of functionality in ACUITY is the available to link between views.
+                        This enables us to select points of interest on one view and look at only those subjects on other views, including
+                        the Timeline View.<br/><img src="/assets/images/task.png"> To have a look at this
+                        we will go back to the laboratory measurement view and remove all filters from the two panels at
+                        the top (by clicking the icon next to all filters).<br/><img src="/assets/images/task.png"> Here we would like to
+                        select some outliers. All the available lab measurements are shown over a number of pages. You
+                        may need to go through the different pages to find a plot with some outliers.
+                    <p>When you have selected some points on a chart (or double click a chart to select all data points)
+                        then you will be given 4 different options:</p>
+                    <ul>
+                        <li><b>Option 1</b> is to do nothing and click the black cross in the top right corner. This
+                            will close the dialog box and leave the bar(s) marked.
+                        </li>
+                        <li><b>Option 2</b> is to set as population. This will apply the filter to limit to only those
+                            subject ids that you have selected. The filter will appear in the population banner at the
+                            top of the screen. All views will then only show data for those selected subjects.
+                        </li>
+                        <li><b>Option 3</b> is to View on timeline. This will set the population and take you to the
+                            Timeline View to show you the relevant data track. So for instance if you select a bar in
+                            the Adverse Events view and select View on Timeline. The Timeline View will then show you
+                            the Adverse Event tracks (at the level of preferred term) for the selected subjects.
+                        </li>
+                        <li><b>Option 4</b> is Clear marking. As suggested this will clear the marking and close the
+                            dialog box.<br/>
+                    </ul>
+
+                    <p><img src="/assets/images/task.png"> Try selecting a bar in a plot then choose the
+                        different options to familiarise yourself with the functionality.<br/>When you have selected a
+                        set of subjects and go to a new view it may pop up with a dialog box. This is asking essentially
+                        whether you would like to continue with the subset of subjects you have selected, either by
+                        setting them as a population filter or viewing them in a different view (this second option
+                        still sets a population filter to those selected subject identifiers but in addition takes you
+                        to a new view where only data for those subjects will be shown. Alternatively cancel does
+                        nothing.</p><br/>
+                    <h5 id="context" class="anchor">CONTEXT-SPECIFIC JUMPING</h5>
+                    <p>Some views such as Cardiac and Liver have links in the bottom left hand corner which take the
+                        user to a different view with appropriate filters applied. For example from the Cardiac plots
+                        the user can click the link to take them to the Adverse Event bar chart with the System Organ
+                        Class filter for MedDRA already set to &lsquo;Cardiac disorders&rsquo;.</p><br/>
+                    <h4 id="details" class="anchor">DETAILS-ON-DEMAND (DETAILS TABLES)</h4>
+                    <p>The Details-on-Demand table provide more information about selected events and subjects. When
+                        some events or subjects are selected in a plot then a small popup will appear at the bottom of
+                        the screen highlighted by the red box below. <br/> <br/> <br/>The bar can now be dragged up from
+                        the bottom of the screen using the mouse.<br/><img src="/assets/images/task.png">
+                        Try selecting some data and looking at the Details-on-Demand table</p><br/>
+                    <h5>DETAILS-ON-DEMAND &ndash; EVENT AND SUBJECT INFORMATION</h5>
+                    <p>When the user looks at the Details-on-Demand after selecting some data on all but the summary
+                        plots there will be a chance to look at either event information or subject information. If the
+                        user were to select events in for example the Adverse Event bar chart then they would get the
+                        option in the Details-on-Demand between either Adverse Events of Subjects.</p><br/>
+
+                    <p>The Adverse Event table will show details for all of the events that were selected in the chart.
+                        The scroll bar at the bottom of the table enables the user to look at all of the information in
+                        the table.<br/>The Subject table provides demography information for the subjects selected.
+                        These are grouped and by clicking the small plus next to the title of the column more
+                        information can be shown.<br/><img src="/assets/images/task.png"> Look at the
+                        different columns available in the Details-on-Demand<br/>The Details-on-Demand table can be
+                        sorted<br/>By clicking the column header the rows in the Details-on-Demand table can be sorted
+                        (either numerically or alphabetically), click more than once to change the sort order.
+                        <br/><img src="/assets/images/task.png"> Try sorting by a column in the
+                        Details-on-Demand table<br/>The Details-on-Demand table can be exported<br/>The information
+                        shown in the Details-on-Demand table can be exported to Excel. Click the &lsquo;Export this
+                        Table&rsquo; link in the top right hand corner and the table will download. Please note if you
+                        would like to download both the events table and the subject table then you would need to
+                        download each separately.<br/> <br/><img src="/assets/images/task.png"> Try
+                        downloading the Details-on-Demand table</p><br/>
+                    <h3>SOME WORKED EXAMPLES</h3>
+                    <p>The next section provides some &lsquo;real&rsquo; examples that you may like to work through.
+                        These examples are based on the example dataset for the drug programme &lsquo;Demo Drug
+                        Programme&rsquo; &gt; &lsquo; Demo Study 1&rsquo; and the dataset &lsquo;Demo Unblinded Final
+                        Analysis 1&rsquo;</p><br/>
+                    <h5 id="question1" class="anchor">QUESTION 1 : HOW MANY SUBJECTS HAVE REPORTED A
+                        HEADACHE ON THE PLACEBO ARM AND HAVE TAKEN PARACETAMOL FOR THE HEADACHE?</h5>
+                    <p>1. To get to this answer we select ‘Demo’ on the study selection (Analytics) page
+                        and the dataset ‘example_study’.<br/>
+                        2. Next look at the view Adverse Events-&gt;AEs subject counts chart<br/>
+                        3. Using the Event filter we can set Preferred term to &lsquo;headache&rsquo;<br/>
+                        4. We can select the 16 subjects select to View on timeline option.<br/>
+                        5. The banners at the top should now show 16 subjects under population and the
+                        Timeline events filter set to Preferred Term: =Headache.<br/>
+                        6. Next add the conmeds track to the timeline chart<br/>
+                        7. Use the filters to add the conmed medication filter ‘paracetamol’ (and all variations thereof)<br/>
+                        8. If you hover over each paracetamol event it will tell
+                        you, where available, the indication the paracetamol was given for.<br/>
+                        9. For this study the indication is not provided but of the 16 subjects 5 received paracetamol
+                        during a headache event.</p><br/>
+                    <h5 id="question2" class="anchor">QUESTION 2: HOW MANY DOSES OF INVESTIGATIONAL PRODUCT HAD SUBJECT(S)
+                        EXPERIENCED PRIOR TO OBSERVING A GREATER THAN 800% CHANGE FROM BASELINE IN ASPARTATE AMINOTRANSFERASE (AST)?</h5>
+                    <p>1. To get to this answer we select ‘Demo ’ on the study selection (Analytics) page
+                        and the ‘example_study’ dataset.<br/>
+                        2. Next look at the view
+                        Labs-&gt;Box Plots chart<br/>
+                        3. Show only the measurement ‘Aspartate Aminotransferase’.<br/>
+                        4. Make sure the y-axis is set to Percentage change from
+                        baseline<br/>
+                        5. Select the 3 points that are above the 800% line, these are from 3 different subjects,
+                        and choose View in timeline<br/>
+                        6. The Labs->Aspartate Aminotransferase track will be shown, drill down a level to see a line chart
+                        of the measurements. In the commands to the right, under ‘Configuration’, change the labs y-axis
+                        to ‘% change from baseline’.<br/>
+                        7. Now add the dose track and drill down one level.<br/>
+                        8. If you count the number of doses before AST increases by over 800% from baseline there are
+                        2 for the first subject 0 for the second and 1 dose for the third.</p><br/>
+                    <h5 id="question3" class="anchor">QUESTION 3: WHAT IS THE MOST COMMON ADVERSE EVENT IN SUBJECTS UNDER
+                        55 AND HOW DOES THIS COMPARE TO SUBJECTS OVER 55?
+                    </h5>
+                    <p>1. To get to this answer we select ‘Demo’ on the study selection (Analytics) page
+                        and the dataset ‘example_study’.<br/>
+                        2. Next look at the view
+                        Adverse Events-&gt;AEs subject counts chart<br/>
+                        3. There are 2 ways to get this result the first
+                        uses the population filters and the second the Population summary plot.<br/>
+                        4. To use the population filters move the upper Age zoom to 55 and the plot will reload. Diarrhoea
+                        is the most common AE. The same can be done for the age range greater than 55 and here Alopecia
+                        is the most common adverse event.<br/>
+                        5. An alternative is to use the Population Summary view. Make sure all filters are
+                        clear (click the small cross next to any filters in the banners at the top of the page). <br/>
+                        6. In Population summary set the x-axis to age, set the colour to actual study arm.<br/>
+                        7. With the mouse select all the bars in the age categories for 55 and below and select Set as
+                        Population.<br/>
+                        8. If you go to the Adverse event view you can see for these subjects that the most frequently
+                        reported preferred term is diarrohea.<br/>
+                        9. If you clear the subjects filter and return to the Population summary plot you can select all
+                        subjects greater than 55 and repeat to find Alopecia is the most commonly reported adverse event. </p><br/>
+                    <h5>NOT FOUND WHAT YOU ARE LOOKING FOR?</h5>
+                    <p>We continuously update this help documentation. Any questions submitted by the Ask box at the
+                    top of the page are monitored and used to help shape the content of the FAQ so please ask any
+                        questions.</p>
+
+                </div>
+
+            </div>
+
+            <!-- end div  id="page-inner" -->
+        </div>
+
+        <!-- end div  id="page-wrapper" -->
+    </div>
+
+    <!-- end div  id="wrapper" -->
+</div>

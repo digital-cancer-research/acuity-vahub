@@ -1,0 +1,186 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#sharing {
+    padding-left: 40px;
+}
+
+#sharingTitle {
+    margin-bottom: 20px;
+}
+
+#availableCohorts {
+    margin-bottom: 15px;
+}
+
+#cohortEditorButtons {
+    position: fixed;
+    bottom: 24px;
+    margin-left: 18px;
+}
+
+#noCohortSelectedMessage {
+    padding-top: 10px;
+    padding-left: 25px;
+    font-size: 16px;
+}
+
+#noCohortSelectedMessage span {
+    margin-right: 7px;
+}
+
+#userList {
+    width: 93% !important;
+}
+
+#filtersInCohort span {
+    margin-left: 10px;
+}
+
+.selectable-list li {
+    border-bottom: 1px solid #ebebeb;
+    padding: 0 15px;
+    cursor: default;
+}
+
+.selectable-list ul li a {
+    padding: 6px 0 6px 20px;
+    display: block;
+    color: #3F4444;
+    position: relative;
+    font-size: 16px;
+    font-size: 1.4rem;
+}
+
+.selectable-list li.selected a:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #3F4444;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    margin-top: -5px;
+    border-radius: 50%;
+}
+
+h3, h4 {
+    margin-left: 16px;
+}
+
+h4 {
+    padding-top: 5px;
+}
+
+.select-list {
+    height: 166px;
+    overflow: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    list-style: none;
+    position: relative;
+}
+
+#sharing .select-list {
+    width: 100% !important;
+    right: 22px !important;
+    top: 10px !important;
+}
+
+.available-cohort-button {
+    margin-top: 20px;
+    width: 107px;
+}
+
+.button {
+    background: #3F4444;
+    border: 1px solid #ebebeb;
+    color: white !important;
+    display: inline-block !important;
+}
+
+.item {
+    -webkit-user-select: none;
+}
+
+.disabled {
+    color: lightgray;
+}
+
+.and {
+    color: magenta;
+}
+
+.select-button {
+    margin-left: 31px;
+}
+
+.disabled-list li a {
+    color: lightgray !important;
+    pointer-events: none;
+}
+
+.disabled-list li a:before {
+    background: lightgray !important;
+}
+
+/**
+    filter.css overrides
+ **/
+
+.filter-container {
+    height: 80%;
+}
+
+.cohort-editor-filters {
+    width: 600px !important;
+    position: static !important;
+    box-shadow: none !important;
+}
+
+:host /deep/ .filter-list {
+    background-color: #ebebeb !important;
+    height: calc(100% - 42px) !important;
+}
+
+:host /deep/ .filter-list__title {
+    display: flex !important;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 10px 15px !important;
+}
+
+:host /deep/ .filter-list__title:hover {
+    text-decoration: none !important;
+}
+
+:host /deep/ .filter-list__title .triangle-icon {
+    margin-top: 0 !important;
+}
+
+:host /deep/ .filter-list__title .display-name {
+
+}
+
+:host /deep/ .filter__buttons {
+    left: auto !important;
+    /*top: 78% !important;*/
+    width: 600px !important;
+    bottom: -48px !important;
+    height: 48px !important;
+    /*height: 6% !important;*/
+}

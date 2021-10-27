@@ -1,0 +1,104 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* tab stage */
+.well {
+    padding:0;
+    background-color: white;
+    border: 1px solid white;
+}
+/* tabs */
+.nav-tabs {
+  background-color: transparent;
+  padding-left: 15px;
+  padding-right: 75px;
+  border-bottom: 1px solid #ccc;
+}
+.nav-tabs a {
+  color: black;
+  margin-top: 5px;
+
+}
+.nav-tabs a:hover {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.75);
+  
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  border: 1px solid #ccc;
+  border-bottom-color: transparent;
+}
+
+.nav>li>a {
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    cursor: default;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.nav-tabs-wrapper {
+    padding-right: 15px;
+}
+
+.nav-tabs__main {
+    /*overflow: hidden;*/
+    flex-grow: 1;
+    height: 42px;
+}
+
+.nav-tabs__dropdown {
+    min-width: 83px;
+}
+
+.overflowed-tab {
+    display: none!important;
+}
+
+.beta-tooltip {
+  width: 255px;
+
+  display: none;
+  padding: 5px;
+  position: absolute;
+  left: 0;
+  background-color: #333;
+  color: white;
+
+  font-size: 12px;
+
+  transition: opacity ease-in-out .3s;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.beta-tooltip.beta-tooltip--visible {
+  display: block;
+}
+
+.beta-tooltip--top {
+  bottom: 100%;
+}
+
+.beta-tooltip--bottom {
+  top: 100%;
+}
+
+

@@ -1,0 +1,95 @@
+{
+  "initialOpeningState": {
+    "tracks": [
+      {
+        "name": "status",
+        "selected": true,
+        "expansionLevel": 1,
+        "order": 1
+      },
+      {
+        "name": "Aes",
+        "selected": true,
+        "expansionLevel": 1,
+        "order": 2
+      }
+    ]
+  },
+  "timelines": {
+    "timelineA": {
+      "id": "timelineA",
+      "isLoading": false,
+      "initialised": false,
+      "tracks": [
+        {
+          "name": "status",
+          "selected": false,
+          "order": 1
+        },
+        {
+          "name": "Aes",
+          "selected": true,
+          "order": 2
+        }
+      ],
+      "subjects": {
+        "subjectA": {
+          "subjectId": "subjectA",
+          "tracks": [
+            {
+              "name": "Aes",
+              "expansionLevel": "1",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "displayedSubjects": [
+        "subjectA",
+        "subjectB"
+      ],
+      "page": {
+        "limit": 100,
+        "offset": 10
+      },
+      "zoom": {
+        "absoluteMin": 0,
+        "absoluteMax": 200,
+        "min": 10,
+        "max": 100
+      },
+      "dayZero": "firstDose",
+      "labsYAxisValue": "raw values",
+      "spirometryYAxisValue": "raw values",
+      "ecgYAxisValue": "raw values",
+      "ecgWarnings": {
+        "qtcfMale": {
+          "label": "QTcF male",
+          "selected": true
+        },
+        "qtcfFemale": {
+          "label": "QTcF female",
+          "selected": true
+        },
+        "qtcfChange": {
+          "label": "QTcF change from baseline",
+          "selected": true
+        },
+        "abnormal": {
+          "label": "Abnormal",
+          "selected": true
+        },
+        "significant": {
+          "label": "Significant",
+          "selected": true
+        }
+      },
+      "subjectSort": [
+        {
+          "sortBy": "time-on-study",
+          "direction": "DESC"
+        }
+      ]
+    }
+  }
+}

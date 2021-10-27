@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<ul class="nav nav-tabs">
+    <li *ngIf="datasetViews.hasTumourResponseData()">
+        <a routerLink="/plugins/tumour-response/waterfall" routerLinkActive="active" beta-tooltip
+           [ngClass]="{'router-link-active': isActive('/plugins/tumour-response/waterfall')}">{{tabName.TUMOUR_RESPONSE_WATERFALL}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasTumourLesionData()">
+        <a routerLink="/plugins/tumour-lesion/target-lesion-diameters" routerLinkActive="active" beta-tooltip
+           [ngClass]="{'router-link-active': isActive('/plugins/tumour-lesion/target-lesion-diameters')}">{{tabName.TUMOUR_RESPONSE_TL_DIAMETERS}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasTumourTherapyData()">
+        <a routerLink="/plugins/tumour-therapy/prior-therapy" routerLinkActive="active" beta-tooltip
+           [ngClass]="{'router-link-active': isActive('/plugins/tumour-response/prior-therapy')}">{{tabName.TUMOUR_RESPONSE_PRIOR_THERAPY}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasOncologySpotfireModules()" >
+        <a routerLink="/plugins/tumour-response/spotfire" routerLinkActive="active"
+        [ngClass]="{'router-link-active': isActive('/plugins/tumour-response/spotfire')}">{{tabName.ONCOLOGY_SPORTFIRE}}</a>
+    </li>
+</ul>
+<br/>
+<router-outlet></router-outlet>

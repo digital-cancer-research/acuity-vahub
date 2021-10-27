@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>vahub-parent</artifactId>
+        <groupId>com.acuity.visualisations</groupId>
+        <version>9.0-beryllium-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>vahub-model</artifactId>
+    <packaging>jar</packaging>
+    <name>VA-Hub model</name>
+    <description>VA-Hub model implementation</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.cqengine</groupId>
+            <artifactId>cqengine</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.acuity.visualisations</groupId>
+            <artifactId>vahub-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.springtestdbunit</groupId>
+            <artifactId>spring-test-dbunit</artifactId>
+            <version>1.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.javacrumbs.json-unit</groupId>
+            <artifactId>json-unit-fluent</artifactId>
+            <version>1.22.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+
+        <!-- Documents creation -->
+        <dependency>
+            <groupId>org.docx4j</groupId>
+            <artifactId>docx4j</artifactId>
+            <version>3.3.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Config -->
+        <dependency>
+            <groupId>com.acuity.visualisations</groupId>
+            <artifactId>vahub-config</artifactId>
+            <version>${project.version}</version>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acuity.visualisations</groupId>
+            <artifactId>vahub-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acuity.visualisations</groupId>
+            <artifactId>vahub-common</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Natural order comparator-->
+        <dependency>
+            <groupId>se.sawano.java</groupId>
+            <artifactId>alphanumeric-comparator</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+
+        <!--statistics-->
+        <dependency>
+            <groupId>com.axibase</groupId>
+            <artifactId>math</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        <plugins>
+            <!-- this creates the typescript definition file required to define types from rest api -->
+            <plugin>
+                <!-- TODO remove it. Ideally, only the vahub module pom.xml should contain Typescript class generation -->
+                <groupId>cz.habarta.typescript-generator</groupId>
+                <artifactId>typescript-generator-maven-plugin</artifactId>
+                <version>${typescript-generator.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jsonLibrary>jackson2</jsonLibrary>
+                    <outputKind>global</outputKind>
+                    <classes>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBarChart</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.linechart.TrellisedLineFloatChart</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedColumnRangeChart</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedHeatMap</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedOvertime</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedRangePlot</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedWaterfallChart</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBoxPlot</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedShiftPlot</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedScatterPlot</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.linechart.OutputLineChartData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.linechart.OutputLineChartEntry</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputBarChartData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.ColoredOutputBarChartData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputBarChartEntry</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputOvertimeData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputOvertimeLineChartData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputColumnRangeChartData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputColumnRangeChartEntry</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputHeatMapData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputHeatMapEntry</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputWaterfallEntry</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputWaterfallData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.wrappers.CvotEndpoint</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.wrappers.CIEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.trellis.TrellisOption</class>
+                        <class>com.acuity.visualisations.rawdatamodel.trellis.TrellisCategories</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.wrappers.Exposure</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.Subject</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.DrugDosed</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.wrappers.Biomarker</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.PopulationFilters</class>
+                        <class>com.acuity.visualisations.rawdatamodel.axes.AxisOption</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.Filters</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.SetFilter</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.RangeFilter</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.DateRangeFilter</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.MapFilter</class>
+                        <class>com.acuity.visualisations.rawdatamodel.filters.Filter</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.AeSummariesTable</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.ssv.SingleSubjectViewSummaryService$SsvTableMetadata</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputSSVSummaryData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.CBioData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.aes.SubjectAesSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.aes.SubjectAesDetail</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.aes.AeDetailEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.aes.AeDetail</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.aes.AeMaxCtcEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.dose.SubjectDosingSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.dose.SubjectDrugDosingSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.conmeds.SubjectConmedByClass</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.conmeds.SubjectConmedByDrug</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.conmeds.SubjectConmedSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.exacerbations.ExacerbationSummaryEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.exacerbations.SubjectExacerbationSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.vitals.SubjectVitalsSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.vitals.SubjectVitalsDetail</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.vitals.VitalsDetailEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.vitals.VitalsTests</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.vitals.VitalsSummaryEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.lungfunction.SubjectLungFunctionDetail</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.lungfunction.LungFunctionSummaryEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.lungfunction.SubjectLungFunctionSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.lungfunction.LungFunctionCodes</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.statussummary.StudyPhase</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.statussummary.SubjectStatusSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.SubjectEcgDetail</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.EcgDetailEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.SubjectEcgSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.SubjectEcg</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.EcgTest</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.timeline.data.patient.SubjectPatientDataSummary</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.timeline.data.patient.PatientDataEvent</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.timeline.data.patient.PatientDataEventDetails</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.timeline.data.patient.SubjectPatientDataDetail</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.timeline.data.patient.PatientDataTests</class>
+                        <class>com.acuity.visualisations.rawdatamodel.service.timeline.data.patient.PatientDataTestsDetails</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.AesTable</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputChordDiagramData</class>
+                        <class>com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae$TermLevel</class>
+                        <!-- Va Security -->
+                        <class>com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission</class>
+                    </classes>
+                    <classPatterns>
+                        <classPattern>com.acuity.visualisations.rawdatamodel.trellis.grouping.*GroupByOptions</classPattern>
+                    </classPatterns>
+                    <namespace>InMemory</namespace>
+                    <sortDeclarations>true</sortDeclarations>
+                    <noFileComment>true</noFileComment>
+                    <mapEnum>asInlineUnion</mapEnum>
+                    <outputFile>target/vahub-model.d.ts</outputFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration combine.self="override">
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

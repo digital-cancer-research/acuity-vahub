@@ -1,0 +1,142 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.company-logo {
+    margin-left: 5px;
+    position: absolute;
+    bottom: 25px;
+    width: 225px;
+    height: 91px;
+}
+
+.app-logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 350px;
+    width: 845px;
+}
+
+.flex-container {
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    align-items: stretch;
+}
+
+.aligned {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.thumbnail-img {
+    margin-top: 15px;
+    height: 120px;
+}
+
+.color-black {
+    color: black;
+}
+
+.benefit-points {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.benefit-points span {
+    color: var(--bright-branding-color);
+    margin-right: 6px;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.getting-started-row {
+    margin: auto;
+    width: 70%;
+}
+
+.home-thumbnail {
+    margin: 20px;
+    height: 230px;
+    width: 250px;
+}
+
+.thumbnail p {
+    font-size: 25px;
+}
+
+.home-container {
+    height: 90vh;
+    min-height: 715px;
+    position: relative;
+}
+
+.no-cursor {
+    cursor: not-allowed;
+}
+
+a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/*.home-thumbnail {*/
+    /*background-color: rgb(238, 238, 238);*/
+    /*color: black;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.home-thumbnail:hover {*/
+    /*color: gray;*/
+    /*text-decoration: none;*/
+/*}*/
+
+/*.home-thumbnail span {*/
+    /*margin-top: 25px;*/
+    /*text-align: center;*/
+    /*display: block;*/
+    /*font-size: 75px;*/
+/*}*/
+
+/*.home-thumbnail p {*/
+    /*text-align: center;*/
+    /*font-size: 28px;*/
+    /*margin-top: 15px;*/
+/*}*/
+
+/*!* Small devices (tablets, 768px and up) *!*/
+/*@media (min-width: 768px) {*/
+    /*.forced-height {*/
+        /*height: 185px;*/
+    /*}*/
+/*}*/
+
+/*!* Medium devices (desktops, 992px and up) *!*/
+/*@media (min-width: 992px) {*/
+    /*.forced-height {*/
+        /*height: 200px;*/
+    /*}*/
+/*}*/
+
+/*!* Large devices (large desktops, 1200px and up) *!*/
+/*@media (min-width: 1200px) {*/
+    /*.forced-height {*/
+        /*height: 185px;*/
+    /*}*/
+/*}*/

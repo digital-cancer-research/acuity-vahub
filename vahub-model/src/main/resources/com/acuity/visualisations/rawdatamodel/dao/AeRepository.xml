@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acuity.visualisations.rawdatamodel.dao.AeRepository">
+
+    <resultMap id="aeRaw" type="com.acuity.visualisations.rawdatamodel.vo.AeRaw">
+        <id property="id" column="id"/>
+        <result property="subjectId" column="subject_id"/>
+        <result property="aeNumber" column="ae_number"/>
+        <result property="pt" column="evt_pt"/>
+        <result property="hlt" column="evt_hlt"/>
+        <result property="soc" column="evt_soc"/>
+        <result property="eventId" column="evt_id"/>
+        <result property="serious" column="serious"/>
+        <result property="text" column="text"/>
+        <result property="comment" column="ae_comment"/>
+        <result property="outcome" column="outcome"/>
+        <result property="calcDurationIfNull" column="calc_duration_if_null"/>
+        <result property="doseLimitingToxicity" column="dose_limiting_toxicity"/>
+        <result property="timepoint" column="time_point"/>
+        <result property="immuneMediated" column="immune_mediated"/>
+        <result property="infusionReaction" column="infusion_reaction"/>
+        <result property="requiredTreatment" column="required_treatment"/>
+        <result property="causedSubjectWithdrawal" column="caused_subject_withdrawal"/>
+        <result property="suspectedEndpoint" column="suspected_endpoint"/>
+        <result property="suspectedEndpointCategory" column="suspected_endpoint_cat"/>
+        <result property="aeOfSpecialInterest" column="ae_of_special_interest"/>
+        <collection property="specialInterestGroups" ofType="java.lang.String" javaType="list">
+            <result column="custom"/>
+        </collection>
+        <collection property="aeSeverities" resultMap="aeSeverityRaw" />
+    </resultMap>
+
+    <resultMap id="aeSeverityRaw" type="com.acuity.visualisations.rawdatamodel.vo.AeSeverityRaw">
+        <id property="id" column="severity_id"/>
+        <result property="aeId" column="id"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="endDateRaw" column="end_date_raw"/>
+        <result property="ongoing" column="ongoing"/>
+        <result property="endType" column="end_type"/>
+        <association property="severity" resultMap="aeSeverity"/>
+    </resultMap>
+
+    <resultMap id="aeSeverity" type="com.acuity.visualisations.rawdatamodel.vo.AeSeverity">
+        <result property="severityNum" column="num_max_ctc"/>
+        <result property="severity" column="max_ctc"/>
+        <result property="webappSeverity" column="webapp_max_ctc"/>
+    </resultMap>
+
+</mapper>

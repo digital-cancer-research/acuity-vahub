@@ -1,0 +1,221 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+.hub-header {
+    background: var(--branding-color);
+    height: 51px;
+    position: sticky;
+    overflow: visible;
+    width: 100%;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+}
+
+.container-fluid {
+    position: absolute;
+    width: 100%;
+
+}
+
+.hub-header h1 {
+    float: left;
+    color: var(--header-text-color);
+    font-size: 1.6rem;
+    margin: 0;
+    width: calc(100% - 560px);
+    padding: 18px 0 18px 20px;
+}
+
+.hub-header.hub-header--expanded {
+    max-height: 300px;
+}
+
+.hub-header__show-more {
+    color: white;
+    position: relative;
+    cursor: default;
+    top: 16px;
+}
+
+.hub-header__show-more:hover, .hub-header__show-more:active, .hub-header__show-more:focus {
+    color: lightgrey;
+}
+
+.disabled {
+    display: none !important;
+}
+
+.arrow-link {
+    position: absolute;
+}
+
+.title {
+    float: left;
+    cursor: default;
+    color: var(--header-text-color);
+    position: static;
+    font-size: 23px !important;
+    margin: 9px 0 0 40px;
+}
+
+.back-btn {
+    width: 30px;
+    margin-top: 15px;
+    float: left;
+    cursor: default;
+}
+
+.logo {
+    width: 110px;
+    margin: 14px 0 0 15px;
+    float: left;
+    cursor: pointer;
+}
+
+.hub-header__nav {
+    padding: 6px 10px 0 0;
+    margin: 0;
+    list-style: none;
+    float: right;
+    position: relative;
+    right: 10px;
+    cursor: default;
+}
+
+.hub-header__nav a {
+    color: var(--header-text-color);
+    cursor: default;
+}
+
+.hub-header__nav li {
+    float: left;
+    text-align: center;
+    padding-left: 15px;
+}
+
+.hub-header-text-nav {
+    list-style: none;
+    position: static;
+    margin-left: 100px;
+    margin-bottom: 0;
+}
+
+.hub-header-text-nav li {
+    float: left;
+    text-align: center;
+    padding: 0 10px;
+    height: 51px;
+    cursor: default;
+}
+
+.hub-header-text-nav li.active {
+    background-color: var(--branding-color);
+}
+
+.hub-header-text-nav a {
+    color: var(--header-text-color);
+    cursor: pointer;
+    font-size: 16px !important;
+}
+
+.hub-header-text-nav a:hover {
+    text-decoration: none;
+}
+
+.hub-header-text-nav span {
+    display: block;
+    margin-top: 16px;
+    cursor: default;
+}
+
+.nav-item {
+    color: var(--header-text-color);
+    font-size: 1.1rem;
+    margin: 0 1px;
+    display: block;
+    position: relative;
+    cursor: default;
+}
+
+.nav-item::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    margin-left: -16px;
+    background-size: auto 24px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.nav-img {
+    width: 25px;
+    font-size: 20px;
+    cursor: default;
+}
+
+.home-icon {
+    color: var(--header-text-color);
+    cursor: pointer;
+    font-size: 23px;
+    margin-top: 9px;
+}
+
+.help-dropdown-menu {
+    position: fixed;
+    border: 1px #ebebeb solid;
+    top: 51px;
+    z-index: 1050;
+    right: 275px;
+    background-color: white;
+}
+
+.help-dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.help-dropdown-menu li {
+    padding: 0 20px;
+}
+
+.help-dropdown-menu li:hover {
+    background-color: #ebebeb;
+}
+
+.help-dropdown-menu a {
+    color: #3f4444;
+    text-decoration: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.nav-simple-text {
+    color: var(--header-text-color);
+    padding-top: 5px;
+    width: 225px;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.driver-fix-stacking {
+    position: relative !important;
+}

@@ -1,0 +1,144 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="widget-area">
+    <div id="intro3" *ngIf="!isSpotfire()" class="widget-box widget-box--population"
+         [ngStyle]="{'height': populationWidgetHeight + 'px'}">
+        <div id="numberOfSubjects" class="widget-box__info">
+            <h2>Population</h2>
+            <p>
+                <strong>{{selectedFiltersModel.numberOfSubjects}}</strong> Subjects
+            </p>
+        </div>
+        <div [ngClass]="{'widgets-population-active' : currentSidePanelTab=='population'}"></div>
+        <div #populationWidgetsContainer class="widgets">
+            <div *ngFor="let filter of selectedFiltersModel.selectedPopulationFilters" class="widget widget-population">
+                <div class="widget-overview" (click)="toggleFilterDetails(filter, $event, false)">
+                    <span>{{filter.displayName}}: 
+                        <span *ngIf="isListFilter(filter.type) || isStudySpecificFilter(filter.type) || isCohortFilter(filter.type)">
+                            <span *ngIf="filter.joinedFilterValues"> {{filter.joinedFilterValues}}</span>
+                            <span *ngIf="!filter.joinedFilterValues">({{filter.displayValues.length}})</span>
+                        </span>
+                        <span *ngIf="isRangeFilter(filter.type)">
+                            <span *ngIf="!displayValuesEqual(filter.displayValues)">
+                                <span *ngIf="filter.displayValues.from">&ge; {{filter.displayValues.from}}</span>
+                                <span *ngIf="filter.displayValues.to">&le; {{filter.displayValues.to}},</span>
+                            </span>
+                            <span *ngIf="displayValuesEqual(filter.displayValues)">
+                                <span *ngIf="filter.displayValues.from"> {{filter.displayValues.from}},</span>
+                            </span>
+                            <span *ngIf="filter.displayValues.includeEmptyValues"> Includes empty values</span>
+                            <span *ngIf="!filter.displayValues.includeEmptyValues"> Excludes empty values</span>
+                        </span>
+                    </span>
+                </div>
+                <div class="widget-remove" (click)="removeFilterItem(filter, true)">
+                    <span data-toggle="tooltip" data-placement="right" [title]="'Remove filter'">Remove</span>
+                </div>
+            </div>
+        </div>
+        <ul class="widget-box__controls">
+            <li>
+                <a href="javascript:void(0)" class="show-filters"
+                   [ngClass]="{'inactive' : !populationExpandCollapseEnabled}">
+                    <span (click)="togglePopulationFilters($event,this)"
+                          *ngIf="populationFiltersCollapsed">Show all filters</span>
+                    <span (click)="togglePopulationFilters($event,this)"
+                          *ngIf="!populationFiltersCollapsed">Collapse filters</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="intro4" *ngIf="showEventFilterWidget" class="widget-box widget-box--events"
+         [ngStyle]="{'height': eventWidgetHeight + 'px'}">
+        <div class="widget-box__info">
+            <h2>{{selectedFiltersModel.eventWidgetName}}</h2>
+            <p *ngIf="showNumberOfEvents">
+                <strong>{{selectedFiltersModel.numberOfEvents}}</strong> Events
+            </p>
+        </div>
+        <div [ngClass]="{'widgets-events-active' : currentSidePanelTab=='events'}"></div>
+        <div #eventWidgetsContainer class="widgets">
+            <div *ngFor="let filter of selectedFiltersModel.selectedEventFilters" class="widget widget-events">
+                <div class="widget-overview" (click)="toggleFilterDetails(filter, $event, true)">
+                    <span>{{filter.displayName}}:
+                        <span *ngIf="isRangeFilter(filter.type)">
+                            <span *ngIf="!displayValuesEqual(filter.displayValues)">
+                                <span *ngIf="filter.displayValues.from">&ge; {{filter.displayValues.from}}</span>
+                                <span *ngIf="filter.displayValues.to">&le; {{filter.displayValues.to}},</span>
+                            </span>
+                            <span *ngIf="displayValuesEqual(filter.displayValues)">
+                                <span *ngIf="filter.displayValues.from"> {{filter.displayValues.from}},</span>
+                            </span>
+                            <span *ngIf="filter.displayValues.includeEmptyValues"> Includes empty values</span>
+                            <span *ngIf="!filter.displayValues.includeEmptyValues"> Excludes empty values</span>
+                        </span>
+                        <span *ngIf="isListFilter(filter.type) || isStudySpecificFilter(filter.type)">
+                            <span *ngIf="filter.joinedFilterValues"> {{filter.joinedFilterValues}}</span>
+                            <span *ngIf="!filter.joinedFilterValues">({{filter.displayValues.length}})</span>
+                        </span>
+                    </span>
+                </div>
+                <div class="widget-remove" (click)="removeFilterItem(filter, false)">
+                    <span data-toggle="tooltip" data-placement="right" [title]="'Remove filter'">Remove</span>
+                </div>
+            </div>
+        </div>
+        <ul class="widget-box__controls">
+            <li>
+                <a href="javascript:void(0)" class="show-filters"
+                   [ngClass]="{'inactive' : !eventExpandCollapseEnabled}">
+                    <span (click)="toggleEventFilters($event,this)"
+                          *ngIf="eventFiltersCollapsed">Show all filters</span>
+                    <span (click)="toggleEventFilters($event,this)"
+                          *ngIf="!eventFiltersCollapsed">Collapse filters</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="widget-detail widget-detail-modal" [ngStyle]="{'top': detailsOffset.top+'px', 'left': detailsOffset.left+'px'}" *ngIf="filterDetailsVisible">
+    <span class="modal__close" (click)="closeDetails()">
+        <span>Close Details</span>
+    </span>
+
+    <div *ngIf="!selectedFiltersModel.consideredFilter.isEventFilter">Subjects with
+        {{selectedFiltersModel.consideredFilter.displayName}}:<br/></div>
+
+    <div *ngIf="selectedFiltersModel.consideredFilter.isEventFilter">
+        <span>{{selectedFiltersModel.eventWidgetName}} with {{selectedFiltersModel.consideredFilter.displayName}}: </span>
+    </div>
+
+    <div *ngIf="isRangeFilter(selectedFiltersModel.consideredFilter.type)">
+        <span *ngIf="!displayValuesEqual(selectedFiltersModel.consideredFilter.displayValues)">
+            <span *ngIf="selectedFiltersModel.consideredFilter.displayValues.from">From  {{selectedFiltersModel.consideredFilter.displayValues.from}}</span>
+            <span *ngIf="selectedFiltersModel.consideredFilter.displayValues.to">To {{selectedFiltersModel.consideredFilter.displayValues.to}},</span>
+        </span>
+        <span *ngIf="displayValuesEqual(selectedFiltersModel.consideredFilter.displayValues)">
+            <span *ngIf="selectedFiltersModel.consideredFilter.displayValues.from"> {{selectedFiltersModel.consideredFilter.displayValues.from}},</span>
+        </span>
+        <div [ngSwitch]="selectedFiltersModel.consideredFilter.displayValues.includeEmptyValues">
+            <ng-template [ngSwitchCase]="true">Includes empty values</ng-template>
+            <ng-template ngSwitchDefault> Excludes empty values</ng-template>
+        </div>
+    </div>
+    <div *ngIf="isListFilter(selectedFiltersModel.consideredFilter.type) || isStudySpecificFilter(selectedFiltersModel.consideredFilter.type) || isCohortFilter(selectedFiltersModel.consideredFilter.type)"
+         style="padding-right:25px;max-height: 100px;overflow: auto;">
+        <div *ngFor="let item of selectedFiltersModel.consideredFilter.displayValues | sort">
+            <span>{{item}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="search-container">
+    <div class="ssv-logo">
+        <img src="/assets/images/single-subject-black.png" class="single-subject-image"/>
+        <span class="single-subject-text"> Single Subject View </span>
+    </div>
+    <div class="subject-search-container">
+        <ssv-subject-search></ssv-subject-search>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="container" collapseTabs (window:resize)="onResize()">
+    <ul class="nav nav-tabs nav-tabs-wrapper">
+        <li class="nav-tabs__main">
+            <ssv-tabs></ssv-tabs>
+        </li>
+
+        <li class="dropdown nav-tabs__dropdown" [class.open]="dropdownOpen">
+            <a class="dropdown-toggle" role="button" data-toggle="dropdown" (click)="toggleDropdown()">
+                More<span *ngIf="(pluginsService.selectedTab | async)">: {{pluginsService.selectedTab | async}}</span>
+                <span class="caret"></span>
+            </a>
+            <ssv-tabs [isDropdown]="true" [class.open]="dropdownOpen"></ssv-tabs>
+
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>

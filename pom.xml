@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.acuity.visualisations</groupId>
+    <artifactId>vahub-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>VA-Hub POM</name>
+    <version>9.0-beryllium-SNAPSHOT</version>
+
+    <properties>
+        <java-version>1.8</java-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Spring versions -->
+        <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
+        <spring.messaging.version>4.3.8.RELEASE</spring.messaging.version>
+                
+        <acuity-flyway.version>LATEST</acuity-flyway.version>
+        <va-security.version>${project.version}</va-security.version>
+
+        <mybatis.version>3.3.0</mybatis.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <jtds.version>1.2.6</jtds.version>
+        <logback.version>1.2.1</logback.version>
+        <typescript-generator.version>2.24.612</typescript-generator.version>
+
+        <jersey.version>2.25.1</jersey.version>
+        <surefire.version>2.19.1</surefire.version>
+
+        <project.scm.id>az-git</project.scm.id>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+
+        <!-- Testing -->
+        <assertj.version>3.6.2</assertj.version>
+        <dbunit.version>2.5.1</dbunit.version>
+        <junit.version>4.12</junit.version>
+        <h2.version>1.4.190</h2.version>
+        <swagger.version>2.5.0</swagger.version>
+
+        <spring.profile>default,NoScheduledJobs</spring.profile>
+        <surefireArgLine></surefireArgLine>
+        <failsafeArgLine></failsafeArgLine>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github-packages</id>
+            <name>digitalECMT.releases</name>
+            <url>https://maven.pkg.github.com/digital-ECMT/acuity-vahub</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+        <module>vahub-config</module>
+        <module>vahub-common</module>
+        <module>vahub-model</module>
+        <module>vahub-cohorteditor-model</module>
+        <module>vahub</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>github</id>
+            <repositories>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/digital-ECMT/va-security</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <surefireArgLine />
+                <failsafeArgLine />
+                <tests.excludedGroups>com.acuity.visualisations.common.testcategories.ISlowTests</tests.excludedGroups>
+            </properties>
+        </profile>
+        <profile>
+            <id>integrationtests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>environment</name>
+                    <value>test</value>
+                </property>
+            </activation>
+            <properties>
+                <surefireArgLine />
+                <failsafeArgLine />
+                <tests.excludedGroups>com.acuity.visualisations.common.testcategories.IFastTests</tests.excludedGroups>
+            </properties>
+        </profile>
+        <profile>
+            <id>checks</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <configLocation>vahub-config/src/main/resources/checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <linkXRef>false</linkXRef>
+                            <failsOnError>true</failsOnError>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>validate</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>checkstyle</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <type>pom</type>
+                <version>${spring.boot.version}</version>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.acuity.visualisations.va-security</groupId>
+                <artifactId>va-security-domain</artifactId>
+                <version>${va-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acuity.visualisations.va-security</groupId>
+                <artifactId>va-security-auth</artifactId>
+                <version>${va-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acuity.visualisations.va-security</groupId>
+                <artifactId>va-security-common</artifactId>
+                <version>${va-security.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Common -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+<!--        Found in SubjectStatusSummary.java: "We tried to use lombok 1.18.4 version which allows use-->
+<!--        @SuperBuilder to works with fields from superclasses. But in this case typescript-generator-maven-plugin -->
+<!--        fails with NPE during the project build".-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>${spring.messaging.version}</version>
+        </dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>3.0.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212.jre7</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>one.util</groupId>
+            <artifactId>streamex</artifactId>
+            <version>0.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>1.6.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.6.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <version>1.6.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>2.18.1</version>
+                <configuration>
+                    <!-- Sets the VM argument line used when unit tests are run. -->
+                    <!--                    <parallel>classes</parallel>
+                    <threadCount>5</threadCount>-->
+                    <includes>
+                        <include>**/When*.java</include>
+                        <!--BDD Tests only -->
+                        <include>**/*Test.java</include>
+                        <!--Common unit Tests only -->
+                    </includes>
+                    <excludes>
+                        <exclude>**/*ITCase*.java</exclude>
+                        <exclude>**/*IT*.java</exclude>
+                        <exclude>**/CleanFilterTables.java</exclude>
+                    </excludes>
+                    <argLine>${surefireArgLine} -Dspring.profiles.active=${spring.profile} -Dnet.sf.ehcache.disabled=true</argLine>
+                    <reportFormat>plain</reportFormat>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <!--Sets the VM argument line used when integration tests are run. -->
+                            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                            <forkCount>1</forkCount>
+                            <threadCount>1</threadCount>
+                            <parallel>classes</parallel>
+                            <includes>
+                                <include>**/*IT*.java</include>
+                                <include>**/*ITCase*.java</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/CleanFilterTables.java</exclude>
+                            </excludes>
+                            <excludedGroups>${tests.excludedGroups}</excludedGroups>
+                            <argLine>-Xmx4g ${failsafeArgLine} -Dspring.profiles.active=${spring.profile} -Dnet.sf.ehcache.disabled=true</argLine>
+                            <reportFormat>plain</reportFormat>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

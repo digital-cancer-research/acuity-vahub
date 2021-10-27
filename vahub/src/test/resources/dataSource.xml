@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:property-placeholder location="classpath:/jdbc.properties" ignore-unresolvable="true"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource" p:fetchSize="100" />
+
+    <!--  For unit testing -->
+    <beans profile="default" >
+        <jdbc:embedded-database id="dataSource" type="H2" />
+        
+        <bean id="flyway-migrate" class="com.googlecode.flyway.core.Flyway" init-method="migrate">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="locations">
+                <list>
+                    <value>classpath:flyway-h2-version/flyway/common</value>
+                    <value>classpath:flyway-h2-version/flyway/h2</value>
+                </list>
+            </property>
+            <property name="validateOnMigrate" value="false"/>
+            <property name="initOnMigrate" value="true" />
+        </bean>
+    </beans>
+
+    <!--  ?? -->
+    <beans profile="h2-quartz" >
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="org.h2.Driver"/>
+            <property name="url" value="jdbc:h2:~/test;MODE=Oracle"/>
+            <property name="username" value="sa"/>
+            <property name="password" value=""/>
+        </bean>
+        
+        <bean id="flyway-migrate" class="com.googlecode.flyway.core.Flyway" init-method="migrate">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="locations">
+                <list>
+                    <value>classpath:sql/test/quartz</value>
+                </list>
+            </property>
+            <property name="validateOnMigrate" value="false"/>
+            <property name="initOnMigrate" value="true" />
+        </bean>
+    </beans>
+    
+    <beans profile="h2" >
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="org.h2.Driver"/>
+            <property name="url" value="jdbc:h2:tcp://localhost:3309/test;MODE=Oracle"/>
+            <property name="username" value="sa"/>
+            <property name="password" value=""/>
+        </bean>
+    </beans>
+
+    <!--  To run queries against dev db if needed -->
+    <beans profile="oracle-dev" >
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${dev.jdbc.driver}"/>
+            <property name="url" value="${dev.jdbc.url}"/>
+            <property name="username" value="${dev.jdbc.user}"/>
+            <property name="password" value="${dev.jdbc.password}"/>
+        </bean>
+       
+    </beans>
+    
+    <!--  To run queries against test db if needed -->
+    <beans profile="oracle-test" >
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${test.jdbc.driver}"/>
+            <property name="url" value="${test.jdbc.url}"/>
+            <property name="username" value="${test.jdbc.user}"/>
+            <property name="password" value="${test.jdbc.password}"/>
+        </bean>    
+    </beans>
+    
+    <!--  To run queries against pre prod db if needed -->
+    <beans profile="oracle-preprod" >
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${pre.jdbc.driver}"/>
+            <property name="url" value="${pre.jdbc.url}"/>
+            <property name="username" value="${pre.jdbc.user}"/>
+            <property name="password" value="${pre.jdbc.password}"/>
+        </bean>        
+    </beans>    
+         
+    <!--  To run IT tests against integration test db -->   
+    <beans profile="oracle-it">
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${ds.jdbc.driver}"/>
+            <property name="url" value="${ds.jdbc.url}"/>
+            <property name="username" value="${ds.jdbc.user}"/>
+            <property name="password" value="${ds.jdbc.password}"/>
+        </bean>        
+    </beans>
+</beans>

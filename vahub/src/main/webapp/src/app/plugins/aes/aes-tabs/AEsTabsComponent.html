@@ -1,0 +1,57 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<ul [ngClass]="{'nav': !isDropdown, 'no-padding-right': !isDropdown, 'nav-tabs': !isDropdown, 'dropdown-menu': isDropdown, 'dropdown-menu-right': isDropdown}">
+    <li *ngIf="datasetViews.hasAesData()">
+        <a routerLink="/plugins/aes/subject-counts" routerLinkActive="active" (click)="tabClicked(tabName.AES_SUBJECT_COUNTS)">{{tabName.AES_SUBJECT_COUNTS}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasAesData()">
+        <a routerLink="/plugins/aes/overtime" routerLinkActive="active" (click)="tabClicked(tabName.AES_OVER_TIME)">{{tabName.AES_OVER_TIME}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasAesData()">
+        <a routerLink="/plugins/aes/table" routerLinkActive="active" (click)="tabClicked(tabName.AES_TABLE)">{{tabName.AES_TABLE}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasAesData() && isOngoing()">
+        <a routerLink="/plugins/aes/summary" routerLinkActive="active" (click)="tabClicked(tabName.AE_SUMMARIES)">{{tabName.AE_SUMMARIES}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasTolerabilitySpotfireModules()">
+        <a routerLink="/plugins/aes/spotfireTolerability" routerLinkActive="active" (click)="tabClicked(tabName.AES_ACUITY_TOLERABILITY_MODULES)">{{tabName.AES_ACUITY_TOLERABILITY_MODULES}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasAesData()">
+        <a routerLink="/plugins/aes/chord-diagram" routerLinkActive="active" (click)="tabClicked(tabName.AES_CHORD_DIAGRAM)">{{tabName.AES_CHORD_DIAGRAM}}</a>
+    </li>
+    <ng-template [ngIf]="datasetViews.hasCIEventsData()">
+        <li>
+            <a routerLink="/plugins/cievents/event-counts" routerLinkActive="active" (click)="tabClicked(tabName.CI_EVENT_COUNTS)">{{tabName.CI_EVENT_COUNTS}}</a>
+        </li>
+        <li>
+            <a routerLink="/plugins/cievents/overtime" routerLinkActive="active" (click)="tabClicked(tabName.CI_EVENT_OVERTIME)">{{tabName.CI_EVENT_OVERTIME}}</a>
+        </li>
+    </ng-template>
+    <li *ngIf="datasetViews.hasCerebrovascularData()">
+        <a routerLink="/plugins/cerebrovascular/event-counts" routerLinkActive="active" (click)="tabClicked(tabName.CEREBROVASCULAR_COUNTS)">{{tabName.CEREBROVASCULAR_COUNTS}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasCerebrovascularData()">
+        <a routerLink="/plugins/cerebrovascular/overtime" routerLinkActive="active" (click)="tabClicked(tabName.CEREBROVASCULAR_EVENTS_OVER_TIME)">{{tabName.CEREBROVASCULAR_EVENTS_OVER_TIME}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasCvotData()">
+        <a routerLink="/plugins/cvot/event-counts" routerLinkActive="active" (click)="tabClicked(tabName.CVOT_ENDPOINTS_COUNTS)">{{tabName.CVOT_ENDPOINTS_COUNTS}}</a>
+    </li>
+    <li *ngIf="datasetViews.hasCvotData()">
+        <a routerLink="/plugins/cvot/overtime" routerLinkActive="active" (click)="tabClicked(tabName.CVOT_ENDPOINTS_OVER_TIME)">{{tabName.CVOT_ENDPOINTS_OVER_TIME}}</a>
+    </li>
+</ul>
+

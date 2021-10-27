@@ -1,0 +1,67 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="summary-categories-container">
+    <ul id="summary-categories" class="nav">
+        <li class="summaryCategory" *ngFor="let summaryCategory of summaryCategories"
+            [routerLink]="['../'+summaryCategory.routeData.link]" routerLinkActive="active-category">
+            <a>{{summaryCategory.name}}</a>
+        </li>
+    </ul>
+
+    <div class="nodata" *ngIf="isError() || !isSelectedOneDataset">
+        No data to display
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="!isError() && isSelectedOneDataset">
+    <div class="total-subjects-count" *ngIf="isValidData(summaryData)">
+        Total subjects dosed: <strong>{{getTotalSubjectsCount()}}</strong>
+    </div>
+    <div class="table-name">
+        {{tableName}}
+    </div>
+    <div>
+        <a role="button" (click)="openSaveModal()">
+            <span class="glyphicon glyphicon-save details-area__export__icon"></span>
+            <span>Export this table</span>
+        </a>
+    </div>
+    <ag-grid-angular
+            [gridOptions]="gridOptions"
+            [rowData]="rowData"
+            [columnDefs]="columnDefs"
+            (gridReady)="onTableInitialised($event)"
+            [ngStyle]="{width: '96%'}"
+            [style.height]="getCalculatedTableHeight()"
+            class="ag-fresh"
+    >
+    </ag-grid-angular>
+    <div class="notes">
+        <strong>Note:</strong>
+        <br>
+        <ul class="notes-list">
+            <li *ngFor="let note of notes" [innerHTML]="note"></li>
+        </ul>
+    </div>
+</div>
+
+<app-modal-message [Title]="modalOptions.title"
+                   [Msg]="modalOptions.message"
+                   [ButtonText]="modalOptions.textButton"
+                   [ModalBeDismissed]="modalOptions.canBeDismissed"
+                   [ModalIsVisible]="isModalVisible"
+                   (modalHasBeenSubmitted)="modalOptions.submit($event)"></app-modal-message>

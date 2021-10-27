@@ -1,0 +1,386 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.widget-area {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.widget-box {
+    border: 1px solid #ccc;
+    border-width: 0 1px 1px 0;
+    padding: 0px 0px 0px 15px;
+    margin-bottom: 0;
+    position: relative;
+    height: 49px;
+    overflow: hidden;
+    transition: height 0.5s ease-in;
+}
+
+h2 {
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+p {
+    margin: 0;
+}
+
+.widget-box__info {
+    float: left;
+    width: 240px;
+}
+
+.widgets {
+    background-color: white;
+    border-left: 1px solid #ccc;
+    margin-left: 245px;
+    padding: 9px 285px 0px 9px;
+    min-height: 47px;
+}
+
+.widgets-population-active{
+    float:left;
+    margin-left: 6px;
+    width: 6px;
+    height: 50px;
+    position: relative;
+    display: inline-block;
+    background-color: #6c3593;
+}
+
+.widgets-events-active{
+    float:left;
+    margin-left: 6px;
+    width: 6px;
+    height: 50px;
+    position: relative;
+    display: inline-block;
+    background-color: #6fb500;
+}
+
+>>> .widget {
+    display: inline-block;
+    background: #3F4444;
+    color: white;
+    border-radius: 4px;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 9px;
+    margin-left: 5px;
+}
+
+>>> .widget:before {
+    content: "";
+    width: 6px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #6c3593;
+    border-right: 1px solid #9DB0AC;
+    border-radius: 4px 0 0 4px;
+}
+
+>>> .widget.widget-population:before {
+    background-color: #6c3593;
+}
+
+>>> .widget.widget-events:before {
+    background-color: #6fb500;
+}
+
+>>> .widget-overview {
+    padding-left: 12px;
+    padding-right: 34px;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    border-radius: 4px;
+}
+
+>>> .widget-overview > span {
+    display: inline-block;
+    max-width: 350px;
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+>>> .widget:hover {
+    background-color: black;
+    cursor: default;
+}
+
+.widget-remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #3F4444;
+    border-left: 1px solid #9DB0AC;
+    border-radius: 0 4px 4px 0;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+}
+
+.widget-remove span {
+    display: block;
+    text-indent: -10000px;
+}
+
+.widget-remove:before {
+    content: "";
+    width: 3px;
+    height: 14px;
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    background: #ebebeb;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.widget-remove:after {
+    content: "";
+    width: 3px;
+    height: 14px;
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    background: #ebebeb;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+
+}
+
+.widget-remove:hover {
+    background-color: black;
+    cursor: default;
+}
+
+.widget-detail {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    background-color: #ebebeb;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    /*margin-top: 20px;*/
+    z-index: 100;
+    color: black;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+}
+
+.widget-detail:before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -12px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12px 12px 12px;
+    border-color: transparent transparent #ccc transparent;
+}
+
+.widget-detail:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #ebebeb transparent;
+}
+
+.widget-detail ul {
+    list-style: none;
+    position: relative;
+    padding-left: 60px;
+}
+
+.widget-detail ul:before {
+    content: "";
+    width: 4px;
+    height: calc(100% - 45px);
+    position: absolute;
+    top: 15px;
+    left: 0;
+    background-color: #9DB0AC;
+    z-index: 10;
+}
+
+.widget-detail ul li span {
+    background: #3F4444;
+    color: white;
+    padding: 0px 8px;
+    border-radius: 4px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    line-height: 2;
+}
+
+.widget-detail ul li span:before {
+    content: "";
+    width: 60px;
+    height: 4px;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -2px;
+    background-color: #9DB0AC;
+}
+
+.widget-detail ul ul {
+    margin-left: -20px;
+}
+
+.widget-detail ul ul:before {
+    top: -30px;
+    height: 100%;
+}
+
+.widget-detail ul ul li span:after {
+    content: "or";
+    position: absolute;
+    top: 2px;
+    left: -41px;
+    margin-top: -2px;
+    background-color: #9DB0AC;
+    border-radius: 4px;
+    padding: 0 7px;
+}
+
+.tooltip-inner {
+    background-color: var(--branding-color);
+    min-width: 100px;
+}
+
+.tooltip.right .tooltip-arrow {
+    border-right-color: var(--branding-color);
+}
+
+.widget-box__controls {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    padding: 0;
+    list-style: none;
+}
+
+.widget-box__controls li {
+    float: left;
+}
+
+.widget-box__controls li a {
+    display: block;
+    width: 60px;
+    height: 30px;
+    background-color: var(--widget-color);
+    border-radius: 4px;
+    position: relative;
+    margin-left: 9px;
+    margin-top: 9px;
+    padding-top: 3px;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    text-decoration: none !important;
+    cursor: default;
+}
+
+.widget-box__controls li a span {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    line-height: 12px;
+}
+
+.widget-box__controls li a:hover, .widget-box__controls li a.active, .widget-box__controls li a.focus {
+    background-color: var(--widget-bright-color);
+    text-decoration: none;
+}
+
+.widget-box__controls li a.inactive {
+    background: #ebebeb;
+    pointer-events: none;
+}
+
+.modal__close {
+    position: absolute;
+    top: -13px;
+    right: -13px;
+    width: 26px;
+    height: 26px;
+    background: #ebebeb;
+    border-radius: 50%;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    border: 2px solid #ccc;
+    cursor: default;
+}
+
+.modal__close span {
+    display: block;
+    text-indent: -10000px;
+    cursor: default;
+}
+
+.modal__close:before {
+    content: "";
+    width: 3px;
+    height: 14px;
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    background: #3F4444;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    cursor: default;
+}
+
+.modal__close:after {
+    content: "";
+    width: 3px;
+    height: 14px;
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    background: #3F4444;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    cursor: default;
+}
+
+.modal__close:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}

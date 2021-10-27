@@ -1,0 +1,56 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="container">
+    <div class="alert alert-info color-black h4" role="alert">About ACUITY</div>
+    <div class="row about-row">
+        <div class="col-md-4 col-md-offset-2">
+            <a class="thumbnail forced-height home-thumbnail" routerLink='/about' fragment="discover-acuity"
+               data-toggle="tooltip" data-placement="bottom" (click)="onAnchorClick()"
+               [title]="'Follow this link to discover what ACUITY can do'">
+                <span class="glyphicon glyphicon glyphicon-film"></span>
+                <p>Discover</p>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="thumbnail forced-height home-thumbnail" routerLink='/about' fragment="about-acuity"
+               data-toggle="tooltip" data-placement="bottom" (click)="onAnchorClick()"
+               [title]="'Click here to find out where ACUITY data comes from and how we prepare it for use in ACUITY'">
+                <span class="glyphicon glyphicon-cog"></span>
+                <p>How ACUITY Works</p>
+            </a>
+        </div>
+    </div>
+    <div id="discover-acuity" class="alert alert-info color-black h4" role="alert">Discover</div>
+    <p>
+        ACUITY is a digital solution to revolutionise the way we can interpret and analyse data from
+        clinical trials. Whether you're accessing data during an ongoing study or performing analyses at the end
+        of a study. It will facilitate data interpretation through an interactive visual platform designed to
+        effortlessly enable access across a drug program and individual studies, down to individual patient
+        level data. ACUITY aids communication and collaboration within teams, to improve understanding and
+        productivity.
+    </p>
+    <br/>
+    <p>
+        ACUITY is a visual, intuitive and interactive tool that is easy to learn and use.
+    </p>
+    <div id="about-acuity" class="alert alert-info color-black h4" role="alert">How ACUITY works?</div>
+    <p>
+        ACUITY is a web application that enables you to view and interact with clinical data as it emerges from
+        an ongoing clinical study. This raw data is uncleaned and unvalidated. Data is read into the ACUITY
+        database, which in turn populates the graphs and tables that you see in ACUITY.
+    </p>
+</div>

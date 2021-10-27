@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div id="intro8">
+    <div class="axis-label" (click)="toggleOpen()" title="{{tooltip}}">
+        {{toString(localOption) | sentenceCase}}
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </div>
+    <div class="axis-control" [@openClose]="openState()">
+        <div class="container-fluid" *ngIf="isOpen">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" [ngModel]="toString(localOption)" (change)="updateValueString($event)">
+                            <option *ngFor="let anoption of availableValueStrings" [value]="anoption">
+                                {{anoption | sentenceCase }}
+                            </option>
+                        </select>
+                        <div class="input-group" *ngIf="hasAdditionalSelection()">
+                            <div class="input-group-addon">Drug</div>
+                            <select class="form-control" [ngModel]="toAdditionalSelection(localOption)" (change)="updateAdditionalSelectionValue($event)">
+                                <option *ngFor="let option of additionalSelection" [value]="option">
+                                    {{option}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-warning pull-right ml10" (click)="closeControl()">Cancel
+                    </button>
+                    <button *ngIf="hasAdditionalSelection()" type="button" class="btn btn-warning pull-right" (click)="onApply()">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

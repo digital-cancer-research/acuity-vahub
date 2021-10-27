@@ -1,0 +1,125 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<ng-template [ngIf]="isCohortFilter">
+    <ul class="filter-list filter-list--cohorts">
+        <!-- Template is here to reduce the amount of produced HTML -->
+        <ng-template ngFor let-baseFilterItemModel [ngForOf]="getFilterList()[0]" >
+            <li class="filter-item cohort-filter-item" *ngIf="baseFilterItemModel.filterIsVisible && !baseFilterItemModel.isMapFilter">
+                <a class="filter-list__title" (click)="openContent($event, baseFilterItemModel)">
+                    <span class="triangle-icon"> </span>
+                    <span class="display-name" title="{{baseFilterItemModel.displayName}}">
+                    {{baseFilterItemModel.displayName}}
+                    <span class="amount" *ngIf="baseFilterItemModel.showNumberOfSelectedFilters()">
+                        ({{baseFilterItemModel.numberOfSelectedFilters}})
+                    </span>
+                </span>
+                </a>
+                <div class="filter-list__content filter-collection">
+                    <div style="height: 100%" [ngSwitch]="baseFilterItemModel.type">
+                        <rangefilter *ngSwitchCase="0" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></rangefilter>
+                        <rangedatefilter *ngSwitchCase="1" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></rangedatefilter>
+                        <listfilter *ngSwitchCase="2" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></listfilter>
+                        <checklistfilter *ngSwitchCase="3" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></checklistfilter>
+                        <studyspecificfilter *ngSwitchCase="8" [openedFilterModel]="openedFilterModel" [ssfmodel]="baseFilterItemModel"></studyspecificfilter>
+                        <unselectedchecklistfilter *ngSwitchCase="13" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></unselectedchecklistfilter>
+                    </div>
+                </div>
+            </li>
+            <li *ngIf="baseFilterItemModel.filterIsVisible && baseFilterItemModel.isMapFilter" [ngSwitch]="baseFilterItemModel.type">
+                <maplistfilter *ngSwitchCase="5" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maplistfilter>
+                <maprangedatefilter *ngSwitchCase="9" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maprangedatefilter>
+                <maprangefilter *ngSwitchCase="10" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maprangefilter>
+            </li>
+        </ng-template>
+    </ul>
+    <ul class="filter-list filter-list--cohorts">
+        <ng-template ngFor let-baseFilterItemModel [ngForOf]="getFilterList()[1]" >
+            <li class="filter-item cohort-filter-item" *ngIf="baseFilterItemModel.filterIsVisible && !baseFilterItemModel.isMapFilter">
+                <a class="filter-list__title" (click)="openContent($event, baseFilterItemModel)">
+                    <span class="triangle-icon"> </span>
+                    <span class="display-name" title="{{baseFilterItemModel.displayName}}">
+                    {{baseFilterItemModel.displayName}}
+                    <span class="amount" *ngIf="baseFilterItemModel.showNumberOfSelectedFilters()">
+                        ({{baseFilterItemModel.numberOfSelectedFilters}})
+                    </span>
+                </span>
+                </a>
+                <div class="filter-list__content filter-collection">
+                    <div style="height: 100%" [ngSwitch]="baseFilterItemModel.type">
+                        <rangefilter *ngSwitchCase="0" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></rangefilter>
+                        <rangedatefilter *ngSwitchCase="1" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></rangedatefilter>
+                        <listfilter *ngSwitchCase="2" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></listfilter>
+                        <checklistfilter *ngSwitchCase="3" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></checklistfilter>
+                        <studyspecificfilter *ngSwitchCase="8" [openedFilterModel]="openedFilterModel" [ssfmodel]="baseFilterItemModel"></studyspecificfilter>
+                        <unselectedchecklistfilter *ngSwitchCase="13" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></unselectedchecklistfilter>
+                    </div>
+                </div>
+            </li>
+            <li *ngIf="baseFilterItemModel.filterIsVisible && baseFilterItemModel.isMapFilter" [ngSwitch]="baseFilterItemModel.type">
+                <maplistfilter *ngSwitchCase="5" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maplistfilter>
+                <maprangedatefilter *ngSwitchCase="9" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maprangedatefilter>
+                <maprangefilter *ngSwitchCase="10" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maprangefilter>
+            </li>
+        </ng-template>
+    </ul>
+</ng-template>
+<ng-template [ngIf]="!isCohortFilter">
+    <ul class="filter-list">
+        <!--
+            NOTE: Template usage is deprecated since v4, will be removed in v5
+            angular template compiler will remove template from compiled code
+            https://v2.angular.io/docs/ts/latest/api/common/index/NgFor-directive.html
+        -->
+        <ng-template ngFor let-baseFilterItemModel [ngForOf]="getFilterList()" >
+            <li class="filter-item" [ngClass]="{'cohort-filter-item': isCohortFilter}" *ngIf="baseFilterItemModel.filterIsVisible && !baseFilterItemModel.isMapFilter">
+                <a class="filter-list__title" (click)="openContent($event, baseFilterItemModel)">
+                    <span class="triangle-icon"> </span>
+                    <span class="display-name" title="{{baseFilterItemModel.displayName}}">
+                    {{baseFilterItemModel.displayName}}
+                    <span class="amount" *ngIf="baseFilterItemModel.showNumberOfSelectedFilters()">
+                        ({{baseFilterItemModel.numberOfSelectedFilters}})
+                    </span>
+                </span>
+                </a>
+                <div class="filter-list__content filter-collection">
+                    <div style="height: 100%" [ngSwitch]="baseFilterItemModel.type">
+                        <rangefilter *ngSwitchCase="0" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></rangefilter>
+                        <rangedatefilter *ngSwitchCase="1" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></rangedatefilter>
+                        <listfilter *ngSwitchCase="2" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></listfilter>
+                        <checklistfilter *ngSwitchCase="3" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></checklistfilter>
+                        <studyspecificfilter *ngSwitchCase="8" [openedFilterModel]="openedFilterModel" [ssfmodel]="baseFilterItemModel"></studyspecificfilter>
+                        <unselectedchecklistfilter *ngSwitchCase="13" [openedFilterModel]="openedFilterModel" [model]="baseFilterItemModel"></unselectedchecklistfilter>
+                    </div>
+                </div>
+            </li>
+            <li *ngIf="baseFilterItemModel.filterIsVisible && baseFilterItemModel.isMapFilter" [ngSwitch]="baseFilterItemModel.type">
+                <maplistfilter *ngSwitchCase="5" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maplistfilter>
+                <maprangedatefilter *ngSwitchCase="9" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maprangedatefilter>
+                <maprangefilter *ngSwitchCase="10" [isCohortFilter]="isCohortFilter" [model]="baseFilterItemModel" [openContent]="openContent.bind(this)"></maprangefilter>
+            </li>
+        </ng-template>
+    </ul>
+</ng-template>
+
+<div class="filter__buttons apply-clear-buttons" >
+    <a class="btn btn-apply" (click)="onApply()">Apply</a>
+    <a class="btn btn-clear" (click)="onClear()">Reset</a>
+</div>
+<div class="filter__buttons export-clear-buttons" >
+    <a class="btn btn-clear" (click)="onExportFilters($event)">Export filters</a>
+    <a class="btn btn-clear" (click)="onClearAll()">Clear filters</a>
+</div>

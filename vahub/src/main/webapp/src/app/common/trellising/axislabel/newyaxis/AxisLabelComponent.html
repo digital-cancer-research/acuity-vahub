@@ -1,0 +1,111 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div>
+    <div class="axis-label" (click)="toggleOpen()" title="{{tooltip}}">
+        <span
+                *ngIf="this.tabId===tabID.TUMOUR_RESPONSE_WATERFALL_PLOT">% change in sum of target lesion diameters, </span>
+        {{selectedOption.displayedOption | toLabel:tabId | sentenceCase:tabId |
+        toLowerCase:tabId}}
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </div>
+
+    <div class="axis-control" *ngIf="isOpen" @enterLeaveTrigger>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="!(settingLabelRequired || advancedMeasuredControlRequired || advancedAxisControlRequired)"
+                         class="form-group">
+                        <select class="form-control" [(ngModel)]="selectedOption.displayedOption"
+                                (change)="updateValue()">
+                            <option *ngFor="let option of availableOptions" [value]="option.displayedOption">
+                                {{option.displayedOption | toLabel:tabId |
+                                sentenceCase:tabId}}
+                            </option>
+                        </select>
+                    </div>
+                    <div *ngIf="settingLabelRequired" class="form-group">
+                        <select class="form-control" [(ngModel)]="selectedOption.displayedOption"
+                                (change)="updateValue()">
+                            <option *ngFor="let option of availableOptions" [value]="option.displayedOption">
+                                {{option.displayedOption | toLabel:tabId |
+                                sentenceCase:tabId }}
+                            </option>
+                        </select>
+                    </div>
+                    <div *ngIf="advancedAxisControlRequired" class="form-group">
+                        <label>Parameter:</label>
+                        <select class="form-control" [(ngModel)]="selectedOption.groupByOption"
+                                (change)="updateValue()">
+                            <option *ngFor="let option of availableOptions" [value]="option.displayedOption">
+                                {{option.displayedOption | toLabel:tabId |
+                                sentenceCase:tabId }}
+                            </option>
+                        </select>
+                        <div *ngIf="hasNotEmptyCycleAndDay" class="cycle-day">
+                            <timepoint-selector [label]="'CYCLE'"
+                                                [selectedOption]="selectedTrellisAxisOptions.first()"
+                                                [availableTrellisAxisOptions]="getAvailableOptions()"
+                                                (apply)="updateSelectedTrellisOptions($event, 'CYCLE')">
+                            </timepoint-selector>
+                            <timepoint-selector [label]="'DAY'"
+                                                [selectedOption]="selectedTrellisAxisOptions.last()"
+                                                [availableTrellisAxisOptions]="getAvailableOptions(true)"
+                                                (apply)="updateSelectedTrellisOptions($event, 'DAY')">
+                            </timepoint-selector>
+                        </div>
+                        <div *ngIf="!hasNotEmptyCycleAndDay">
+                            <timepoint-selector [label]="timepointType"
+                                                [selectedOption]="selectedTrellisAxisOptions"
+                                                [availableTrellisAxisOptions]="getAvailableOptions()"
+                                                (apply)="updateSelectedTrellisOptions($event)">
+                            </timepoint-selector>
+                        </div>
+                    </div>
+
+                    <div *ngIf="advancedMeasuredControlRequired && !advancedAxisControlRequired" class="form-group">
+                        <label>Y axis measure:</label>
+                        <select class="form-control" [(ngModel)]="measureNumberOption">
+                            <option *ngFor="let option of measureNumberOptions"
+                                    [value]="option">
+                                {{option | toLabel:tabId | sentenceCase }}
+                            </option>
+                        </select>
+                        <label>Unit of measure:</label>
+                        <select class="form-control" [(ngModel)]="unitOption">
+                            <option *ngFor="let option of unitOptions"
+                                    [value]="option">
+                                {{option | toLabel:tabId | sentenceCase }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-warning pull-right ml10" (click)="closeControl()">Cancel
+                    </button>
+                    <button *ngIf="advancedMeasuredControlRequired || advancedAxisControlRequired" type="button"
+                            class="btn btn-warning pull-right"
+                            (click)="onApply()"
+                            style="margin-right: 15px">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

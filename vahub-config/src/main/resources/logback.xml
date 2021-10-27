@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<configuration>
+
+    <property name="DEVELOPER_KEY" value="developer"/>
+
+    <!--
+     Sets up some variables:
+     DEV defines that should use console logger, when its not DEV use a file logger as its running on linux on none dev box
+    -->
+    <if condition='property("os.name").toLowerCase().contains("win")'>
+        <then>
+            <property name="DEV" value="true"/>
+        </then>
+    </if>
+
+    <!--
+      If its is dev env then use CONSOLE appender
+      Else then setup FILE appender, a daily rolling appender
+    -->
+
+    <if condition='isDefined("DEV")'>
+        <then>
+            <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>%-33.-33(%d{dd/MM HH:mm:ss} [%X{username}] [%thread]) %-5level %-29.29(%logger{25}:%L) - %msg %n</pattern>
+                </encoder>
+            </appender>
+
+
+            <logger name="com.acuity" level="${root-level:-DEBUG}" />
+            <logger name="com.acuity.visualisations.spotfireproxy" level="DEBUG" /> <!-- Keep -->
+            <logger name="com.acuity.visualisations.common.cache" level="INFO" />
+            <logger name="org.springframework.aop.interceptor" level="INFO"/>
+            <logger name="org.springframework.security" level="WARN"/>
+            <logger name="net.sf.ehcache" level="INFO"/>
+            <logger name="java.sql" level="WARN"/>
+            <logger name="org.flywaydb" level="INFO" />
+            <logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR" />
+            <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR" />
+            <logger name="org.springframework.context.support" level="ERROR" />
+
+            <root level="INFO">
+                <appender-ref ref="CONSOLE" />
+            </root>
+        </then>
+        <else>
+            <turboFilter class="ch.qos.logback.classic.turbo.DynamicThresholdFilter">
+                <Key>${DEVELOPER_KEY}</Key>
+                <DefaultThreshold>INFO</DefaultThreshold>
+                <MDCValueLevelPair>
+                    <value>dev</value>
+                    <level>DEBUG</level>
+                </MDCValueLevelPair>
+                <MDCValueLevelPair>
+                    <value>service</value>
+                    <level>DEBUG</level>
+                </MDCValueLevelPair>
+            </turboFilter>
+            <!--
+              FILE is daily rolling appender, that rolls over every day keeping a max of 60 in history
+            -->
+            <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_PATH}/vahub/vahub.log</file>
+
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_PATH}/vahub/vahub.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                    <maxHistory>30</maxHistory>
+                    <maxFileSize>100MB</maxFileSize>
+                    <totalSizeCap>4GB</totalSizeCap>
+                </rollingPolicy>
+
+                <encoder>
+                    <pattern>%-33.-33(%d{dd/MM HH:mm:ss} [%X{username}] [%thread]) %-5level %-29.29(%logger{25}:%L) - %msg %n</pattern>
+                </encoder>
+            </appender>
+
+            <!-- Used for error only -->
+            <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>ERROR</level>
+                </filter>
+
+                <encoder>
+                    <pattern>%-23.-23(%d{dd/MM HH:mm:ss} [%thread]) %-5level %-29.29(%logger{25}:%L) - %msg %X{username}%n</pattern>
+                </encoder>
+            </appender>
+
+            <logger name="com.acuity" level="${root-level:-DEBUG}" />
+            <logger name="com.acuity.detect.spotfireproxy" level="INFO" /> <!-- Keep -->
+            <logger name="com.acuity.visualisations.common.cache" level="INFO" />
+            <logger name="org.springframework.aop.interceptor" level="INFO"/>
+            <logger name="org.springframework.security" level="DEBUG"/>
+            <logger name="net.sf.ehcache" level="INFO"/>
+            <logger name="java.sql" level="DEBUG"/>
+            <logger name="org.flywaydb" level="INFO" />
+            <logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR" />
+            <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR" />
+            <logger name="org.springframework.context.support" level="ERROR" />
+
+            <root level="INFO">
+                <appender-ref ref="FILE"/>
+                <appender-ref ref="CONSOLE"/>
+            </root>
+        </else>
+    </if>
+
+</configuration>

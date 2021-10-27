@@ -1,0 +1,126 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.loader{
+    width: 100%;
+    position: absolute;
+}
+
+.loader-message{
+    margin-top: 300px;
+    width: 50%;
+    margin-left: auto;
+    margin-right:auto;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 6px;
+    height: 200px;
+    z-index: 1200;
+}
+
+.loader-background{
+    width: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    overflow: hidden;
+    height: 100%;
+}
+
+.loader-title{
+    font-family: inherit;
+    position: relative;
+    left: 17%;
+    top: 12%;
+}
+
+#messages{
+    position: absolute;
+    width: 40%;
+    height: 110px;
+    left: 34%;
+    font-size: 200%;
+    font-weight: normal;
+    text-align: justify;
+    color: black;
+    opacity: 1;
+    overflow: hidden;
+    transform-origin: 50% 100%;
+}
+
+#messages::after{
+    position: absolute;
+    content: ' ';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 20%;
+    background: linear-gradient(white 0%, transparent 100%);
+    pointer-events: none;
+}
+
+#messagecontent
+{
+    position: absolute;
+    top: 100%;
+    animation: scroll 1000s steps(10000) infinite;
+}
+
+#messagecontent > p{
+    font-size: small;
+}
+
+@keyframes scroll {
+    0% {top: 100%; }
+    100% {top: -100000%;}
+}
+
+.circle-loader
+{
+    width: 35px;
+    position: relative;
+    top: 58px;
+    left: 44px;
+    z-index: 10000;
+    height: 35px;
+
+    -webkit-animation: circle infinite 0.6s linear;
+       -moz-animation: circle infinite 0.6s linear;
+         -o-animation: circle infinite 0.6s linear;
+            animation: circle infinite 0.6s linear;
+
+    border: 5px solid var(--bright-branding-color);
+    border-top-color: transparent;
+    border-radius: 100%;
+}
+
+@keyframes circle
+{
+    0%
+    {
+        -webkit-transform: rotate(0);
+            -ms-transform: rotate(0);
+             -o-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}

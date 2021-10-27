@@ -1,0 +1,35 @@
+[  
+   {  
+      "subjectId":"subject1",
+      "subject":"subject1",
+      "labcodes":[  
+         {  
+            "labcode":"labcode1",
+            "events":[  
+               {  
+                  "start":{  
+                     "date":1462458203772,
+                     "dayHour":124.4,
+                     "dayHourAsString":"124d 09:36"
+                  },
+                  "visitNumber":4,
+                  "labcode":"labcode1",
+                  "baselineValue":10.2,
+                  "value_raw":12.3,
+                  "unit_raw":"mg",
+                  "value_changeFromBaseline":12.4,
+                  "unit_changeFromBaseline":"mg",
+                  "value_percentChangeFromBaseline":50.9,
+                  "unit_percentChangeFromBaseline":"%",
+                  "numberOfEventsOutOfRange":[  
+                     4,
+                     2,
+                     0,
+                     0
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+]

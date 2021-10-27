@@ -1,0 +1,316 @@
+/*
+ * Copyright 2021 The University of Manchester
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#wrapper {
+    width: 100%;
+}
+
+#page-wrapper {
+    min-height: 600px;
+    background: #F3F3F3;
+    padding-left: 15px;
+    overflow-x: hidden;
+    margin: 0 0 0 260px;
+}
+
+#page-inner {
+    width: 100%;
+    background-color: #fff !important;
+    min-height: 1200px;
+    padding: 10px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.user-image-back {
+    background-color: #8B7BFF;
+}
+
+/*==============================================
+    MENU STYLES
+    =============================================*/
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #06F;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #06F;
+}
+
+.glyphicon-chevron-left {
+    float: right;
+}
+
+.opened .glyphicon-chevron-left:before {
+    content: "\e114";
+}
+
+.nav-second-level li,
+.nav-third-level li {
+    border-bottom: none !important;
+}
+
+.nav-second-level li a {
+    padding-left: 19px;
+}
+
+.nav-third-level li a {
+    padding-left: 29px;
+}
+
+.sidebar-collapse {
+    position: fixed;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.sidebar-collapse, .sidebar-collapse .nav {
+    background: none;
+}
+
+.sidebar-collapse .nav {
+    padding: 0;
+}
+
+.sidebar-collapse .nav > li > a {
+    background: #FFFFFF;
+    text-shadow: none;
+    color: black;
+    width: 260px;
+    cursor: pointer;
+}
+
+.sidebar-collapse > .nav > li > a {
+    padding: 15px 10px;
+}
+
+.sidebar-collapse > .nav > li {
+    border-bottom: 1px solid rgba(240, 240, 240, 1) !important;
+}
+
+.sidebar-collapse .nav > li > a:hover,
+.sidebar-collapse .nav > li > a:focus {
+    background: #F3F3F3;
+    outline: 0;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.nav-second-level > li:last-child > a:after,
+.nav-third-level > li:last-child > a:after {
+    height: 50%;
+}
+
+.nav-third-level > li > a:after,
+.nav-third-level > li > a:before {
+    left: 40px;
+}
+
+.navbar-side {
+    border: none;
+    background-color: #202020;
+    z-index: 1;
+    position: absolute;
+    width: 260px;
+
+}
+
+.navbar-inverse {
+    background-color: #f3f3f3;
+    border-color: #D3D3D3;
+}
+
+.navbar-default {
+    border: 0 solid #DDDDDD;
+
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #B40101;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF;
+}
+
+.nav > li > a > i {
+    margin-right: 10px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #000000;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #000000;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #8B7BFF;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #8B7BFF;
+}
+
+.adjust-nav {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar-toggle {
+    background-color: #8B7BFF;
+}
+
+/*==============================================
+    DASHBOARD STYLES
+    =============================================*/
+
+.bg-color-blue {
+    background-color: #9A86EB;
+    color: #fff;
+}
+
+.no-boder {
+    border: 1px solid #f3f3f3;
+}
+
+.back-footer-blue {
+    background-color: #7479E6;
+    border-top: 0 solid #fff;
+}
+
+/*==============================================
+    BOOTSTRAP STYLE CHANGES
+    =============================================*/
+.nav-tabs > li > a {
+    -webkit-border-radius: 0 0 0 0;
+    -moz-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
+}
+
+.panel-group .panel {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.panel {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.panel-heading {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.progress {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.anchor {
+    padding-top: 60px;
+    margin-top: -60px;
+}
+
+.help-content {
+    margin-bottom: 60vh;
+}
+
+.nav-second-level {
+    display: none;
+}
+
+.nav-third-level {
+    display: none;
+}
+
+.opened ~ .nav-second-level {
+    display: block;
+}
+
+.opened ~ .nav-third-level {
+    display: block;
+}
+
+p {
+    text-align: justify;
+}
+
+p img {
+    width: 30px;
+}
+
+.search-bar {
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.search-field {
+    width: 100%
+}
+
+.search-bar label {
+    float: left;
+    line-height: 26px;
+}
+
+.search-bar span {
+    display: block;
+    overflow: hidden;
+    padding: 0 5px
+}
+
+.ask-button {
+    float: right
+}
+
+.circle-loader {
+    width: 20px;
+    height: 20px;
+    z-index: 10000;
+    -webkit-animation: circle infinite 0.6s linear;
+    -moz-animation: circle infinite 0.6s linear;
+    -o-animation: circle infinite 0.6s linear;
+    animation: circle infinite 0.6s linear;
+    border: 3px solid var(--bright-branding-color);
+    border-top-color: transparent;
+    border-radius: 100%;
+    margin-top: 2px;
+}

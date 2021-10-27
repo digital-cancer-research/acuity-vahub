@@ -1,0 +1,196 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!-- Nav Menu for charts -->
+<nav id="intro2" class="side-menu side-menu--collapse">
+    <ul>
+        <li>
+            <a routerLink="/plugins/population-summary" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/population.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Population Summary</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasExposureData() && !datasetViews.hasExposureSpotfireModules()
+        && !datasetViews.hasPkResultData()
+        && (!userPermissions.hasViewOncologyPackagePermission()
+                || (!datasetViews.hasPkResultWithResponseData() && userPermissions.hasViewOncologyPackagePermission()))">
+            <a routerLink="/plugins/exposure"
+               [ngClass]="{'router-link-active': isActive('/plugins/exposure/analyte-concentration')
+                                                || isActive('/plugins/dose-proportionality/box-plot')
+                                                || isActive('/plugins/pk-overall-response/box-plot')}">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/exposure.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Dosing & Exposure</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasAesData() && !datasetViews.hasCIEventsData() && !datasetViews.hasCerebrovascularData() && !datasetViews.hasCvotData()">
+            <a routerLink="/plugins/aes"
+               [ngClass]="{'router-link-active': isActive('/plugins/aes') || isActive('/plugins/cievents') || isActive('/plugins/cerebrovascular') || isActive('/plugins/cvot')}">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/adverse-events.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Adverse Events</span>
+            </a>
+        </li>
+
+        <li [hidden]="!datasetViews.hasConmedsData()">
+            <a routerLink="/plugins/conmeds" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/conmeds.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Conmeds</span>
+            </a>
+        </li>
+
+        <li [hidden]="!datasetViews.hasLabsData()">
+            <a routerLink="/plugins/labs" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/labs.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Labs</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasVitalsData()">
+            <a routerLink="/plugins/vitals" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/vital-signs.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Vital Signs</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasCardiacData()">
+            <a routerLink="/plugins/cardiac" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/cardiac-function.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Cardiac Function</span>
+            </a>
+        </li>
+        <li [hidden]="!(datasetViews.hasLiverData())">
+            <a routerLink="/plugins/liver" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/liver-function.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Liver Function</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasRenalData()">
+            <a routerLink="/plugins/renal" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/renal-function.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Renal Function</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasRespiratryData() && !datasetViews.hasExacerbationsData() && !datasetViews.hasRespiratorySpotfireModules()">
+            <a [routerLink]="datasetViews.hasExacerbationsData() ? ['/plugins/exacerbations'] : ['/plugins/respiratory']"
+               [ngClass]="{'router-link-active': isActive('/plugins/respiratory') || isActive('/plugins/exacerbations')}">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/respiratory.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Respiratory</span>
+            </a>
+        </li>
+        <li [hidden]="!userPermissions.hasViewOncologyPackagePermission()
+         || (userPermissions.hasViewOncologyPackagePermission() && !datasetViews.hasAnyTumourData() && !datasetViews.hasOncologySpotfireModules())">
+            <a routerLink="/plugins/tumour-response"
+               [ngClass]="{'router-link-active': isActive('/plugins/tumour-response/waterfall')
+               || isActive('/plugins/tumour-lesion/target-lesion-diameters')
+               || isActive('/plugins/tumour-therapy/prior-therapy')}">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/oncology.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Tumour Response</span>
+            </a>
+        </li>
+        <li [hidden]="!datasetViews.hasOncoBiomarkers() && !datasetViews.hasCtDnaData()">
+            <a routerLink="/plugins/biomarker"
+               [ngClass]="{'router-link-active': isActive('/plugins/biomarker') || isActive('/plugins/ctdna')}">
+                <div class="wrapper">
+                    <span class="background-circle small-background-circle">
+                        <img src="/assets/images/biomarkers.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Oncogenic Biomarkers</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/plugins/timeline" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/timeline.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Timeline</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/plugins/singlesubject" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/single-subject-view.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item"> Single Subject </span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/plugins/cohort-editor" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle">
+                        <img class="icon-img" src="/assets/images/cohort-editor.png" alt=" "/>
+                    </span>
+                </div>
+                <span class="menu-item">Cohort Editor</span>
+            </a>
+        </li>
+        <li [hidden]="!userPermissions.hasViewMachineInsightsPackagePermission() || !datasetViews.hasQTProlongationData()">
+            <a routerLink="/plugins/machine-insights" routerLinkActive="router-link-active">
+                <div class="wrapper">
+                    <span class="background-circle small-background-circle">
+                        <img src="/assets/images/machine-insights.png" alt=""/>
+                    </span>
+                </div>
+                <span class="menu-item">Machine Insights</span>
+            </a>
+        </li>
+    </ul>
+</nav>

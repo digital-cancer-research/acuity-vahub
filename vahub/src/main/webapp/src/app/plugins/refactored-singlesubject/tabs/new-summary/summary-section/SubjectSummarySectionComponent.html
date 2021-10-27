@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="triangle-container" (click)="isHeaderCollapsed = !isHeaderCollapsed">
+    <span class="triangle-icon" [ngClass]="{active: !isHeaderCollapsed, closed: isHeaderCollapsed}"></span>
+    <span class="section-title">{{sectionHeader}}</span>
+</div>
+<div *ngIf="!isHeaderCollapsed" [class.show]="!isHeaderCollapsed">
+    <div>
+        <subject-info [header]="header"></subject-info>
+    </div>
+    <div *ngFor="let subheader of section.keys();trackBy:trackByHero" class="subsection-container">
+        <div *ngIf="sectionHeader!==subheader" class="triangle-container" (click)="toogleSubheaderCollapsed(subheader)">
+            <span class="triangle-icon small-icon"
+                  [ngClass]="{active: !isSubHeaderCollapsed[subheader], closed: isSubHeaderCollapsed[subheader]}">
+            </span>
+            <span class="subsection-title">{{subheader}}</span>
+        </div>
+        <div *ngIf="!isSubHeaderCollapsed[subheader] || sectionHeader === subheader" [class.show]="!isSubHeaderCollapsed[subheader]">
+            <div *ngFor="let tableName of section.get(subheader).keys();trackBy:trackBySubhero" class="table-container">
+                <span class="table-title" *ngIf="subheader!==tableName">{{tableName}}</span>
+                <summary-table [tabTableData]="section.get(subheader).get(tableName).tableData"
+                               [columnDefs]="getColumnDefs(subheader, tableName)">
+                </summary-table>
+            </div>
+        </div>
+    </div>
+</div>

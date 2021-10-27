@@ -1,0 +1,119 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ACUITY</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+    <!-- build:css -->
+    <link rel="stylesheet" href="index_ie.css">
+    <!-- endbuild -->
+
+    <!-- build:js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- endbuild -->
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#myModal').modal('show');
+            
+            $(".video").on("click", function(){
+                var $this = $(this);
+                if ($this.children('iframe').length === 0) {
+                    $this.append('<iframe style="width: 496px; height: 279px" src="https://players.brightcove.net/1113255297001/default_default/index.html?videoId=5042897001001"></iframe>');
+                    $this.children('img').remove();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+    <div class="about-container">
+        <img src="assets/images/acuity-logo.png" id="logo" class="banner" alt="acuity logo"/>
+        <h4 style="color:red;">
+            Sorry, ACUITY can't be used in Internet Explorer, please open this page in Google Chrome browser
+        </h4>
+        <h6>
+            Click <a href="https://www.google.com/chrome/index.html">here</a> to download Google Chrome.
+        </h6>
+        <br/>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&ensp;About</h4>
+        </div>
+        <div id="about-acuity" class="panel-body">
+            <p>
+                ACUITY is a digital solution to revolutionise the way we can interpret and analyse data from
+                clinical trials. Whether you're accessing data during an ongoing study or performing analyses at the end
+                of a study. It will facilitate data interpretation through an interactive visual platform designed to
+                effortlessly enable access across a drug program and individual studies, down to individual patient
+                level data. ACUITY aids communication and collaboration within teams, to improve understanding and
+                productivity.
+            </p>
+            <br/>
+            <p>
+                ACUITY is a visual, intuitive and interactive tool that is easy to learn and use.
+            </p>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&ensp;How does ACUITY work?</h4>
+        </div>
+        <div id="discover-acuity" class="panel-body">
+            <p>
+                ACUITY is a web application that enables you to view and interact with clinical data as it emerges from
+                an ongoing clinical study. This raw data is uncleaned and unvalidated. Data is read into the ACUITY
+                database, which in turn populates the graphs and tables that you see in ACUITY.
+            </p>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Warning!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You are using an out-of-date browser, please upgrade to Google Chrome in order to have the full
+                        ACUITY experience.
+                    </p>
+                    <button data-dismiss="modal" class="btn btn-primary">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>

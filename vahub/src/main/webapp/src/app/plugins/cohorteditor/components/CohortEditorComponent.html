@@ -1,0 +1,70 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<progress-messages [loading]="loading" [height]="600"></progress-messages>
+
+<selected-filters [id]="'cohortEditor'"></selected-filters>
+<div class="container-fluid">
+    <div class="row">
+        <div id="editor"class="col-md-4">
+            <h3>Cohort Editor</h3>
+            <available-cohorts [loading]="loading"
+                (hidePopulationFilters)="hidePopulationFilters()"
+                (hideEventFilters)="hideEventFilters()"
+                (loading$)="onLoading($event)"
+                (cohortSelected)="cohortSelected($event)"
+                (resetFilters)="resetFilters()"
+                (saveOriginalFilterState)="saveOriginalFilterState()"
+                (resetSharedWith)="resetSharedWith()">
+            </available-cohorts>
+            <cohort-filter-list
+                [availableCohorts]="availableCohortsComponent.availableCohorts"
+                [selectedCohortId]="availableCohortsComponent.selectedCohortId"
+                (updateFilters)="updateFilters()"
+                (hidePopulationFilters)="hidePopulationFilters()"
+                (hideEventFilters)="hideEventFilters()"
+                (displayPopulationFilters)="displayPopulationFilters()"
+                (displayEventFilters)="displayEventFilters()"
+            ></cohort-filter-list>
+        </div>
+        <div id="filters"class="col-md-5">
+            <h3 [hidden]="showPopulationFilters || showAeFilters">Filters</h3>
+            <div id="populationFilters" class="filter-container" [hidden]="!showPopulationFilters">
+                <h3>Population Filters</h3>
+                <div class="filters cohort-editor-filters tab-pane">
+                    <populationfilter [isCohortFilter]="true" (exportFilters)="onExportFilters($event)" (clearAll)="onClearAll()"></populationfilter>
+                </div>
+            </div>
+            <div id="aeFilters" class="filter-container" [hidden]="!showAeFilters">
+                <h3>Adverse Event Filters</h3>
+                <div class="filters cohort-editor-filters tab-pane">
+                    <aesfilter [isCohortFilter]="true"(exportFilters)="onExportFilters($event)" (clearAll)="onClearAll()"></aesfilter>
+                </div>
+            </div>
+            <div id="noCohortSelectedMessage" [hidden]="showPopulationFilters || showAeFilters">
+                <span class="glyphicon glyphicon-info-sign"></span>To view the filters, please add or select a cohort
+            </div>
+        </div>
+        <div id="sharing" [hidden]="!availableCohortsComponent.selectedCohortId"class="col-md-3">
+            <cohort-sharing [sharedUsers]="sharedWith"[ownerPrid]="availableCohortsComponent.getSelectedCohort()?.savedFilter?.owner"></cohort-sharing>
+        </div>
+    </div>
+</div>
+<div id="cohortEditorButtons">
+    <a class="btn button cohort-editor-buttons" (click)="saveCohort()" [ngClass]="{disabled: this.loading || !canSave()}">Save cohort</a>
+    <a class="btn button cohort-editor-buttons" (click)="saveAndApplyCohort()" [ngClass]="{disabled: this.loading || !canSave()}">Save and apply cohort</a>
+    <a class="btn button cohort-editor-buttons" (click)="applyCohort()" [ngClass]="{disabled: this.loading || !(availableCohortsComponent.selectedCohortId > 0) || hasUnsavedChanges()}">Apply cohort</a>
+</div>

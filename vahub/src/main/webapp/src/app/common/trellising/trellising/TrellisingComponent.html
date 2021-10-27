@@ -1,0 +1,191 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="container-fluid trellising-window" (window:resize)="onResize($event)" [ngClass]="{'single-subject-padding': isSingleSubjectView()}">
+    <div class="row">
+        <div class="col-sm-1">
+            <div *ngIf="trellisingObservables.getLoading(tabId)" [ngStyle]="{'min-height': staticHeight + 'px'}"></div>
+            <!--TODO: update all output calls with tabIds-->
+            <trellis-yaxis
+                *ngIf="!trellisingObservables.getLoading(tabId) && !trellisingObservables.isNewApproachTab(tabId)"
+                [advancedMeasuredControlRequired]="trellisingObservables.getAdvancedMeasuredControlRequired(tabId)"
+                [tabId]="tabId"
+                [option]="trellisingObservables.getYAxisOption(tabId)"
+                [options]="trellisingObservables.getYAxisOptions(tabId)"
+                (update)="trellising.updateYAxisOption($event, tabId)">
+            </trellis-yaxis>
+            <new-trellis-yaxis
+                *ngIf="!(trellisingObservables.getLoading(tabId)) && trellisingObservables.isNewApproachTab(tabId) && hasAxis"
+                [advancedMeasuredControlRequired]="trellisingObservables.getAdvancedMeasuredControlRequired(tabId)"
+                [advancedAxisControlRequired]="trellisingObservables.getAdvancedAxisControlRequired(tabId)"
+                [tabId]="tabId"
+                [option]="trellisingObservables.getNewYAxisOption(tabId)"
+                [options]="trellisingObservables.getNewYAxisOptions(tabId)"
+                [plotSettings]="trellisingObservables.getPlotSettings(tabId)"
+                [settingLabelRequired]="trellisingObservables.isSettingLabelRequired(tabId)"
+                (update)="trellising.updateYAxisOption($event, tabId)">
+            </new-trellis-yaxis>
+            <trellis-yzoom
+                *ngIf="!trellisingObservables.getLoading(tabId)
+                    && !trellisingObservables.getZoomDisabled(tabId)
+                    && !trellisingObservables.getZoomIsHidden(tabId)"
+                class="pull-right"
+                [tabId]="tabId"
+                [zoom]="trellisingObservables.getYAxisZoom(tabId)"
+                [noData]="trellisingObservables.getNoData(tabId)"
+                [trellisDesign]="trellisingObservables.getTrellisDesign(tabId)"
+                (update)="trellising.updateYAxisZoom($event, tabId)"
+                [height]="trellisingObservables.height | async">
+            </trellis-yzoom>
+            <div [ngStyle]="{'height': ((trellisingObservables.height | async) * 0.95) + 'px' }"
+                 *ngIf="!trellisingObservables.getLoading(tabId)
+                 && (trellisingObservables.getZoomDisabled(tabId)
+                 || trellisingObservables.getZoomIsHidden(tabId))"></div>
+        </div>
+        <div [ngClass]="{'col-sm-9': !isBoxPlot, 'col-sm-11': isBoxPlot}">
+            <progress-messages [loading]="trellisingObservables.getLoading(tabId)" [tabId]="tabId"
+                               [height]="trellisingObservables.height | async">
+            </progress-messages>
+            <explanation-modal *ngIf="explanationMap.get(tabId) && !trellisingObservables.getLoading(tabId)"
+                               [explanationContent]="explanationMap.get(tabId)">
+            </explanation-modal>
+            <trellis-grid [hidden]="trellisingObservables.getLoading(tabId) || trellisingObservables.getNoData(tabId)"
+                          [limit]="trellisingObservables.getLimit(tabId)"
+                          [height]="trellisingObservables.height | async"
+                          [columnLimit]="trellisingObservables.getColumnLimit(tabId)"
+                          [columns]="trellisingObservables.getColumns(tabId)"
+                          [actualLimit]="trellisingObservables.getActualLimit(tabId)"
+                          [plots]="trellisingObservables.getPlots(tabId)"
+                          [trellisDesign]="trellisingObservables.getTrellisDesign(tabId)"
+                          [tabId]="tabId"
+                          [page]="trellisingObservables.getPage(tabId)">
+            </trellis-grid>
+            <div *ngIf="!trellisingObservables.getLoading(tabId) && trellisingObservables.getNoData(tabId)"
+                 class="nodata"
+                 [ngStyle]="{'min-height': staticHeight + 'px', 'padding-top': (staticHeight/2) + 'px'}">
+                No data to display
+            </div>
+        </div>
+        <div class="col-sm-2" *ngIf="!isBoxPlot">
+            <trellising-legend
+                *ngIf="!trellisingObservables.getCustomControlLabels(tabId) && !trellisingObservables.getLoading(tabId)
+                    && !trellisingObservables.getLegendDisabled(tabId)"
+                [tabId]="tabId"
+                [legendDisabled]="trellisingObservables.getLegendDisabled(tabId)"
+                [legendSortingRequired]="trellisingObservables.getLegendSortingRequired(tabId)   "
+                [legend]="trellisingObservables.getLegend(tabId)   "
+                [height]="trellisingObservables.height | async">
+            </trellising-legend>
+            <div *ngIf="!trellisingObservables.getLoading(tabId) && !trellisingObservables.getLegendDisabled(tabId)
+                && trellisingObservables.getCustomControlLabels(tabId)">
+                <trellising-legend
+                    *ngFor="let customLabel of trellisingObservables.getCustomControlLabels(tabId)"
+                    [tabId]="tabId"
+                    [customControlLabel]="customLabel"
+                    [legendSortingRequired]="trellisingObservables.getLegendSortingRequired(tabId)"
+                    [legend]="trellisingObservables.getLegend(tabId)"
+                    [height]="trellisingObservables.height | async">
+                </trellising-legend>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div [ngClass]="{'col-sm-9': !isBoxPlot, 'col-sm-11': isBoxPlot}">
+            <trellis-xzoom
+                *ngIf="!trellisingObservables.getLoading(tabId)
+                    && !trellisingObservables.getZoomDisabled(tabId)
+                    && !trellisingObservables.getZoomIsHidden(tabId)"
+                [zoom]="trellisingObservables.getXAxisZoom(tabId)"
+                [noData]="trellisingObservables.getNoData(tabId)"
+                [zoomMargin]="trellisingObservables.getZoomMargin(tabId)"
+                [trellisDesign]="trellisingObservables.getTrellisDesign(tabId)"
+                [tabId]="tabId"
+                (update)="trellising.updateXAxisZoom($event, tabId)">
+            </trellis-xzoom>
+        </div>
+        <div class="col-sm-2" *ngIf="!isBoxPlot"></div>
+    </div>
+    <div class="row">
+        <div [ngClass]="{'col-sm-4': !isBoxPlot, 'col-sm-5': isBoxPlot}">
+            <trellis-x-text-zoom
+                *ngIf="!trellisingObservables.getLoading(tabId) && trellisingObservables.getXAxisTextZoomRequired(tabId)"
+                [zoom]="trellisingObservables.getXAxisZoom(tabId)"
+                (update)="trellising.updateXAxisZoom($event, tabId)">
+            </trellis-x-text-zoom>
+        </div>
+
+        <div class="col-sm-3">
+            <trellis-xaxis
+                *ngIf="!trellisingObservables.getLoading(tabId) && !trellisingObservables.isNewApproachTab(tabId)"
+                [tabId]="tabId"
+                [option]="trellisingObservables.getXAxisOption(tabId)"
+                [options]="trellisingObservables.getXAxisOptions(tabId)"
+                (update)="trellising.updateXAxisOption($event)">
+            </trellis-xaxis>
+            <new-trellis-xaxis
+                *ngIf="!trellisingObservables.getLoading(tabId) && trellisingObservables.isNewApproachTab(tabId) && hasAxis"
+                [tabId]="tabId"
+                [option]="trellisingObservables.getNewXAxisOption(tabId)   "
+                [options]="trellisingObservables.getNewXAxisOptions(tabId)   "
+                (update)="trellising.updateXAxisOption($event)"
+                class="mt5 d-block">
+            </new-trellis-xaxis>
+        </div>
+        <trellis-pagination [currentPage]="trellisingObservables.getPage(tabId)"
+                            [pages]="trellisingObservables.getPages(tabId)"
+                            [isLoading]="trellisingObservables.getLoading(tabId)"
+                            (updatePage)="trellising.updatePage($event)"
+                            [ngClass]="{'col-sm-5': !isBoxPlot, 'col-sm-4': isBoxPlot}">
+        </trellis-pagination>
+    </div>
+    <div class="row">
+        <trellis-jump [tabId]="tabId"
+                      [loading]="trellisingObservables.getLoading(tabId)">
+        </trellis-jump>
+    </div>
+    <div class="row" *ngIf="cBioLink && trellisingObservables.cBioJumpRequired$ | async">
+        <cBio-jump [tabId]="tabId"
+                   [loading]="trellisingObservables.loading | async"
+                   [cBioLink]="cBioLink"
+                   [plots]="trellisingObservables.plots | async"
+                   [selectionDetail]="trellisingObservables.selectionDetail | async">
+        </cBio-jump>
+    </div>
+
+    <div class="row" *ngIf="!trellisingObservables.getDetailsOnDemandDisabled(tabId)
+    && !trellisingObservables.getMultiDetailsOnDemandRequired(tabId)">
+        <details-on-demand [tabId]="tabId"
+                           [selectionDetail]="trellisingObservables.getSelectionDetailByTabId(tabId)"
+                           [eventDetailsOnDemandDisabled]="trellisingObservables.getEventDetailsOnDemandDisabled(tabId)"
+                           [eventModel]="trellisingObservables.getEventDetailsOnDemand(tabId)"
+                           [subjectModel]="trellisingObservables.getSubjectDetailsOnDemand(tabId)"
+                           [plotSettings]="trellisingObservables.getPlotSettings(tabId)"
+                           (updatedEvent)="trellisingDispatcher.updateEventDetailsOnDemand($event, tabId)"
+                           (updatedSubject)="trellisingDispatcher.updateSubjectDetailsOnDemand($event, tabId)">
+        </details-on-demand>
+    </div>
+    <div class="row" *ngIf="trellisingObservables.getMultiDetailsOnDemandRequired(tabId)">
+        <multi-details-on-demand [tabId]="tabId"
+                           [multiSelectionDetail]="trellisingObservables.getMultiSelectionDetail(tabId)"
+                           [eventModels]="trellisingObservables.getMultiEventDetailsOnDemand(tabId)"
+                           [subjectModel]="trellisingObservables.getSubjectDetailsOnDemand(tabId)"
+                           (updatedEvent)="trellisingDispatcher.updateMultiEventDetailsOnDemand($event, tabId)"
+                           (updatedSubject)="trellisingDispatcher.updateSubjectDetailsOnDemand($event, tabId)">
+        </multi-details-on-demand>
+    </div>
+</div>

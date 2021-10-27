@@ -1,0 +1,45 @@
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<section class="details-area draggable" (window:resize)="onWindowResize($event)">
+    <header class="details-area-header">
+        <a class="details-area__toggle" (click)="openOrClose()"></a>
+        <span>Counts of Drug Programmes, Studies and Datasets loaded currently</span>
+    </header>
+    <div class="details-area-content">
+        <div class="details-area__options">
+            <table class="details-table table table-bordered">
+                <thead>
+                    <tr>
+                        <td *ngFor="let detail of details?.keySeq()" class="details-table__cell details-cell">
+                            {{detail}}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="details-table__row">
+                        <td *ngFor="let detail of details?.keySeq()" class="details-table__cell details-cell">
+                            <div class="details-cell__body">{{details.get(detail)}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="details-area__table">
+
+        </div>
+    </div>
+</section>
