@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AesRequest extends EventFilterRequestPopulationAware<AeFilters> {
 
-    //Getter is needed for AesResourceFullStackIT test (which with Rest Assured)
     private AeFilters aesFilters;
 
     @Override

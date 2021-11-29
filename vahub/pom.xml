@@ -422,6 +422,9 @@
                             <goal>revision</goal>
                         </goals>
                         <configuration>
+                            <!-- useNativeGit to pass verification on Github Actions -->
+                            <useNativeGit>true</useNativeGit>
+
                             <generateGitPropertiesFile>true</generateGitPropertiesFile>
                             <generateGitPropertiesFilename>
                                 ${project.build.outputDirectory}/build.properties

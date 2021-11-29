@@ -215,18 +215,6 @@
             <version>3.0.7</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.oracle</groupId>-->
-<!--            <artifactId>ojdbc7</artifactId>-->
-<!--            <version>12.2.0.1</version>-->
-<!--        </dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.postgresql</groupId>-->
-            <!--<artifactId>postgresql</artifactId>-->
-            <!--<scope>runtime</scope>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

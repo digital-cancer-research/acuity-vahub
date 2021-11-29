@@ -40,7 +40,7 @@ public class WhenRunningDiskCacheServicesITCase {
     }
 
     @Test
-    @Ignore("Method listDiskCaches is deprecated. Test fails on Jenkins only")
+    @Ignore("Method listDiskCaches is deprecated. Test fails on Automation Pipeline (GitHub actions or Jenkins)")
     public void shouldListDiskFiles() throws IOException {
         List<Path> listAllDiskCaches = diskCacheService.listDiskCaches(ALL);
         listAllDiskCaches.forEach(System.out::println);
