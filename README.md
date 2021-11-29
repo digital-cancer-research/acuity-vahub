@@ -12,9 +12,7 @@ System includes several applications:
 
 Check <a href='https://github.com/digital-ECMT/acuity-docker/wiki'>ACUITY Visualisations Wiki</a> for more information.
 
-**Table of Contents**  
-
-[[_TOC_]]
+#Table of Contents  
 
 ## VA-Hub Installation
 
