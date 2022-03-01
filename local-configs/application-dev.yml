@@ -13,9 +13,9 @@ logging:
 # database connection data. if needed, the ones you need may be overridden for particular app in its config.
 spring:
   datasource:
-    url: jdbc:postgresql://decmtreactdevpg.digitalecmt.com:5432/acuity_db
-    username: acuity
-    password: react
+    url:
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
     fetch:
       size: 256
@@ -44,8 +44,8 @@ acuity:
   security:
     basic-auth:
       users:
-        - username: user
-          password: pass
+        - username:
+          password:
           roles:
             - REMOTE_USER
             - ACL_ADMINISTRATOR
