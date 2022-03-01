@@ -13,7 +13,7 @@ logging:
 # database connection data. if needed, the ones you need may be overridden for particular app in its config.
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/acuity_db
+    url:
     username:
     password:
     driver-class-name: org.postgresql.Driver
